@@ -1,0 +1,10 @@
+{
+  "exercise": "food-chain",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 33.592403417000014,
+  "benchmark_duration_ms": 32508,
+  "result_present": true
+}

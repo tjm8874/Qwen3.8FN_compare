@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-10T20:27:22.873Z",
+    "agent": "dsh",
+    "model": "benchmark-model",
+    "provider": "local",
+    "version": "0.1.5-rc.3",
+    "totalExercises": 1,
+    "benchmarkVersion": "1.1.0"
+  },
+  "summary": {
+    "successRate": 0,
+    "totalDuration": 209003,
+    "avgDuration": 209003,
+    "successCount": 0,
+    "totalCount": 1,
+    "agentSuccessCount": 1,
+    "testSuccessCount": 0,
+    "testFailedCount": 1
+  },
+  "results": [
+    {
+      "exercise": "react",
+      "agentSuccess": true,
+      "testSuccess": false,
+      "overallSuccess": false,
+      "testError": "STDOUT: ➤ ➤ ➤ ➤ ➤ YN0002: │ @exercism/typescript-react@workspace:. doesn't provide @babel/core (p31db9), requested by babel-jest.\n➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.\n➤ YN0086: │ Some peer dependencies are incorrectly met by dependencies; run yarn explain peer-requirements for details.\n➤ ➤ ➤ ➤ ➤ ➤ YN0008: │ core-js@npm:3.38.1 must be rebuilt because its dependency tree changed\n➤ YN0008: │ core-js@npm:3.44.0 must be rebuilt because its dependency tree changed\n➤ ➤ [tests] tsc: ✅, tstyche: ❌, jest: ✅, \n[tests] tsc (compile)\nreact.ts(269,15): error TS2345: Argument of type 'Cell<T>' is not assignable to parameter of type 'AnyCell'.\n  Types of property 'updateFn' are incompatible.\n    Type 'UpdateFn<T> | undefined' is not assignable to type 'UpdateFn<unknown> | undefined'.\n      Type 'UpdateFn<T>' is not assignable to type 'UpdateFn<unknown>'.\n        Types of parameters 'value' and 'value' are incompatible.\n          Type 'unknown' is not assignable to type 'T | undefined'.\nreact.ts(283,15): error TS2345: Argument of type 'Cell<T>' is not assignable to parameter of type 'AnyCell'.\n  Types of property 'updateFn' are incompatible.\n    Type 'UpdateFn<T> | undefined' is not assignable to type 'UpdateFn<unknown> | undefined'.\n      Type 'UpdateFn<T>' is not assignable to type 'UpdateFn<unknown>'.\n        Types of parameters 'value' and 'value' are incompatible.\n          Type 'unknown' is not assignable to type 'T | undefined'.\nreact.ts(349,13): error TS2345: Argument of type 'Cell<T>' is not assignable to parameter of type 'AnyCell'.\n  Types of property 'updateFn' are incompatible.\n    Type 'UpdateFn<T> | undefined' is not assignable to type 'UpdateFn<unknown> | undefined'.\n      Type 'UpdateFn<T>' is not assignable to type 'UpdateFn<unknown>'.\n        Types of parameters 'value' and 'value' are incompatible.\n          Type 'unknown' is not assignable to type 'T | undefined'.\nreact.ts(353,15): error TS2345: Argument of type 'Cell<T>' is not assignable to parameter of type 'AnyCell'.\n  Types of property 'updateFn' are incompatible.\n    Type 'UpdateFn<T> | undefined' is not assignable to type 'UpdateFn<unknown> | undefined'.\n      Type 'UpdateFn<T>' is not assignable to type 'UpdateFn<unknown>'.\n        Types of parameters 'value' and 'value' are incompatible.\n          Type 'unknown' is not assignable to type 'T | undefined'.\nreact.ts(392,13): error TS2345: Argument of type 'Cell<T>' is not assignable to parameter of type 'AnyCell'.\n  Types of property 'updateFn' are incompatible.\n    Type 'UpdateFn<T> | undefined' is not assignable to type 'UpdateFn<unknown> | undefined'.\n      Type 'UpdateFn<T>' is not assignable to type 'UpdateFn<unknown>'.\n        Types of parameters 'value' and 'value' are incompatible.\n          Type 'unknown' is not assignable to type 'T | undefined'.\nreact.ts(399,42): error TS2345: Argument of type 'Cell<T>' is not assignable to parameter of type 'AnyCell'.\n  Types of property 'updateFn' are incompatible.\n    Type 'UpdateFn<T> | undefined' is not assignable to type 'UpdateFn<unknown> | undefined'.\n      Type 'UpdateFn<T>' is not assignable to type 'UpdateFn<unknown>'.\n        Types of parameters 'value' and 'value' are incompatible.\n          Type 'unknown' is not assignable to type 'T | undefined'.\n\nSTDERR: ",
+      "agentDuration": 205895,
+      "testDuration": 2970,
+      "totalDuration": 209003
+    }
+  ]
+}

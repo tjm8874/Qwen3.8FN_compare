@@ -1,0 +1,10 @@
+{
+  "exercise": "two-bucket",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 97.22965295899985,
+  "benchmark_duration_ms": 96173,
+  "result_present": true
+}

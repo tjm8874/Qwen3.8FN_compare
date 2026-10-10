@@ -2,24 +2,24 @@
 
 Qwen3.8-Flash-Nextを、現在購入できるPC・Mac・DGX Sparkで動かした際の速度とコーディング能力を測定します。各実機で使えるレシピを採用し、購入後の使い勝手を判断できるデータを残します。
 
-**2026年10月10日現在、PCの3構成とMac Studioの速度測定が完了しました。DSHの評価は進行中です。** 以下は途中経過です。著者の公表値や短い動作確認の数値を、今回の実測として扱いません。
+**2026年10月10日現在、PCの3構成とMac Studioの速度測定が完了しました。Mac StudioとPCのGPU分割構成はDSHの24/25問に成功し、GPU単独構成の評価は進行中です。** 以下は途中経過です。著者の公表値や短い動作確認の数値を、今回の実測として扱いません。
 
 ## 16K入力では、PRO 4500単独がGPU分割より速かった
 
 今回のStrata・IQ3_XXS・自動配置では、PRO 4500単独のDecode中央値は120.7 tps、PRO 4500＋5060 Tiは101.0 tpsでした。GPUを追加すれば単一リクエストが速くなるとは限らず、この条件で速度を重視するならPRO 4500単独が有力です。配置や条件を変えた場合、別の結論になる可能性があります。
 
-Mac Studio M5 Ultraの既存8bitモデルはDecode中央値100.5 tpsでした。PCとはモデル・量子化・エンジンが異なり、コーディングの評価もまだ確定していません。価格や速度だけで全構成の購入順位を決めず、25問の結果と合わせて検討します。
+Mac Studio M5 Ultraの既存8bitモデルはDecode中央値100.5 tpsでした。PCとはモデル・量子化・エンジンが異なり、Mac StudioのDSH評価は24/25問に成功し、reactが不成功でした。PCのGPU分割構成もDSHの24/25問に成功しました（不成功：react）。GPU単独構成の評価はまだ進行中です。価格や速度だけで全構成の購入順位を決めず、残りの25問評価と合わせて検討します。
 
 <!-- RESULTS_START -->
 | 構成 | Prefill tps | Decode tps | DSH 成功数 | 参考価格 USD |
 |---|---:|---:|---:|---:|
-| PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 未確定 | $6,500 |
+| PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 24/25 | $6,500 |
 | PC : PRO 4500 | 3,683.0 | 120.7 | 未確定 | $5,700 |
 | PC : 5060 Ti 16GB | 1,333.1 | 60.2 | 未確定 | $1,800 |
 | MacBook Pro M5 Max | 未測定 | 未測定 | 未確定 | $6,699 |
 | DGX Spark 1台 | 未測定 | 未測定 | 未確定 | $6,950 |
 | MS-S1 Max | 未測定 | 未測定 | 未確定 | $3,879 |
-| Mac Studio M5 Ultra | 3,125.0 | 100.5 | 未確定 | $9,999 |
+| Mac Studio M5 Ultra | 3,125.0 | 100.5 | 24/25 | $9,999 |
 | GX10 + DGX Spark | 未測定 | 未測定 | 未確定 | $14,100 |
 <!-- RESULTS_END -->
 
@@ -31,13 +31,13 @@ Mac Studio M5 Ultraの既存8bitモデルはDecode中央値100.5 tpsでした。
 
 | 構成 | エンジン・モデル | 参考価格 USD | 状態 |
 |---|---|---:|---|
-| PC：PRO 4500＋5060 Ti | Strata 0.1.42／IQ3_XXS | $6,500* | 速度測定済み・DSH評価中 |
-| PC：PRO 4500のみ | Strata 0.1.42／IQ3_XXS | $5,700* | 速度測定済み・DSH待機 |
+| PC：PRO 4500＋5060 Ti | Strata 0.1.42／IQ3_XXS | $6,500* | 速度測定・DSH25完了 |
+| PC：PRO 4500のみ | Strata 0.1.42／IQ3_XXS | $5,700* | 速度測定済み・DSH評価中 |
 | PC：5060 Ti 16GBのみ | Strata 0.1.42／IQ3_XXS | $1,800* | 速度測定済み・DSH待機 |
 | MacBook Pro M5 Max 128GB・2TB | [MTPLX](https://github.com/youssofal/MTPLX)／Optimized Speed候補 | $6,699* | 再起動後に測定 |
 | DGX Spark 1台 | [TensorFold指定レシピ](https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold)／INT4・専門家削減モデル | $6,950† | モデル取得中 |
 | MS-S1 Max 128GB・2TB | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo) | $3,879* | 接続待ち |
-| Mac Studio M5 Ultra 256GB・2TB | 既存MLX-Serve／Uncensored 8bit | $9,999* | 速度測定済み・DSH待機 |
+| Mac Studio M5 Ultra 256GB・2TB | 既存MLX-Serve／Uncensored 8bit | $9,999* | 速度測定・DSH25完了 |
 | GX10＋DGX Spark | vLLMレシピv5.2／Uncensored hybrid 4/8bit | $14,100* | 新エンジン・モデルの準備中 |
 
 \* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。価格だけで能力を順位づけせず、速度と25問の成功数を併記します。

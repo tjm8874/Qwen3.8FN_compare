@@ -6,7 +6,7 @@
     "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
     "price_usd": 6500,
     "price_basis": "user estimate: PC 1000 + PRO 4500 4700 + 5060 Ti 800",
-    "state": "speed measured; DSH running or queued",
+    "state": "speed and DSH25 complete (24/25)",
     "engine_version": "0.1.42",
     "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
   },
@@ -17,7 +17,7 @@
     "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
     "price_usd": 5700,
     "price_basis": "user estimate: PC 1000 + PRO 4500 4700",
-    "state": "speed measured; DSH running or queued",
+    "state": "speed measured; DSH25 running",
     "engine_version": "0.1.42",
     "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
   },
@@ -72,7 +72,7 @@
     "model": "Qwen3.8-Flash-Next Uncensored / 8bit, ngram 8bit",
     "price_usd": 9999,
     "price_basis": "user supplied reference system price; corrected 2026-10-10",
-    "state": "speed measured; DSH queued",
+    "state": "speed and DSH25 complete (24/25)",
     "engine_declared_version": "26.10.1",
     "engine_verified_version": "26.9.7-dev",
     "engine_commit": "83e7fcc27be60b470f1f441f9ac508598a732473"

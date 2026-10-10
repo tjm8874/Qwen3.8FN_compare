@@ -1,0 +1,16 @@
+{
+  "case": "macstudio-m5ultra",
+  "revisions": {
+    "ts_bench": "2b3bc944eb5728b5cb24d00e19371b595d528847",
+    "exercism": "ab2d84eda572061e10a8e1ac8c1a662fa859284e"
+  },
+  "tool_versions": {
+    "tsc": "Version 5.6.3",
+    "jest": "29.7.0",
+    "tstyche": "2.1.1"
+  },
+  "DSH_version": "0.1.5-rc.3",
+  "exercises_sha256": "8fecad41d57ce8d4bf169fc465f3a67415fb001bbf65c95a7ec2f1decca3406c",
+  "dsh_patch": "- id: agent-default-model\n  config:\n    provider: local-benchmark\n    model: benchmark-model\n- id: llm-pi-ai\n  config:\n    providers:\n      local-benchmark:\n        apiKeyEnv: DSH_LOCAL_API_KEY\n        api: openai-completions\n        baseURL: http://127.0.0.1:19270/v1\n        compat:\n          supportsDeveloperRole: false\n          maxTokensField: max_tokens\n        models:\n          - id: benchmark-model\n            contextWindow: 32768\n            maxTokens: 16384\n- id: session-persistence-jsonl\n  config:\n    root: !!js dshHomePath('sessions')\n    compression: none\n",
+  "clean_exercises": true
+}

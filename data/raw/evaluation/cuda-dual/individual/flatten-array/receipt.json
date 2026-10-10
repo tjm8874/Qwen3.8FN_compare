@@ -1,0 +1,10 @@
+{
+  "exercise": "flatten-array",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 67.71019916700004,
+  "benchmark_duration_ms": 66676,
+  "result_present": true
+}

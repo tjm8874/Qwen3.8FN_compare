@@ -54,6 +54,7 @@ def main():
     public = root / ".private/publication"
     public.mkdir(parents=True, exist_ok=True)
     targets = json.loads((root / "data/targets.json").read_text())
+    exercises = (root / "data/exercises.txt").read_text().splitlines()
     rows = []
     for target in targets:
         case = target["id"]
@@ -98,6 +99,42 @@ def main():
                  "contents": "all warmups, measured trials, native streams, request payloads, output and available telemetry"})
         ev = root / "data/raw/evaluation" / case / "summary.json"
         evaluation = json.loads(ev.read_text()) if ev.is_file() else None
+        if evaluation:
+            assert evaluation["state"] == "complete" and evaluation["total"] == 25
+            assert [r["exercise"] for r in evaluation["rows"]] == exercises
+            assert all(r["result_present"] and r["result_file_count"] == 1 for r in evaluation["rows"])
+            assert evaluation["passed"] == sum(r["overallSuccess"] is True for r in evaluation["rows"])
+            raw_eval = ev.parent
+            clean_eval = root / ".private/sanitized-evaluation" / case
+            clean_eval.mkdir(parents=True, exist_ok=True)
+            hashes_eval = {}
+            for source in sorted(raw_eval.rglob("*")):
+                if not source.is_file():
+                    continue
+                rel = source.relative_to(raw_eval)
+                destination = clean_eval / rel
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                original = source.read_bytes()
+                if source.suffix == ".json":
+                    body = json.dumps(sanitize_json(json.loads(original)), ensure_ascii=False, indent=2) + "\n"
+                else:
+                    body = sanitize(original.decode())
+                exported = body.encode()
+                destination.write_bytes(exported)
+                hashes_eval[str(rel)] = {"original_sha256": hashlib.sha256(original).hexdigest(),
+                                         "public_sha256": hashlib.sha256(exported).hexdigest(),
+                                         "redacted": original != exported}
+                if source.name in ("summary.json", "prepared.json", "receipt.json") or source.name.startswith("benchmark-"):
+                    dest = public / "data/raw/evaluation" / case / rel
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    dest.write_bytes(exported)
+            archive_eval = public / "data/raw/evaluation" / case / "raw.tar.gz"
+            with tarfile.open(archive_eval, "w:gz", compresslevel=9) as tar:
+                tar.add(clean_eval, arcname=case)
+            save(archive_eval.with_name("archive-manifest.json"), {"files": hashes_eval,
+                 "archive_sha256": hashlib.sha256(archive_eval.read_bytes()).hexdigest(),
+                 "redaction_rules": ["API/authorization/password fields", "private IPs", "personal home directory prefix", "GPU UUID"],
+                 "contents": "DSH25 benchmark results, agent logs, actual upstream requests and responses"})
         row = {"target": case, "hardware": target["hardware"], "engine": target["engine"], "model": target["model"],
                "price_usd": target.get("price_usd"), "price_basis": target.get("price_basis", "not yet verified"),
                "speed_state": "complete" if summary else "pending", "speed_samples": 5 if summary else "",

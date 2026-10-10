@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-10-10T20:34:20.195737+00:00",
+  "snapshot_utc": "2026-10-10T20:39:07.765996+00:00",
   "state": "partial",
   "rows": [
     {
@@ -13,9 +13,9 @@
       "speed_samples": 5,
       "input_tokens": 16384,
       "output_tokens": 2048,
-      "dsh_state": "pending",
-      "dsh_passed": "",
-      "dsh_total": "",
+      "dsh_state": "complete",
+      "dsh_passed": 24,
+      "dsh_total": 25,
       "prefill_tps_median": 3157.1,
       "prefill_tps_min": 3148.5,
       "prefill_tps_max": 3178.6,
@@ -175,9 +175,9 @@
       "speed_samples": 5,
       "input_tokens": 16384,
       "output_tokens": 2048,
-      "dsh_state": "pending",
-      "dsh_passed": "",
-      "dsh_total": "",
+      "dsh_state": "complete",
+      "dsh_passed": 24,
+      "dsh_total": 25,
       "prefill_tps_median": 3124.968,
       "prefill_tps_min": 3118.674,
       "prefill_tps_max": 3130.474,

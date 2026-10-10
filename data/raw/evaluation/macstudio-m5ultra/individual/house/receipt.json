@@ -1,0 +1,10 @@
+{
+  "exercise": "house",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 41.51364941700001,
+  "benchmark_duration_ms": 40380,
+  "result_present": true
+}

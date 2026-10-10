@@ -1,0 +1,10 @@
+{
+  "exercise": "bank-account",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 42.60372154200002,
+  "benchmark_duration_ms": 41471,
+  "result_present": true
+}

@@ -1,0 +1,10 @@
+{
+  "exercise": "react",
+  "overallSuccess": false,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 210.23953533400004,
+  "benchmark_duration_ms": 209003,
+  "result_present": true
+}
