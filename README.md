@@ -1,2 +1,44 @@
-# Qwen3.8FN_compare
-Qwen3.8-Flash-Next real-hardware measurements: 16K prefill/decode, DSH ts-bench 25 tasks, reference prices and raw logs.
+# Qwen3.8-Flash-Next 実機比較
+
+Qwen3.8-Flash-Nextを、現在購入できるPC・Mac・DGX Sparkで動かした際の速度とコーディング能力を測定します。各実機で使えるレシピを採用し、購入後の使い勝手を判断できるデータを残します。
+
+**現在は測定準備中です。結果の数値はまだ掲載していません。** 著者の公表値や短い動作確認の数値を、今回の実測として扱いません。
+
+## 比較する8構成
+
+| 構成 | エンジン・モデル | 参考価格 USD | 状態 |
+|---|---|---:|---|
+| PC：PRO 4500＋5060 Ti | Strata／IQ3_XXS | $6,500* | 準備中 |
+| PC：PRO 4500のみ | Strata／IQ3_XXS | $5,700* | 準備中 |
+| PC：5060 Ti 16GBのみ | Strata／IQ3_XXS | $1,800* | 準備中 |
+| MacBook Pro M5 Max 128GB | [MTPLX](https://github.com/youssofal/MTPLX)／Optimized Speed候補 | 確認中 | 再起動後に測定 |
+| DGX Spark 1台 | [TensorFold指定レシピ](https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold)／INT4・専門家削減モデル | 確認中 | 準備中 |
+| MS-S1 Max | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo) | 確認中 | 接続待ち |
+| Mac Studio M5 Ultra 256GB・2TB | 既存MLX-Serve 26.10.1／Uncensored 8bit | $9,999* | 準備中 |
+| GX10＋DGX Spark | vLLM／Uncensored hybrid 4/8bit | 確認中 | 準備中 |
+
+\* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。価格だけで能力を順位づけせず、速度と25問の成功数を併記します。
+
+## 16K入力の速度を測る
+
+チャットの形式を含めて16,384入力トークン、2,048出力トークン、thinking OFF、同時実行1件で測定します。モデルを読み込み、ウォームアップした後に5回実行し、入力処理（Prefill）と生成（Decode）の中央値・最小値・最大値を記録します。最初の出力が届くまでの時間（TTFT）は別の項目です。
+
+入力の再利用は回避し、エンジンが報告する再利用数を確認します。入力長が違う実行、途中で回答を終えた実行、再利用が残った実行は、生ログを保存したうえで固定長の比較から除外します。速度を算出するトークン数の定義にエンジン間の差があれば、結果に明記します。
+
+## DSHでts-benchの25問を評価する
+
+DSH 0.1.5-rc.3、同一のts-bench・Exercismコミット、[同じ25問](data/exercises.txt)を使用します。thinking ON、エージェントの文脈上限32K、1応答の出力上限16K、1問20分、逐次実行で条件をそろえます。サンプリング設定は採点前に確定して保存します。成功数、所要時間、タイムアウト、ツールの失敗を分けて記録します。
+
+## モデル差を含めて、購入時の選択肢を比べる
+
+PCの3行は同一IQ3_XXSモデルでGPU構成の違いを比較します。全8行では量子化、Uncensored版、モデルの削減、実行エンジンが異なります。DGX Spark 1台の削減モデルも採用し、「1台買った場合、このレシピは役立つか」を速度と評価結果から検討します。この比較から、ハードウェアだけの優劣を断定することはできません。
+
+## データをたどれる形で公開する
+
+- `data/protocol.json`：測定条件
+- `data/targets.json`：実機・レシピ・価格の前提
+- `data/summary.csv`：集計結果（測定後に生成）
+- `data/raw/`：各試行の要求、出力、時間、評価結果、生ログ
+- `images/`：Xで読みやすい比較表画像（集計結果から生成）
+
+APIキー、実機のプライベートアドレス、シリアル番号、個人のファイルパスは公開データに含めません。Xへの投稿文と比較画像は、測定結果がそろった段階で作成します。

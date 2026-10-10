@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "speed": {
+    "input_tokens_including_chat_template": 16384,
+    "output_tokens": 2048,
+    "thinking": false,
+    "temperature": 0,
+    "seed": 16,
+    "concurrency": 1,
+    "warmup_requests": 1,
+    "measured_repetitions": 5,
+    "prefix_cache": "bypass and verify native reused count; reject cached runs",
+    "statistics": ["median", "min", "max"],
+    "metrics": ["native_prefill_tps", "native_decode_tps", "client_ttft_seconds", "wall_seconds", "actual_input_tokens", "actual_output_tokens", "mtp_acceptance"],
+    "early_eos": "retain raw data but exclude from fixed-length comparison",
+    "decode_definition": "retain each engine's native token/time denominator; disclose differences"
+  },
+  "evaluation": {
+    "harness": "DSH",
+    "harness_version": "0.1.5-rc.3",
+    "ts_bench_repository": "https://github.com/laiso/ts-bench",
+    "ts_bench_commit": "2b3bc944eb5728b5cb24d00e19371b595d528847",
+    "exercism_commit": "ab2d84eda572061e10a8e1ac8c1a662fa859284e",
+    "exercises_file": "exercises.txt",
+    "exercise_count": 25,
+    "thinking": true,
+    "agent_context_tokens": 32768,
+    "maximum_output_tokens_per_request": 16384,
+    "exercise_timeout_seconds": 1200,
+    "outer_timeout_seconds": 1350,
+    "concurrency": 1,
+    "permission_mode": "workspace-write",
+    "telemetry": "DISABLED",
+    "score": "overallSuccess count out of 25; report timeouts and tool failures separately",
+    "sampling": "freeze and record effective DSH provider sampling before first scored run"
+  },
+  "hardware_conditions": {
+    "power": "AC",
+    "fans": "standard automatic mode; record any deviation",
+    "macbook": "user reboot, then ChatGPT only before measurement",
+    "telemetry": ["temperature", "power", "memory", "swap", "SSD activity when available"],
+    "engine_settings": "record MTP, KV quantization, context limit and exact engine/model revisions"
+  },
+  "publication": {
+    "repository_name": "Qwen3.8FN_compare",
+    "readme": "README.md",
+    "data_directory": "data",
+    "images_directory": "images",
+    "x_image": "mobile-readable table; include date, measurement conditions and model differences",
+    "prices": "USD reference system prices, dated sources, distinguish user estimates from verified retail listings, exclude tax/shipping unless specified",
+    "privacy": "exclude API keys, private host addresses, serial numbers and personal paths"
+  }
+}
