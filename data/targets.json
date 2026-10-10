@@ -34,12 +34,13 @@
   },
   {
     "id": "macbook-m5max",
-    "hardware": "MacBook Pro M5 Max / 128GB",
+    "hardware": "MacBook Pro M5 Max / 128GB / 2TB",
     "engine": "MTPLX",
     "model": "Optimized Speed (candidate, final revision pending)",
     "recipe": "https://github.com/youssofal/MTPLX",
-    "price_usd": null,
-    "state": "awaiting user reboot"
+    "price_usd": 6699,
+    "state": "awaiting user reboot",
+    "price_basis": "owner supplied actual retail price, 2026-10-10"
   },
   {
     "id": "spark-single",
@@ -56,12 +57,13 @@
   },
   {
     "id": "ms-s1max",
-    "hardware": "MINISFORUM MS-S1 Max / RAM and SSD pending",
+    "hardware": "MINISFORUM MS-S1 Max / 128GB / 2TB",
     "engine": "Halogen Flash Server",
     "model": "pending exact model verification",
     "recipe": "https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo",
-    "price_usd": null,
-    "state": "awaiting connection"
+    "price_usd": 3879,
+    "state": "awaiting connection",
+    "price_basis": "owner supplied reference system price, 2026-10-10"
   },
   {
     "id": "macstudio-m5ultra",
@@ -80,9 +82,15 @@
     "hardware": "ASUS GX10 + DGX Spark / 128GB x 2",
     "engine": "vLLM recipe v5.2 (staged, not yet measured)",
     "model": "Qwen3.8-Flash-Next Uncensored hybrid 4/8bit",
-    "price_usd": null,
+    "price_usd": 14100,
     "state": "model re-download/storage preparation required; restore DeepSeek V4.1 after benchmarks",
     "recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
-    "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502"
+    "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502",
+    "price_basis": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
+    "price_components_usd": {
+      "gx10": 6950,
+      "dgx_spark": 6950,
+      "connection_cable": 200
+    }
   }
 ]

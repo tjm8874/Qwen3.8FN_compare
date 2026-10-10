@@ -15,11 +15,11 @@ LABELS = {
     "cuda-dual": ("PC : PRO 4500 + 5060 Ti", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
     "cuda-pro4500": ("PC : PRO 4500", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
     "cuda-5060ti": ("PC : 5060 Ti 16GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
-    "macbook-m5max": ("MacBook Pro M5 Max", "MTPLX / Optimized Speed", "128GB / 再起動後に測定"),
+    "macbook-m5max": ("MacBook Pro M5 Max", "MTPLX / Optimized Speed", "128GB / 2TB / 再起動後に測定"),
     "spark-single": ("DGX Spark 1台", "TensorFold / INT4 top-5", "128GB / 4TB"),
-    "ms-s1max": ("MS-S1 Max", "Halogen / 接続後に確認", "接続待ち"),
+    "ms-s1max": ("MS-S1 Max", "Halogen / 接続後に確認", "128GB / 2TB / 接続待ち"),
     "macstudio-m5ultra": ("Mac Studio M5 Ultra", "MLX-Serve / Uncensored 8bit", "256GB / 2TB"),
-    "gx10-spark": ("GX10 + DGX Spark", "vLLM / hybrid 4/8bit", "128GB × 2"),
+    "gx10-spark": ("GX10 + DGX Spark", "vLLM / hybrid 4/8bit", "128GB × 2 / ケーブル込み"),
 }
 
 
@@ -141,7 +141,7 @@ def render(root, rows):
     fontpath = "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc"
     def font(size):
         return ImageFont.truetype(fontpath, size)
-    image = Image.new("RGB", (1800, 1690), "#f2f5f9")
+    image = Image.new("RGB", (1800, 1730), "#f2f5f9")
     draw = ImageDraw.Draw(image)
     draw.rectangle((0, 0, 1800, 220), fill="#112638")
     draw.text((65, 40), "Qwen3.8 Flash Next 実機比較", font=font(58), fill="white")
@@ -169,8 +169,9 @@ def render(root, rows):
     for y, text in [(1472, "速度：同じ16K/2Kで3回ウォームアップ後、5回測定。入力再利用0を確認。"),
                     (1514, "DSH：thinking ON / ts-bench 25問。未確定の評価点は掲載しません。"),
                     (1556, "モデル差あり。DGX 1台は専門家削減版。PCは本体$1,000込みの所有者参考価格。"),
-                    (1598, "Mac Studio $9,999は所有者参考価格。DGX $6,950は公式表示・在庫なし。"),
-                    (1640, "条件・CSV・生ログ：github.com/tjm8874/Qwen3.8FN_compare")]:
+                    (1598, "MacBook $6,699は申告実売。Mac Studio $9,999は参考価格。DGX $6,950は在庫なし。"),
+                    (1640, "2台構成：GX10 $6,950 + DGX $6,950 + 接続ケーブル $200 = $14,100。"),
+                    (1682, "条件・CSV・生ログ：github.com/tjm8874/Qwen3.8FN_compare")]:
         draw.text((65, y), text, font=font(23), fill="#40586b")
     output = root / "images/comparison-progress.png"
     output.parent.mkdir(parents=True, exist_ok=True)

@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-10-10T20:06:37.079763+00:00",
+  "snapshot_utc": "2026-10-10T20:34:20.195737+00:00",
   "state": "partial",
   "rows": [
     {
@@ -85,11 +85,11 @@
     },
     {
       "target": "macbook-m5max",
-      "hardware": "MacBook Pro M5 Max / 128GB",
+      "hardware": "MacBook Pro M5 Max / 128GB / 2TB",
       "engine": "MTPLX",
       "model": "Optimized Speed (candidate, final revision pending)",
-      "price_usd": null,
-      "price_basis": "not yet verified",
+      "price_usd": 6699,
+      "price_basis": "owner supplied actual retail price, 2026-10-10",
       "speed_state": "pending",
       "speed_samples": "",
       "input_tokens": "",
@@ -139,11 +139,11 @@
     },
     {
       "target": "ms-s1max",
-      "hardware": "MINISFORUM MS-S1 Max / RAM and SSD pending",
+      "hardware": "MINISFORUM MS-S1 Max / 128GB / 2TB",
       "engine": "Halogen Flash Server",
       "model": "pending exact model verification",
-      "price_usd": null,
-      "price_basis": "not yet verified",
+      "price_usd": 3879,
+      "price_basis": "owner supplied reference system price, 2026-10-10",
       "speed_state": "pending",
       "speed_samples": "",
       "input_tokens": "",
@@ -196,8 +196,8 @@
       "hardware": "ASUS GX10 + DGX Spark / 128GB x 2",
       "engine": "vLLM recipe v5.2 (staged, not yet measured)",
       "model": "Qwen3.8-Flash-Next Uncensored hybrid 4/8bit",
-      "price_usd": null,
-      "price_basis": "not yet verified",
+      "price_usd": 14100,
+      "price_basis": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
       "speed_state": "pending",
       "speed_samples": "",
       "input_tokens": "",

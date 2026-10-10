@@ -25,6 +25,30 @@
     {
       "target": "cuda-5060ti",
       "price": 1800
+    },
+    {
+      "target": "macbook-m5max",
+      "price": 6699,
+      "source": "owner supplied actual retail price, 2026-10-10",
+      "configuration": "MacBook Pro M5 Max / 128GB / 2TB"
+    },
+    {
+      "target": "ms-s1max",
+      "price": 3879,
+      "source": "owner supplied reference system price, 2026-10-10",
+      "configuration": "MINISFORUM MS-S1 Max / 128GB / 2TB"
+    },
+    {
+      "target": "gx10-spark",
+      "price": 14100,
+      "source": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
+      "configuration": "ASUS GX10 + DGX Spark / 128GB x 2 / connection cable included",
+      "components": {
+        "gx10": 6950,
+        "dgx_spark": 6950,
+        "connection_cable": 200
+      },
+      "calculation": "6950 * 2 + 200 = 14100"
     }
   ],
   "retail_references": [
@@ -57,13 +81,10 @@
       "price": 3879,
       "configuration": "Ryzen AI Max+ 395 / 128GB / 2TB, US adapter",
       "seller": "MINISFORUM US",
-      "listing_state": "Sale; estimated shipping mid October; owned unit configuration not yet confirmed",
+      "listing_state": "Sale; estimated shipping mid October; owner confirms 128GB / 2TB configuration",
       "source": "https://store.minisforum.com/products/minisforum-ms-s1-max-mini-pc"
     }
   ],
-  "unverified": [
-    "MacBook Pro M5 Max 128GB system price",
-    "GX10 system price",
-    "MS-S1 Max actual owned RAM/SSD configuration"
-  ]
+  "unverified": [],
+  "price_basis_note": "Owner supplied system prices are used for the comparison; independent retail listings are supplementary references. GX10 is budgeted at the same unit price as DGX Spark at the owner’s instruction."
 }
