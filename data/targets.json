@@ -1,10 +1,88 @@
 [
-  {"id":"cuda-dual", "hardware":"Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB + RTX 5060 Ti 16GB", "engine":"Strata", "model":"Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS", "price_usd":6500, "price_basis":"user estimate: PC 1000 + PRO 4500 4700 + 5060 Ti 800", "state":"preparing"},
-  {"id":"cuda-pro4500", "hardware":"Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB", "engine":"Strata", "model":"Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS", "price_usd":5700, "price_basis":"user estimate: PC 1000 + PRO 4500 4700", "state":"preparing"},
-  {"id":"cuda-5060ti", "hardware":"Core i5-14400 / DDR4 64GB / Z790A / RTX 5060 Ti 16GB", "engine":"Strata", "model":"Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS", "price_usd":1800, "price_basis":"user estimate: PC 1000 + 5060 Ti 800", "state":"preparing"},
-  {"id":"macbook-m5max", "hardware":"MacBook Pro M5 Max / 128GB", "engine":"MTPLX", "model":"Optimized Speed (candidate, final revision pending)", "recipe":"https://github.com/youssofal/MTPLX", "price_usd":null, "state":"awaiting user reboot"},
-  {"id":"spark-single", "hardware":"DGX Spark / 128GB", "engine":"TensorFold native", "model":"125B-A5B INT4 AutoRound, top-5 expert pruning (accepted)", "recipe":"https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold", "price_usd":null, "state":"preparing"},
-  {"id":"ms-s1max", "hardware":"MINISFORUM MS-S1 Max / RAM and SSD pending", "engine":"Halogen Flash Server", "model":"pending exact model verification", "recipe":"https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo", "price_usd":null, "state":"awaiting connection"},
-  {"id":"macstudio-m5ultra", "hardware":"Mac Studio M5 Ultra / 256GB / 2TB", "engine":"MLX-Serve 26.10.1 (existing OrcaRouter route)", "model":"Qwen3.8-Flash-Next Uncensored / 8bit, ngram 8bit", "price_usd":9999, "price_basis":"user supplied reference system price", "state":"preparing"},
-  {"id":"gx10-spark", "hardware":"ASUS GX10 + DGX Spark / 128GB x 2", "engine":"vLLM (revision under review)", "model":"Qwen3.8-Flash-Next Uncensored hybrid 4/8bit", "price_usd":null, "state":"preparing; restore existing DeepSeek V4.1 after benchmarks"}
+  {
+    "id": "cuda-dual",
+    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB + RTX 5060 Ti 16GB",
+    "engine": "Strata",
+    "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
+    "price_usd": 6500,
+    "price_basis": "user estimate: PC 1000 + PRO 4500 4700 + 5060 Ti 800",
+    "state": "speed measured; DSH running or queued",
+    "engine_version": "0.1.42",
+    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
+  },
+  {
+    "id": "cuda-pro4500",
+    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB",
+    "engine": "Strata",
+    "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
+    "price_usd": 5700,
+    "price_basis": "user estimate: PC 1000 + PRO 4500 4700",
+    "state": "speed measured; DSH running or queued",
+    "engine_version": "0.1.42",
+    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
+  },
+  {
+    "id": "cuda-5060ti",
+    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX 5060 Ti 16GB",
+    "engine": "Strata",
+    "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
+    "price_usd": 1800,
+    "price_basis": "user estimate: PC 1000 + 5060 Ti 800",
+    "state": "speed measured; DSH running or queued",
+    "engine_version": "0.1.42",
+    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
+  },
+  {
+    "id": "macbook-m5max",
+    "hardware": "MacBook Pro M5 Max / 128GB",
+    "engine": "MTPLX",
+    "model": "Optimized Speed (candidate, final revision pending)",
+    "recipe": "https://github.com/youssofal/MTPLX",
+    "price_usd": null,
+    "state": "awaiting user reboot"
+  },
+  {
+    "id": "spark-single",
+    "hardware": "DGX Spark / 128GB",
+    "engine": "TensorFold native",
+    "model": "125B-A5B INT4 AutoRound, top-5 expert pruning (accepted)",
+    "recipe": "https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold",
+    "price_usd": 6950,
+    "state": "preparing",
+    "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
+    "recipe_commit": "364f21a1a46a366fa39c4da0d53b7b1f38624610",
+    "image_digest": "sha256:cb98098439d95d2bff27bc771ba180e5857613ecc41f6b6e81e494782df9433a",
+    "price_basis": "NVIDIA US store listed reference price 2026-10-10; out of stock"
+  },
+  {
+    "id": "ms-s1max",
+    "hardware": "MINISFORUM MS-S1 Max / RAM and SSD pending",
+    "engine": "Halogen Flash Server",
+    "model": "pending exact model verification",
+    "recipe": "https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo",
+    "price_usd": null,
+    "state": "awaiting connection"
+  },
+  {
+    "id": "macstudio-m5ultra",
+    "hardware": "Mac Studio M5 Ultra / 256GB / 2TB",
+    "engine": "MLX-Serve 26.9.7-dev (existing OrcaRouter route, unchanged)",
+    "model": "Qwen3.8-Flash-Next Uncensored / 8bit, ngram 8bit",
+    "price_usd": 9999,
+    "price_basis": "user supplied reference system price; corrected 2026-10-10",
+    "state": "speed measured; DSH queued",
+    "engine_declared_version": "26.10.1",
+    "engine_verified_version": "26.9.7-dev",
+    "engine_commit": "83e7fcc27be60b470f1f441f9ac508598a732473"
+  },
+  {
+    "id": "gx10-spark",
+    "hardware": "ASUS GX10 + DGX Spark / 128GB x 2",
+    "engine": "vLLM recipe v5.2 (staged, not yet measured)",
+    "model": "Qwen3.8-Flash-Next Uncensored hybrid 4/8bit",
+    "price_usd": null,
+    "state": "model re-download/storage preparation required; restore DeepSeek V4.1 after benchmarks",
+    "recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
+    "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502"
+  }
 ]

@@ -1,0 +1,31 @@
+{
+  "case": "cuda-dual",
+  "repetitions": 5,
+  "metrics": {
+    "prefill_tps": {
+      "median": 3157.1,
+      "min": 3148.5,
+      "max": 3178.6
+    },
+    "decode_tps": {
+      "median": 101.0,
+      "min": 91.9,
+      "max": 111.3
+    },
+    "client_ttft_seconds": {
+      "median": 5.211720522995165,
+      "min": 5.17856978400232,
+      "max": 5.226304579999123
+    },
+    "wall_seconds": {
+      "median": 25.482698981002613,
+      "min": 23.595128893000947,
+      "max": 27.447379001001536
+    },
+    "mtp_acceptance": {
+      "median": 0.6381260096930533,
+      "min": 0.6132125732551944,
+      "max": 0.6414087513340448
+    }
+  }
+}

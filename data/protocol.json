@@ -7,7 +7,9 @@
     "temperature": 0,
     "seed": 16,
     "concurrency": 1,
-    "warmup_requests": 1,
+    "warmup_requests": 3,
+    "warmup_input_tokens": 16384,
+    "warmup_output_tokens": 2048,
     "measured_repetitions": 5,
     "prefix_cache": "bypass and verify native reused count; reject cached runs",
     "statistics": ["median", "min", "max"],
@@ -32,7 +34,8 @@
     "permission_mode": "workspace-write",
     "telemetry": "DISABLED",
     "score": "overallSuccess count out of 25; report timeouts and tool failures separately",
-    "sampling": "freeze and record effective DSH provider sampling before first scored run"
+    "sampling": {"temperature":1,"top_p":0.95,"top_k":20,"seed":16,"enforcement":"local gateway; retain actual upstream request"},
+    "harness_patch": "harness.patch (DSH adapter added to the pinned ts-bench checkout)"
   },
   "hardware_conditions": {
     "power": "AC",

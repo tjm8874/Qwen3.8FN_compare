@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import statistics
+import signal
 import subprocess
 import sys
 import threading
@@ -150,6 +151,7 @@ def main():
     ap.add_argument("--root", type=Path, required=True)
     ap.add_argument("--cases", nargs="+", default=["cuda-dual", "cuda-pro4500", "cuda-5060ti"])
     ap.add_argument("--repeats", type=int, default=5)
+    ap.add_argument("--warmups", type=int, default=3)
     ap.add_argument("--prepare-only", action="store_true")
     args = ap.parse_args()
     config = json.loads(args.config.read_text())
@@ -158,7 +160,7 @@ def main():
     root = args.root
     root.mkdir(parents=True, exist_ok=True)
     prepared = []
-    for i in range(args.repeats + 1):
+    for i in range(args.repeats + args.warmups):
         prepared.append(prompt(tok, service, 16384, uuid.uuid4().hex))
     private = root / ".private"
     private.mkdir(mode=0o700, exist_ok=True)
@@ -169,6 +171,9 @@ def main():
     gpu_map = {"cuda-dual": [0, 1], "cuda-pro4500": [0], "cuda-5060ti": [1]}
     originally_active = subprocess.run(["systemctl", "--user", "is-active", "--quiet", "strata-iq3_xxs.service"]).returncode == 0
     process = None
+    def terminate(_signum, _frame):
+        raise SystemExit("Interrupted; restoring original Strata service")
+    signal.signal(signal.SIGTERM, terminate)
     try:
         subprocess.run(["systemctl", "--user", "stop", "strata-iq3_xxs.service"], check=True)
         for case in args.cases:
@@ -212,16 +217,16 @@ def main():
                 print(f"{case} loaded in {time.monotonic() - start:.1f}s", flush=True)
                 rows = []
                 for i, messages in enumerate(prepared):
-                    payload = {"model": cfg["model_name"], "messages": messages, "max_tokens": 128 if i == 0 else 2048,
+                    payload = {"model": cfg["model_name"], "messages": messages, "max_tokens": 2048,
                                "temperature": 0, "seed": 16, "stream": True, "stream_options": {"include_usage": True},
                                "chat_template_kwargs": {"enable_thinking": False}}
-                    label = "warmup" if i == 0 else f"trial-{i:02d}"
+                    label = f"warmup-{i+1:02d}" if i < args.warmups else f"trial-{i-args.warmups+1:02d}"
                     print(f"{case} {label} started", flush=True)
                     row = measure(base, key, payload, case_root / label)
                     print(f"{case} {label}: {json.dumps(row)}", flush=True)
                     if not row["valid"]:
                         raise RuntimeError(f"Invalid fixed-length run: {case}/{label}; retain raw evidence")
-                    if i:
+                    if i >= args.warmups:
                         rows.append(row)
                 summary = {"case": case, "repetitions": len(rows), "metrics": {}}
                 for field in ("prefill_tps", "decode_tps", "client_ttft_seconds", "wall_seconds", "mtp_acceptance"):

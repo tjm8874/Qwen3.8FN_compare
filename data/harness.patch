@@ -1,0 +1,116 @@
+diff --git a/src/agents/builders/__tests__/all-agents.test.ts b/src/agents/builders/__tests__/all-agents.test.ts
+index 6e52ae4..75601f9 100644
+--- a/src/agents/builders/__tests__/all-agents.test.ts
++++ b/src/agents/builders/__tests__/all-agents.test.ts
+@@ -45,7 +45,7 @@ describe('Agent builders invoke run-agent script', () => {
+             assertCommand: (command) => {
+                 assertRunAgent(command, 'codex');
+                 expect(command.args).toContain('-c');
+-                expect(command.args).toContain('model_reasoning_effort=high');
++                expect(command.args).toContain('model_reasoning_effort=medium');
+                 expect(command.args).toContain('--yolo');
+                 expect(command.args).toContain('--skip-git-repo-check');
+                 expect(command.args).toContain('-m');
+diff --git a/src/agents/builders/codex.ts b/src/agents/builders/codex.ts
+index fa169f4..9bd4e33 100644
+--- a/src/agents/builders/codex.ts
++++ b/src/agents/builders/codex.ts
+@@ -37,9 +37,10 @@ export class CodexAgentBuilder extends BaseAgentBuilder implements AgentBuilder
+             this.config.agentScriptPath,
+             'codex',
+             'exec',
+-            '-c', 'model_reasoning_effort=high',
+-            '-c', `model_provider=${provider}`,
+-            '--yolo',
++            '-c', 'model_reasoning_effort=medium',
++            '-c', `model_provider=${process.env.CODEX_MODEL_PROVIDER || provider}`,
++            '--sandbox', 'workspace-write',
++            '-c', 'approval_policy=never',
+             '--skip-git-repo-check',
+             '-m', this.config.model,
+             instructions
+diff --git a/src/agents/factory.ts b/src/agents/factory.ts
+index f0bd3c3..ecf9c2b 100644
+--- a/src/agents/factory.ts
++++ b/src/agents/factory.ts
+@@ -11,6 +11,7 @@ import { CursorAgentBuilder } from './builders/cursor';
+ import { CopilotAgentBuilder } from './builders/copilot';
+ import { VibeAgentBuilder } from './builders/vibe';
+ import { KimiAgentBuilder } from './builders/kimi';
++import { DshAgentBuilder } from './builders/dsh';
+ 
+ export class AgentFactory {
+     static create(config: BenchmarkConfig, containerName: string, agentScriptPath: string): AgentBuilder {
+@@ -44,6 +45,8 @@ export class AgentFactory {
+                 return new VibeAgentBuilder(agentConfig);
+             case 'kimi':
+                 return new KimiAgentBuilder(agentConfig);
++            case 'dsh':
++                return new DshAgentBuilder(agentConfig);
+             default:
+                 throw new Error(`Unknown agent: ${config.agent}`);
+         }
+diff --git a/src/config/types.ts b/src/config/types.ts
+index c75a9bf..5687244 100644
+--- a/src/config/types.ts
++++ b/src/config/types.ts
+@@ -1,5 +1,5 @@
+-export type AgentType = 'claude' | 'goose' | 'aider' | 'codex' | 'copilot' | 'gemini' | 'opencode' | 'qwen' | 'cursor' | 'vibe' | 'kimi';
+-export type ProviderType = 'openai' | 'anthropic' | 'google' | 'openrouter' | 'dashscope' | 'xai' | 'deepseek' | 'github' | 'cerebras' | 'mistral' | 'moonshot';
++export type AgentType = 'claude' | 'goose' | 'aider' | 'codex' | 'copilot' | 'gemini' | 'opencode' | 'qwen' | 'cursor' | 'vibe' | 'kimi' | 'dsh';
++export type ProviderType = 'openai' | 'anthropic' | 'google' | 'openrouter' | 'dashscope' | 'xai' | 'deepseek' | 'github' | 'cerebras' | 'mistral' | 'moonshot' | 'local';
+ 
+ export interface AgentResult {
+     exercise: string;
+diff --git a/src/utils/cli.ts b/src/utils/cli.ts
+index 580ef61..0675fe8 100644
+--- a/src/utils/cli.ts
++++ b/src/utils/cli.ts
+@@ -8,9 +8,9 @@ Usage:
+   bun src/index.ts [options]
+ 
+ Basic Options:
+-  --agent <agent>        Agent to use (claude, goose, aider, codex, copilot, gemini, opencode, qwen, cursor, kimi) [default: claude]
++  --agent <agent>        Agent to use (claude, goose, aider, codex, copilot, gemini, opencode, qwen, cursor, kimi, dsh) [default: claude]
+   --model <model>        Model to use [default: sonnet]
+-  --provider <provider>  Provider (openai, anthropic, google, openrouter, dashscope, xai, deepseek, github, moonshot) [default: openai; kimi defaults to moonshot]
++  --provider <provider>  Provider (openai, anthropic, google, openrouter, dashscope, xai, deepseek, github, moonshot, local) [default: openai; kimi defaults to moonshot]
+   --version <version>    Agent version (e.g. 1.2.3) [default: agent-specific default]
+   --verbose              Show detailed output
+   --list                 List available exercises
+diff --git a/src/agents/builders/dsh.ts b/src/agents/builders/dsh.ts
+new file mode 100644
+index 0000000..4c6f779
+--- /dev/null
++++ b/src/agents/builders/dsh.ts
+@@ -0,0 +1,30 @@
++import type { AgentBuilder, AgentConfig } from '../types';
++import { BaseAgentBuilder } from '../base';
++
++export class DshAgentBuilder extends BaseAgentBuilder implements AgentBuilder {
++    constructor(agentConfig: AgentConfig) {
++        super(agentConfig);
++    }
++
++    protected getEnvironmentVariables(): Record<string, string> {
++        const home = process.env.DSH_HOME;
++        if (!home) throw new Error('Missing DSH_HOME for DeepSeek Harness');
++        return {
++            DSH_HOME: home,
++            DSH_LOCAL_API_KEY: process.env.DSH_LOCAL_API_KEY || 'local',
++            DSH_TELEMETRY_MODE: 'DISABLED',
++            DSH_PERMISSION_MODE: process.env.DSH_PERMISSION_MODE || 'workspace-write'
++        };
++    }
++
++    protected getCoreArgs(instructions: string): string[] {
++        const binary = process.env.DSH_BIN;
++        const patch = process.env.DSH_PATCH_PATH;
++        if (!binary || !patch) throw new Error('Missing DSH_BIN or DSH_PATCH_PATH for DeepSeek Harness');
++        const expected = process.env.DSH_EXPECTED_MODEL;
++        if (expected && expected !== this.config.model) {
++            throw new Error(`Harness model mismatch: expected ${expected}, got ${this.config.model}`);
++        }
++        return [binary, '--profile', 'headless', '--patch', patch, instructions];
++    }
++}

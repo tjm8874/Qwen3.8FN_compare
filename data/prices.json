@@ -1,0 +1,69 @@
+{
+  "currency": "USD",
+  "checked_date": "2026-10-10",
+  "tax_and_shipping": "excluded; listings can change; not a lowest-price survey",
+  "user_reference_systems": [
+    {
+      "target": "macstudio-m5ultra",
+      "configuration": "Mac Studio M5 Ultra / 256GB / 2TB",
+      "price": 9999,
+      "source": "owner supplied, corrected 2026-10-10"
+    },
+    {
+      "target": "cuda-dual",
+      "price": 6500,
+      "components": {
+        "base_pc": 1000,
+        "pro4500": 4700,
+        "5060ti_16gb": 800
+      }
+    },
+    {
+      "target": "cuda-pro4500",
+      "price": 5700
+    },
+    {
+      "target": "cuda-5060ti",
+      "price": 1800
+    }
+  ],
+  "retail_references": [
+    {
+      "item": "RTX PRO 4500 Blackwell 32GB",
+      "price": 4699.99,
+      "configuration": "GPU only, 900-5G147-2250-000",
+      "seller": "NeweggBusiness",
+      "listing_state": "Add to cart shown; page also lists a different marketplace seller at a higher price",
+      "source": "https://www.neweggbusiness.com/nvidia-blackwell-900-5g147-2250-000-rtx-pro-4500-32gb-graphics-card/p/9B-14-132-110"
+    },
+    {
+      "item": "RTX 5060 Ti 16GB",
+      "price": 799.99,
+      "configuration": "ASUS DUAL-RTX5060TI-O16G, GPU only",
+      "seller": "Newegg",
+      "listing_state": "Add to cart shown",
+      "source": "https://www.newegg.com/asus-dual-rtx5060ti-o16g-geforce-rtx-5060-ti-16gb-graphics-card-double-fans/p/N82E16814126798"
+    },
+    {
+      "item": "DGX Spark",
+      "price": 6950,
+      "configuration": "128GB / 4TB",
+      "seller": "NVIDIA US",
+      "listing_state": "Out of Stock; listed reference price, not confirmed currently purchasable at this price",
+      "source": "https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/"
+    },
+    {
+      "item": "MS-S1 Max",
+      "price": 3879,
+      "configuration": "Ryzen AI Max+ 395 / 128GB / 2TB, US adapter",
+      "seller": "MINISFORUM US",
+      "listing_state": "Sale; estimated shipping mid October; owned unit configuration not yet confirmed",
+      "source": "https://store.minisforum.com/products/minisforum-ms-s1-max-mini-pc"
+    }
+  ],
+  "unverified": [
+    "MacBook Pro M5 Max 128GB system price",
+    "GX10 system price",
+    "MS-S1 Max actual owned RAM/SSD configuration"
+  ]
+}

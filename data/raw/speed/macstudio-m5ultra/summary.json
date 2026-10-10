@@ -1,0 +1,26 @@
+{
+  "case": "macstudio-m5ultra",
+  "repetitions": 5,
+  "metrics": {
+    "prefill_tps": {
+      "median": 3124.968,
+      "min": 3118.674,
+      "max": 3130.474
+    },
+    "decode_tps": {
+      "median": 100.528,
+      "min": 98.437,
+      "max": 104.759
+    },
+    "client_ttft_seconds": {
+      "median": 5.284174291999989,
+      "min": 5.272494374999994,
+      "max": 5.301605208000012
+    },
+    "wall_seconds": {
+      "median": 25.676918583000003,
+      "min": 24.84066575,
+      "max": 26.105428375000002
+    }
+  }
+}

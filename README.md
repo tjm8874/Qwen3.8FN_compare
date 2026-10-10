@@ -2,32 +2,61 @@
 
 Qwen3.8-Flash-Nextを、現在購入できるPC・Mac・DGX Sparkで動かした際の速度とコーディング能力を測定します。各実機で使えるレシピを採用し、購入後の使い勝手を判断できるデータを残します。
 
-**現在は測定準備中です。結果の数値はまだ掲載していません。** 著者の公表値や短い動作確認の数値を、今回の実測として扱いません。
+**2026年10月10日現在、PCの3構成とMac Studioの速度測定が完了しました。DSHの評価は進行中です。** 以下は途中経過です。著者の公表値や短い動作確認の数値を、今回の実測として扱いません。
+
+## 16K入力では、PRO 4500単独がGPU分割より速かった
+
+今回のStrata・IQ3_XXS・自動配置では、PRO 4500単独のDecode中央値は120.7 tps、PRO 4500＋5060 Tiは101.0 tpsでした。GPUを追加すれば単一リクエストが速くなるとは限らず、この条件で速度を重視するならPRO 4500単独が有力です。配置や条件を変えた場合、別の結論になる可能性があります。
+
+Mac Studio M5 Ultraの既存8bitモデルはDecode中央値100.5 tpsでした。PCとはモデル・量子化・エンジンが異なり、コーディングの評価もまだ確定していません。価格や速度だけで全構成の購入順位を決めず、25問の結果と合わせて検討します。
+
+<!-- RESULTS_START -->
+| 構成 | Prefill tps | Decode tps | DSH 成功数 | 参考価格 USD |
+|---|---:|---:|---:|---:|
+| PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 未確定 | $6,500 |
+| PC : PRO 4500 | 3,683.0 | 120.7 | 未確定 | $5,700 |
+| PC : 5060 Ti 16GB | 1,333.1 | 60.2 | 未確定 | $1,800 |
+| MacBook Pro M5 Max | 未測定 | 未測定 | 未確定 | 確認中 |
+| DGX Spark 1台 | 未測定 | 未測定 | 未確定 | $6,950 |
+| MS-S1 Max | 未測定 | 未測定 | 未確定 | 確認中 |
+| Mac Studio M5 Ultra | 3,125.0 | 100.5 | 未確定 | $9,999 |
+| GX10 + DGX Spark | 未測定 | 未測定 | 未確定 | 確認中 |
+<!-- RESULTS_END -->
+
+速度は5回の中央値です。最小値・最大値、TTFT、全試行の数値は[CSV](data/summary.csv)に収録しています。価格は所有者の参考価格と販売店の表示価格を区別し、DGX Sparkの公式表示価格は在庫なしの参考値です。[価格の出典・構成・確認日](data/prices.json)をご確認ください。
+
+![実機比較の途中経過](images/comparison-progress.png)
 
 ## 比較する8構成
 
 | 構成 | エンジン・モデル | 参考価格 USD | 状態 |
 |---|---|---:|---|
-| PC：PRO 4500＋5060 Ti | Strata／IQ3_XXS | $6,500* | 準備中 |
-| PC：PRO 4500のみ | Strata／IQ3_XXS | $5,700* | 準備中 |
-| PC：5060 Ti 16GBのみ | Strata／IQ3_XXS | $1,800* | 準備中 |
+| PC：PRO 4500＋5060 Ti | Strata 0.1.42／IQ3_XXS | $6,500* | 速度測定済み・DSH評価中 |
+| PC：PRO 4500のみ | Strata 0.1.42／IQ3_XXS | $5,700* | 速度測定済み・DSH待機 |
+| PC：5060 Ti 16GBのみ | Strata 0.1.42／IQ3_XXS | $1,800* | 速度測定済み・DSH待機 |
 | MacBook Pro M5 Max 128GB | [MTPLX](https://github.com/youssofal/MTPLX)／Optimized Speed候補 | 確認中 | 再起動後に測定 |
-| DGX Spark 1台 | [TensorFold指定レシピ](https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold)／INT4・専門家削減モデル | 確認中 | 準備中 |
+| DGX Spark 1台 | [TensorFold指定レシピ](https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold)／INT4・専門家削減モデル | $6,950† | モデル取得中 |
 | MS-S1 Max | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo) | 確認中 | 接続待ち |
-| Mac Studio M5 Ultra 256GB・2TB | 既存MLX-Serve 26.10.1／Uncensored 8bit | $9,999* | 準備中 |
-| GX10＋DGX Spark | vLLM／Uncensored hybrid 4/8bit | 確認中 | 準備中 |
+| Mac Studio M5 Ultra 256GB・2TB | 既存MLX-Serve／Uncensored 8bit | $9,999* | 速度測定済み・DSH待機 |
+| GX10＋DGX Spark | vLLMレシピv5.2／Uncensored hybrid 4/8bit | 確認中 | 新エンジン・モデルの準備中 |
 
 \* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。価格だけで能力を順位づけせず、速度と25問の成功数を併記します。
 
+† [NVIDIA US公式ページ](https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/)の2026年10月10日の表示価格。128GB・4TB構成は在庫なしであり、この価格で今すぐ購入できることを示しません。
+
+Mac Studioは**M5 Ultra・256GB・2TB、$9,999**が正しい構成です。稼働中のMLX-Serveは申告上の26.10.1に対し、バイナリが26.9.7-devと表示しました。既存サービスを変更せず、実際のバージョン・設定を生ログに保存しています。
+
 ## 16K入力の速度を測る
 
-チャットの形式を含めて16,384入力トークン、2,048出力トークン、thinking OFF、同時実行1件で測定します。モデルを読み込み、ウォームアップした後に5回実行し、入力処理（Prefill）と生成（Decode）の中央値・最小値・最大値を記録します。最初の出力が届くまでの時間（TTFT）は別の項目です。
+チャットの形式を含めて16,384入力トークン、2,048出力トークン、thinking OFF、同時実行1件で測定します。モデルを読み込み、同じ16K入力・2K出力で3回ウォームアップした後に5回実行し、入力処理（Prefill）と生成（Decode）の中央値・最小値・最大値を記録します。最初の出力が届くまでの時間（TTFT）は別の項目です。
 
 入力の再利用は回避し、エンジンが報告する再利用数を確認します。入力長が違う実行、途中で回答を終えた実行、再利用が残った実行は、生ログを保存したうえで固定長の比較から除外します。速度を算出するトークン数の定義にエンジン間の差があれば、結果に明記します。
 
 ## DSHでts-benchの25問を評価する
 
-DSH 0.1.5-rc.3、同一のts-bench・Exercismコミット、[同じ25問](data/exercises.txt)を使用します。thinking ON、エージェントの文脈上限32K、1応答の出力上限16K、1問20分、逐次実行で条件をそろえます。サンプリング設定は採点前に確定して保存します。成功数、所要時間、タイムアウト、ツールの失敗を分けて記録します。
+DSH 0.1.5-rc.3、同一のts-bench・Exercismコミット、[同じ25問](data/exercises.txt)を使用します。thinking ON、エージェントの文脈上限32K、1応答の出力上限16K、1問20分、逐次実行で条件をそろえます。temperature 1、top_p 0.95、top_k 20、seed 16を中継処理で指定し、実際に送った要求を保存します。成功数、所要時間、タイムアウト、ツールの失敗を分けて記録します。
+
+ts-benchにはDSH用のアダプターを追加しています。固定コミットからの変更は[パッチ](data/harness.patch)、実行方法は[scripts/](scripts/)に収録しています。未変更のts-benchによる標準結果ではありません。
 
 ## モデル差を含めて、購入時の選択肢を比べる
 
@@ -37,8 +66,9 @@ PCの3行は同一IQ3_XXSモデルでGPU構成の違いを比較します。全8
 
 - `data/protocol.json`：測定条件
 - `data/targets.json`：実機・レシピ・価格の前提
-- `data/summary.csv`：集計結果（測定後に生成）
-- `data/raw/`：各試行の要求、出力、時間、評価結果、生ログ
-- `images/`：Xで読みやすい比較表画像（集計結果から生成）
+- `data/summary.csv`：集計結果。未測定の値は空欄
+- `data/prices.json`：参考価格の出典、構成、在庫・予約状況
+- `data/raw/`：個別の計測値と、生ログをまとめた`raw.tar.gz`。要求、出力、SSE、設定、取得できたテレメトリを収録
+- `images/`：Xで読みやすい比較表画像。現時点の画像には「途中経過」と明記
 
-APIキー、実機のプライベートアドレス、シリアル番号、個人のファイルパスは公開データに含めません。Xへの投稿文と比較画像は、測定結果がそろった段階で作成します。
+APIキー、実機のプライベートアドレス、シリアル番号、個人のファイルパスは公開データに含めません。生ログの公開版では必要な箇所を伏せ、原本と公開版のハッシュ、伏せ方を`archive-manifest.json`に記録します。短い出力による予備測定と入力長の調整用要求は、速度の集計から除外しています。Xへの最終投稿文は、測定結果がそろった段階で作成します。
