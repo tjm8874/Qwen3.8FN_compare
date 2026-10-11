@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-10-11T06:58:35.000303+00:00",
+  "snapshot_utc": "2026-10-11T15:36:13.132646+00:00",
   "state": "partial",
   "rows": [
     {
@@ -232,11 +232,11 @@
       "speed_samples": 5,
       "input_tokens": 16384,
       "output_tokens": 2048,
-      "dsh_state": "pending",
-      "dsh_passed": "",
-      "dsh_total": "",
-      "task_seconds_mean": "",
-      "task_duration_metric": "",
+      "dsh_state": "complete",
+      "dsh_passed": 25,
+      "dsh_total": 25,
+      "task_seconds_mean": 57.94156,
+      "task_duration_metric": "ts-bench totalDuration: all25 tasks including model failures; lower is better",
       "prefill_tps_median": 4635.528,
       "prefill_tps_min": 4626.228,
       "prefill_tps_max": 4644.332,

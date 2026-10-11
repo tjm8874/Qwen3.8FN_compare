@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-11T15:25:20.789Z",
+    "agent": "dsh",
+    "model": "benchmark-model",
+    "provider": "local",
+    "version": "0.1.5-rc.3",
+    "totalExercises": 1,
+    "benchmarkVersion": "1.1.0"
+  },
+  "summary": {
+    "successRate": 100,
+    "totalDuration": 28893,
+    "avgDuration": 28893,
+    "successCount": 1,
+    "totalCount": 1,
+    "agentSuccessCount": 1,
+    "testSuccessCount": 1,
+    "testFailedCount": 0
+  },
+  "results": [
+    {
+      "exercise": "spiral-matrix",
+      "agentSuccess": true,
+      "testSuccess": true,
+      "overallSuccess": true,
+      "agentDuration": 24594,
+      "testDuration": 4251,
+      "totalDuration": 28893
+    }
+  ]
+}

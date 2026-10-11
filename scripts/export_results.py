@@ -223,7 +223,7 @@ def render(root, rows):
     draw.rectangle((0, 0, 1800, 220), fill="#112638")
     draw.text((65, 40), "Qwen3.8 Flash Next 実機比較", font=font(58), fill="white")
     draw.text((68, 128), "16,384入力 / 2,048出力 / thinking OFF / 同時1件", font=font(31), fill="#d3e7f4")
-    draw.text((68, 175), "途中経過 · 2026-10-10 · 速度は5回の中央値（tps）", font=font(26), fill="#90d7dc")
+    draw.text((68, 175), "途中経過 · " + datetime.now(timezone.utc).strftime("%Y-%m-%d") + " · 速度は5回の中央値（tps）", font=font(26), fill="#90d7dc")
     columns = [65, 525, 1060, 1285, 1475, 1650]
     labels = ["実機・構成", "エンジン・モデル", "価格 USD", "Prefill", "Decode", "タスク秒数↓"]
     for x, label in zip(columns, labels):
@@ -243,9 +243,11 @@ def render(root, rows):
             draw.text((x, y + 29), text, font=font(43), fill="#087e8b" if value != "" else "#9aabb9")
         task = f"{row['task_seconds_mean']:.1f}" if row["task_seconds_mean"] != "" else "—"
         draw.text((1640, y + 35), task, font=font(31), fill="#617687")
+    short_labels = {"cuda-dual": "2GPU PC", "cuda-pro4500": "PRO 4500", "cuda-5060ti": "5060 Ti", "macbook-m5max": "MacBook", "spark-single": "Spark", "ms-s1max": "MS-S1", "macstudio-m5ultra": "M5 Ultra", "gx10-spark": "2台"}
+    successes = "成功数：" + "、".join(f"{short_labels[row['target']]} {row['dsh_passed']}/{row['dsh_total']}" for row in rows if row['dsh_state'] == 'complete') + "。未完了は空欄。"
     for y, text in [(1472, "速度：同じ16K/2Kで3回ウォームアップ後、5回測定。入力再利用0を確認。"),
                     (1514, "タスク秒数：ts-bench 25問の平均（失敗を含む） / Lower is better / thinking ON。"),
-                    (1556, "成功数：2GPU PC 24/25、PRO 4500 25/25、MS-S1 24/25。その他は新構成で未測定。"),
+                    (1556, successes),
                     (1598, "MacBook $6,699は申告実売。Mac Studio $9,999は参考価格。DGX $6,950は在庫なし。"),
                     (1640, "2台構成：GX10 $6,950 + DGX $6,950 + 接続ケーブル $200 = $14,100。"),
                     (1682, "条件・CSV・生ログ：github.com/tjm8874/Qwen3.8FN_compare")]:
@@ -254,7 +256,7 @@ def render(root, rows):
     if pair and pair["scaling_reference_case"]:
         text = f"同一vLLM・モデルで1台→2台：Prefill {pair['prefill_tps_ratio_vs_single']:.3f}倍 / Decode {pair['decode_tps_ratio_vs_single']:.3f}倍。"
         draw.text((65, 1724), text, font=font(23), fill="#087e8b")
-    draw.text((65, 1766), "5060 Ti：別Windows PCの提供集計、PCIe5.0 x8。原ログは明日照合予定。", font=font(23), fill="#40586b")
+    draw.text((65, 1766), "5060 Ti：別Windows PCの提供集計、PCIe5.0 x8。原ログは添付後に照合。", font=font(23), fill="#40586b")
     draw.text((65, 1808), "モデル・量子化・エンジン差あり。PCは本体$1,000込みの参考予算。", font=font(23), fill="#40586b")
     output = root / "images/comparison-progress.png"
     output.parent.mkdir(parents=True, exist_ok=True)

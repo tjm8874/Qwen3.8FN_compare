@@ -51,6 +51,18 @@ def main():
                DSH_PERMISSION_MODE="workspace-write", DSH_TELEMETRY_MODE="DISABLED")
     exercises = (args.root / "data/exercises.txt").read_text().splitlines()[:args.limit]
     all_rows, resume_manifest = retained_rows(output, exercises) if args.resume else ([], None)
+    active_process = None
+    def interrupted(*_):
+        if active_process is not None and active_process.poll() is None:
+            os.killpg(active_process.pid, signal.SIGTERM)
+            try:
+                active_process.wait(timeout=20)
+            except subprocess.TimeoutExpired:
+                os.killpg(active_process.pid, signal.SIGKILL)
+                active_process.wait()
+        raise InterruptedError('Suite interrupted; preserve incomplete evidence')
+    signal.signal(signal.SIGTERM, interrupted)
+    signal.signal(signal.SIGINT, interrupted)
     segment_started = datetime.now(timezone.utc).isoformat()
     initial_count = len(all_rows)
     for exercise in exercises[initial_count:]:
@@ -70,6 +82,7 @@ def main():
         with (folder / "console.log").open("w") as log:
             process = subprocess.Popen(command, cwd=case / "repo", env=env, stdout=log, stderr=subprocess.STDOUT,
                                        start_new_session=True)
+            active_process = process
             try:
                 process.wait(timeout=1350)
             except subprocess.TimeoutExpired:
