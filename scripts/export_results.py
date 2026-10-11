@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import shutil
+import statistics
 import tarfile
 
 
@@ -161,13 +162,15 @@ def main():
                "dsh_state": "complete" if evaluation else "pending", "dsh_passed": evaluation["passed"] if evaluation else "",
                "dsh_total": evaluation["total"] if evaluation else ""}
         row["task_seconds_mean"] = ""
+        row["task_seconds_median"] = ""
         row["task_duration_metric"] = ""
         if evaluation:
             durations = [r.get("benchmark_duration_ms") for r in evaluation["rows"]]
             assert len(durations) == 25 and all(isinstance(v, (int, float)) and v >= 0 for v in durations)
             assert all(not r.get("infrastructure_failure") for r in evaluation["rows"])
             row["task_seconds_mean"] = sum(durations) / 25000
-            row["task_duration_metric"] = "ts-bench totalDuration: all25 tasks including model failures; lower is better"
+            row["task_seconds_median"] = statistics.median(durations) / 1000
+            row["task_duration_metric"] = "ts-bench totalDuration median: all25 tasks including model failures; mean also retained; lower is better"
         for metric in ["prefill_tps", "decode_tps", "client_ttft_seconds", "wall_seconds"]:
             for statistic in ["median", "min", "max"]:
                 row[metric + "_" + statistic] = summary["metrics"][metric][statistic] if summary else ""
@@ -189,12 +192,12 @@ def main():
     save(data / "summary.json", {"snapshot_utc": datetime.now(timezone.utc).isoformat(),
                                  "state": "partial" if any(r["speed_state"] not in ("complete", "reported") or r["dsh_state"] != "complete" for r in rows) else "complete",
                                  "rows": rows})
-    table = ["| 構成 | Prefill tps | Decode tps | タスク秒数 ↓ | 成功数（補足） | 参考価格 USD |", "|---|---:|---:|---:|---:|---:|"]
+    table = ["| 構成 | Prefill tps | Decode tps | タスク秒数 Median ↓ | 成功数（補足） | 参考価格 USD |", "|---|---:|---:|---:|---:|---:|"]
     for row in rows:
         name = LABELS[row["target"]][0]
         speed = row["speed_state"] in ("complete", "reported")
         table.append(f"| {name} | {row['prefill_tps_median']:,.1f} | {row['decode_tps_median']:.1f} | " if speed else f"| {name} | 未測定 | 未測定 | ")
-        table[-1] += (f"{row['task_seconds_mean']:.1f} | " if row["task_seconds_mean"] != "" else "未測定 | ")
+        table[-1] += (f"{row['task_seconds_median']:.1f} | " if row["task_seconds_median"] != "" else "未測定 | ")
         table[-1] += (f"{row['dsh_passed']}/{row['dsh_total']}" if row["dsh_state"] == "complete" else "未確定")
         table[-1] += f" | ${row['price_usd']:,.0f} |" if row["price_usd"] is not None else " | 確認中 |"
     (data / "results-table.md").write_text("\n".join(table) + "\n")
@@ -228,6 +231,7 @@ def render(root, rows):
     labels = ["実機・構成", "エンジン・モデル", "価格 USD", "Prefill", "Decode", "タスク秒数↓"]
     for x, label in zip(columns, labels):
         draw.text((x if label != "タスク秒数↓" else 1615, 255), label, font=font(28 if label != "タスク秒数↓" else 23), fill="#2f485f")
+    draw.text((1630, 286), "Median (秒)", font=font(20), fill="#617687")
     for i, row in enumerate(rows):
         y = 312 + i * 142
         draw.rounded_rectangle((42, y, 1758, y + 130), radius=12, fill="white")
@@ -241,12 +245,12 @@ def render(root, rows):
             value = row[key]
             text = f"{value:,.0f}" if key.startswith("prefill") and value != "" else (f"{value:.1f}" if value != "" else "—")
             draw.text((x, y + 29), text, font=font(43), fill="#087e8b" if value != "" else "#9aabb9")
-        task = f"{row['task_seconds_mean']:.1f}" if row["task_seconds_mean"] != "" else "—"
+        task = f"{row['task_seconds_median']:.1f}" if row["task_seconds_median"] != "" else "—"
         draw.text((1640, y + 35), task, font=font(31), fill="#617687")
     short_labels = {"cuda-dual": "2GPU PC", "cuda-pro4500": "PRO 4500", "cuda-5060ti": "5060 Ti", "macbook-m5max": "MacBook", "spark-single": "Spark", "ms-s1max": "MS-S1", "macstudio-m5ultra": "M5 Ultra", "gx10-spark": "2台"}
     successes = "成功数：" + "、".join(f"{short_labels[row['target']]} {row['dsh_passed']}/{row['dsh_total']}" for row in rows if row['dsh_state'] == 'complete') + "。未完了は空欄。"
     for y, text in [(1472, "速度：同じ16K/2Kで3回ウォームアップ後、5回測定。入力再利用0を確認。"),
-                    (1514, "タスク秒数：ts-bench 25問の平均（失敗を含む） / Lower is better / thinking ON。"),
+                    (1514, "タスク秒数：ts-bench 25問の中央値 Median（不成功も含む） / Lower is better / thinking ON。"),
                     (1556, successes),
                     (1598, "MacBook $6,699、Mac Studio $9,999はApple公式価格。DGX $6,950は在庫なし。"),
                     (1640, "2台構成：GX10 $6,950 + DGX $6,950 + 接続ケーブル $200 = $14,100。"),

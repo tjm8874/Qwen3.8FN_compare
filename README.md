@@ -2,24 +2,24 @@
 
 Qwen3.8-Flash-Nextを、現在購入できるPC・Mac・DGX Sparkで動かした際の速度とコーディング能力を測定します。各実機に適したエンジン・モデルを実測して選び、購入後の使い勝手を判断できるデータを残します。比較表は実機ごとに1行とし、試した候補の生ログも保存します。
 
-**2026年10月11日現在、全8構成の速度を掲載しています。画像の右端はts-bench 25問の平均所要時間「タスク秒数」です。Windowsの原ログを受領し、速度8試行と25問を照合しました。Windowsは平均152.77秒、MacBookは107.64秒、Mac Studioは57.94秒で、いずれも25/25問に成功しました。DGX単体は平均143.44秒・23/25問で完了し、元DeepSeekの復旧後にDGX2台の評価を開始しています。** 成功数と測定条件は以下に残しています。
+**2026年10月11日現在、全8構成の速度を掲載しています。画像の右端「タスク秒数」はts-bench 25問の中央値（Median）です。Windowsは130.8秒、MacBookは74.7秒、Mac Studioは47.1秒で、いずれも25/25問に成功しました。DGX単体は103.6秒・23/25問で完了し、元DeepSeekの復旧後にDGX2台の評価を開始しています。** 平均所要時間と成功数も以下に残しています。
 
 ## 16K入力では、PRO 4500単独がGPU分割より速かった
 
 今回のStrata・IQ3_XXS・自動配置では、PRO 4500単独のDecode中央値は120.7 tps、PRO 4500＋5060 Tiは101.0 tpsでした。GPUを追加すれば単一リクエストが速くなるとは限らず、この条件で速度を重視するならPRO 4500単独が有力です。配置や条件を変えた場合、別の結論になる可能性があります。
 
-Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.5 tps、Decode中央値119.8 tpsでした。モデル・量子化・エンジンが異なるため、PCと同じ条件のハードウェア比較ではありません。このMac Studio構成のDSH評価は25/25問に成功し、タスク秒数は平均57.94秒でした。価格や速度だけで全構成の購入順位を決めず、25問の評価結果と合わせて検討します。
+Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.5 tps、Decode中央値119.8 tpsでした。モデル・量子化・エンジンが異なるため、PCと同じ条件のハードウェア比較ではありません。このMac Studio構成のDSH評価は25/25問に成功し、タスク秒数は中央値47.08秒（平均57.94秒）でした。価格や速度だけで全構成の購入順位を決めず、25問の評価結果と合わせて検討します。
 
 <!-- RESULTS_START -->
-| 構成 | Prefill tps | Decode tps | タスク秒数 ↓ | 成功数（補足） | 参考価格 USD |
+| 構成 | Prefill tps | Decode tps | タスク秒数 Median ↓ | 成功数（補足） | 参考価格 USD |
 |---|---:|---:|---:|---:|---:|
-| PC : 5060 Ti 16GB | 1,607.1 | 66.3 | 152.8 | 25/25 | $1,800 |
-| PC : PRO 4500 32GB | 3,683.0 | 120.7 | 60.5 | 25/25 | $5,700 |
-| PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 62.6 | 24/25 | $6,500 |
-| MS-S1 Max | 1,789.0 | 47.0 | 162.1 | 24/25 | $3,879 |
-| MacBook Pro M5 Max | 2,204.4 | 76.6 | 107.6 | 25/25 | $6,699 |
-| DGX Spark 1台 | 3,434.9 | 57.1 | 143.4 | 23/25 | $6,950 |
-| Mac Studio M5 Ultra | 4,635.5 | 119.8 | 57.9 | 25/25 | $9,999 |
+| PC : 5060 Ti 16GB | 1,607.1 | 66.3 | 130.8 | 25/25 | $1,800 |
+| PC : PRO 4500 32GB | 3,683.0 | 120.7 | 42.1 | 25/25 | $5,700 |
+| PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 42.3 | 24/25 | $6,500 |
+| MS-S1 Max | 1,789.0 | 47.0 | 135.2 | 24/25 | $3,879 |
+| MacBook Pro M5 Max | 2,204.4 | 76.6 | 74.7 | 25/25 | $6,699 |
+| DGX Spark 1台 | 3,434.9 | 57.1 | 103.6 | 23/25 | $6,950 |
+| Mac Studio M5 Ultra | 4,635.5 | 119.8 | 47.1 | 25/25 | $9,999 |
 | GX10 + DGX Spark | 4,355.8 | 80.3 | 未測定 | 未確定 | $14,100 |
 <!-- RESULTS_END -->
 
@@ -76,9 +76,9 @@ Prefill中央値は**2,204.4 tps**、Decode中央値は**76.6 tps**、TTFT中央
 
 Mac Studio M5 Ultraでも、同じ固定リビジョンのiQ-MLX 4.7bpwモデルをMLX-Serve 26.10.1で測定しました。文脈32K、同時1件、入力キャッシュ無効、vision無効、MTP深度6・適応動作、prompt lookup有効です。ファンはAppleの自動制御を維持しました。Prefill中央値は**4,635.5 tps**（4,626.2〜4,644.3）、Decode中央値は**119.8 tps**（117.7〜123.8）、TTFT中央値は3.54秒でした。[設定](data/raw/speed/macstudio-m5ultra-mlxserve-iq47/provenance.json)と[生ログ](data/raw/speed/macstudio-m5ultra-mlxserve-iq47/raw.tar.gz)を保存しました。
 
-従来のMLX-Serve 26.9.7-dev・Uncensored 8bitでは、速度中央値3,125.0／100.5 tps、DSH24/25問（不成功：react）でした。[従来の速度ログ](data/raw/speed/macstudio-m5ultra/raw.tar.gz)と[DSH結果](data/raw/evaluation/macstudio-m5ultra/summary.json)は保持しています。新しい4.7bpwモデルは独立した25問評価で25/25問に成功しました。平均所要時間は57.94156秒で、187件の実要求と665回収ファイルを原本のSHA256と照合し、通信障害・外側タイムアウトがないこと、元8bitサービスの復旧も確認しています。旧成功数を新モデルへ引き継いでいません。
+従来のMLX-Serve 26.9.7-dev・Uncensored 8bitでは、速度中央値3,125.0／100.5 tps、DSH24/25問（不成功：react）でした。[従来の速度ログ](data/raw/speed/macstudio-m5ultra/raw.tar.gz)と[DSH結果](data/raw/evaluation/macstudio-m5ultra/summary.json)は保持しています。新しい4.7bpwモデルは独立した25問評価で25/25問に成功しました。中央値47.079秒、平均所要時間57.94156秒で、187件の実要求と665回収ファイルを原本のSHA256と照合し、通信障害・外側タイムアウトがないこと、元8bitサービスの復旧も確認しています。旧成功数を新モデルへ引き継いでいません。
 
-MacBookの選択構成によるTS-benchは25/25問に成功し、平均107.64032秒でした。725回収ファイルをM3U原本の全SHA256と独立照合し、207実要求の思考ON・samplingとツール応答、通信エラー0、外側タイムアウト0を確認しました。評価中の最大ファン642標本を検証し、終了後のApple自動制御への復帰と専用エンジン・トンネル・スリープ抑止の終了を確認しています。[評価結果](data/raw/evaluation/macbook-m5max-mlxserve/summary.json)を参照してください。
+MacBookの選択構成によるTS-benchは25/25問に成功し、中央値74.667秒、平均107.64032秒でした。725回収ファイルをM3U原本の全SHA256と独立照合し、207実要求の思考ON・samplingとツール応答、通信エラー0、外側タイムアウト0を確認しました。評価中の最大ファン642標本を検証し、終了後のApple自動制御への復帰と専用エンジン・トンネル・スリープ抑止の終了を確認しています。[評価結果](data/raw/evaluation/macbook-m5max-mlxserve/summary.json)を参照してください。
 
 ## 5060 Tiの1行目は別Windows PCの測定へ更新
 
@@ -86,7 +86,7 @@ MacBookの選択構成によるTS-benchは25/25問に成功し、平均107.64032
 
 受領ログはStrata 0.1.42・同じIQ3_XXSの固定リビジョン、同じ保存済み要求、16K入力・2K出力、再利用0、3回ウォームアップ後5回測定です。旧cudaserverの1,333.1／60.2 tpsと比べ、Prefill約20.6％、Decode約10.1％の改善でした。H2D転送プローブは7.2→24.2 GB/sですが、CPU・RAM・OS・SSD・expert cache・自動配置も異なります。旧PCIe4.0 x4は所有者申告で旧監視ログにはリンク情報がないため、速度差をPCIeだけの効果とは断定しません。
 
-WindowsのTS-benchは25/25問に成功し、各採点JSONの `totalDuration` 合計3,819.157秒から平均 **152.76628秒**と算出しました。[25問集計](data/raw/evaluation/windows-5060ti-verified/summary.json)と[評価生ログ](data/raw/evaluation/windows-5060ti-verified/raw.tar.gz)を保存しています。外側の処理を含むrunner合計3,923.534秒（平均156.941秒）とは区別します。DSHはWSL2 Ubuntu、StrataはWindowsで動作し、エージェント文脈32Kに対してエンジン側文脈は131K、prompt-cacheは0です。固定コミット・同25問・207実要求のsamplingと思考ON、通信エラー0、外側タイムアウト0を確認しました。[旧cudaserverの速度](data/raw/speed/cuda-5060ti/raw.tar.gz)、[旧ts-bench結果](data/raw/evaluation/cuda-5060ti/summary.json)、[以前の提供集計](data/raw/speed/windows-5060ti/reported-summary.json)は履歴として保持します。
+WindowsのTS-benchは25/25問に成功し、各採点JSONの `totalDuration` 合計3,819.157秒から平均 **152.76628秒**、25問の中央の値から中央値 **130.775秒**と算出しました。[25問集計](data/raw/evaluation/windows-5060ti-verified/summary.json)と[評価生ログ](data/raw/evaluation/windows-5060ti-verified/raw.tar.gz)を保存しています。外側の処理を含むrunner合計3,923.534秒（平均156.941秒）とは区別します。DSHはWSL2 Ubuntu、StrataはWindowsで動作し、エージェント文脈32Kに対してエンジン側文脈は131K、prompt-cacheは0です。固定コミット・同25問・207実要求のsamplingと思考ON、通信エラー0、外側タイムアウト0を確認しました。[旧cudaserverの速度](data/raw/speed/cuda-5060ti/raw.tar.gz)、[旧ts-bench結果](data/raw/evaluation/cuda-5060ti/summary.json)、[以前の提供集計](data/raw/speed/windows-5060ti/reported-summary.json)は履歴として保持します。
 
 ## Spark単体ではvLLMがPrefill・Decodeとも速かった
 
@@ -99,7 +99,7 @@ WindowsのTS-benchは25/25問に成功し、各採点JSONの `totalDuration` 合
 
 vLLMはPrefillが約32.4％、Decodeが約19.6％速く、全所要時間も約17.4％短かったため、Sparkの比較表にはvLLMを採用しました。[比較データ](data/spark-engine-comparison.json)、[TensorFold生ログ](data/raw/speed/spark-single-tensorfold-common/raw.tar.gz)、[vLLM生ログ](data/raw/speed/spark-single-vllm-common-retry/raw.tar.gz)を保存しています。
 
-Spark単体の新しいvLLM構成によるTS-benchは、25問を完走し23問に成功しました。不成功はbowlingとreactで、通常のモデル不成功として平均に含めています。平均所要時間は**143.43804秒**。992回収ファイルをM3U原本の全SHA256と独立照合し、222実要求の思考ON・sampling・SSE完了・実トークン数と32K文脈枠、固定コミット・同25問、通信エラー0・外側タイムアウト0を確認しました。専用エンジンと一時トンネルは停止済みです。元DeepSeekの8888モデルAPI復旧記録と、続く2台測定前の元head/workerの同一ID・Config・稼働状態を照合しました。[25問集計](data/raw/evaluation/spark-single-vllm-common-retry/summary.json)と[評価生ログ](data/raw/evaluation/spark-single-vllm-common-retry/raw.tar.gz)を保存しています。
+Spark単体の新しいvLLM構成によるTS-benchは、25問を完走し23問に成功しました。不成功はbowlingとreactで、通常のモデル不成功として25問すべての集計に含めています。中央値は**103.611秒**、平均所要時間は**143.43804秒**。992回収ファイルをM3U原本の全SHA256と独立照合し、222実要求の思考ON・sampling・SSE完了・実トークン数と32K文脈枠、固定コミット・同25問、通信エラー0・外側タイムアウト0を確認しました。専用エンジンと一時トンネルは停止済みです。元DeepSeekの8888モデルAPI復旧記録と、続く2台測定前の元head/workerの同一ID・Config・稼働状態を照合しました。[25問集計](data/raw/evaluation/spark-single-vllm-common-retry/summary.json)と[評価生ログ](data/raw/evaluation/spark-single-vllm-common-retry/raw.tar.gz)を保存しています。
 
 モデルの固定リビジョンは`1464274120d36a4d8fcaa934552334a7d83ce0fd`です。PLE表の精度は両エンジンとも元のFP8を維持していますが、TensorFoldはGPU常駐、vLLMはNVMeから読み取ります。MTPもTensorFoldは最大15、vLLMは動的3〜7で、vLLMのドラフトだけが10専門家、対象モデルは5専門家です。エンジン間の比較は各実装を含むレシピの比較であり、実装差を取り除いた比較ではありません。
 
@@ -116,15 +116,27 @@ GX10＋Sparkでは、採用したvLLMの同じ固定イメージ・モデル・F
 
 vLLMのAPIは再利用数の項目を返さなかったため、入力KVを16,384トークンすべて計算したこと、内部・外部キャッシュの利用がともに0であることをエンジンの実測カウンターで確認しました。最初の検証停止実行は診断用に残し、今回の5回には含めていません。新しく採用したvLLMは新規に25問を評価しており、以前のTensorFoldによる途中16問を引き継ぎません。旧131K条件のTensorFold速度2,620.8／53.4 tpsは[履歴](data/raw/speed/spark-single/raw.tar.gz)として保持しています。
 
-DGX単体の初回評価は、ツール履歴を含む要求が32K文脈を1トークン超えたため、途中実行全体を正式成績から除外し原ログを診断用に保存しました。再実行では、ツール定義と思考用テンプレートを含むエンジンの実測入力数から応答枠を計算し、32トークンの余地を確保します。履歴やモデルは切り詰めず、単体・2台の両方に同じ処理を適用します。トークン計数の待ち時間もタスク時間に含みます。評価開始前に短い実応答で上限に収まることを確認し、この事前試験を正式25問の平均には含めません。
+DGX単体の初回評価は、ツール履歴を含む要求が32K文脈を1トークン超えたため、途中実行全体を正式成績から除外し原ログを診断用に保存しました。再実行では、ツール定義と思考用テンプレートを含むエンジンの実測入力数から応答枠を計算し、32トークンの余地を確保します。履歴やモデルは切り詰めず、単体・2台の両方に同じ処理を適用します。トークン計数の待ち時間もタスク時間に含みます。評価開始前に短い実応答で上限に収まることを確認し、この事前試験を正式25問の集計には含めません。
 
-## タスク秒数は25問すべての平均所要時間
+## タスク秒数は25問の中央値（Median）
 
-画像の「タスク秒数 ↓」は、ts-benchが各課題の結果へ記録する `totalDuration`（ミリ秒）を25問分合計し、25で割って秒に換算した値です。**Lower is better（小さいほど速い）**で、思考・回答生成・ツール実行・テスト・修正の繰り返しを含む実際の課題処理時間を示します。外側の起動処理を含む `runner_wall_seconds` と、固定2K出力の速度測定とは別の指標です。
+画像と比較表の「タスク秒数 Median ↓」は、ts-benchが各課題へ記録する `totalDuration`（ミリ秒）を秒へ換算し、25問を所要時間順に並べた13番目の値です。**Lower is better（小さいほど速い）**で、思考・回答生成・ツール実行・テスト・修正を含みます。典型的な1問の所要時間を見るため、長時間かかった少数の課題に左右されにくい中央値を採用しました。
 
-成功した課題だけを選ぶと構成ごとに対象が変わるため、モデルが失敗した課題も含めた同じ25問を平均します。通信障害を含む実行や25問未完了の実行は掲載しません。失敗して早く終了した実行は良い時間に見えることがあるので、成功数はREADME・CSVに残し、平均時間だけで優劣を決めません。同じ基本モデルでも量子化・専門家削減・エンジン・生成内容が異なり、成功数が同じになるとは限りません。
+平均は25問の合計を25で割った値として、READMEとCSVの `task_seconds_mean` に残します。中央値は `task_seconds_median` に記録します。DGX単体ではrobot-nameに742.988秒かかり、平均143.43804秒に対して中央値は103.611秒でした。長い思考と実装の修正に伴う時間も原ログと平均に残し、課題自体を除外していません。外側の起動処理を含む `runner_wall_seconds` や、固定2K出力の速度測定とは別の指標です。
 
-既存の25問結果から計算した平均は、2GPU PC **62.6秒（24/25成功）**、PRO 4500単体 **60.5秒（25/25成功）**、MS-S1 Max **162.1秒（24/25成功）**、今回のMac Studio M5 Ultra **57.9秒（25/25成功）**、MacBook Pro M5 Max **107.6秒（25/25成功）**、別Windows PC **152.8秒（25/25成功）**です。未測定の新構成は空欄にし、旧モデル・旧PCの値を引き継ぎません。
+不成功の課題も含めた同じ25問を使い、通信障害を含む実行や25問未完了の実行は掲載しません。不成功で早く終了した課題もあるため、成功数をREADME・CSV・画像の補足に残します。同じ基本モデルでも量子化・専門家削減・エンジン・生成内容が異なり、成功数や生成量が同じになるとは限りません。
+
+| 構成 | 中央値 Median（秒）↓ | 平均 Mean（秒） | 成功数 |
+|---|---:|---:|---:|
+| PC : 5060 Ti 16GB | 130.8 | 152.8 | 25/25 |
+| PC : PRO 4500 32GB | 42.1 | 60.5 | 25/25 |
+| PC : PRO 4500 + 5060 Ti | 42.3 | 62.6 | 24/25 |
+| MS-S1 Max | 135.2 | 162.1 | 24/25 |
+| MacBook Pro M5 Max | 74.7 | 107.6 | 25/25 |
+| DGX Spark 1台 | 103.6 | 143.4 | 23/25 |
+| Mac Studio M5 Ultra | 47.1 | 57.9 | 25/25 |
+
+未測定の新構成は空欄とし、旧モデル・旧PCの値を引き継ぎません。以前の6構成による予測式は平均時間へ当てはめたものなので、中央値を予測する式としては使用しません。
 
 DSH 0.1.5-rc.3、同一のts-bench・Exercismコミット、[同じ25問](data/exercises.txt)を使用します。thinking ON、エージェントの文脈上限32K、1応答の出力上限16K、1問20分、逐次実行で条件をそろえます。temperature 1、top_p 0.95、top_k 20、seed 16を中継処理で指定し、実際に送った要求を保存します。成功数、所要時間、タイムアウト、ツールの失敗を分けて記録します。
 
