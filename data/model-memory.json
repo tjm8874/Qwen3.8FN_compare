@@ -1,0 +1,160 @@
+{
+  "created_at": "2026-10-11T19:03:04.430990+00:00",
+  "unit": "GB = 1000000000 bytes; GiB logs converted before rounding",
+  "metric": "Approximate model weight capacity excluding SSD PLE/ngram lookup table. Not total runtime RAM or minimum installed RAM.",
+  "excluded_runtime_memory": [
+    "KV cache",
+    "workspaces",
+    "CUDA graphs",
+    "additional draft allocations",
+    "GPU expert-cache copies",
+    "OS page cache of the disk-backed ngram table"
+  ],
+  "tp2_policy": "whole target model, not per node; rank replication and runtime overhead require additional memory",
+  "groups": {
+    "strata": {
+      "model_weight_gb_excluding_ngram": 42.91746070528,
+      "display_gb": 43,
+      "precision": "approximate from rounded engine loading log",
+      "basis": "Strata native loaded39.97GiB, same IQ3_XXS pack for all3PC rows; excluding separate PLE table",
+      "evidence": [
+        "data/raw/speed/cuda-pro4500/engine.log",
+        "data/raw/speed/cuda-dual/engine.log",
+        "data/raw/speed/windows-5060ti-verified/engine.log"
+      ]
+    },
+    "halogen": {
+      "model_weight_gb_excluding_ngram": 73.014444032,
+      "display_gb": 73,
+      "precision": "approximate from rounded measured engine loading log",
+      "basis": "Halogen68.0GiB weights locked inRAM including quality overlay, separate47.7GiB lookup table not held inRAM",
+      "evidence": [
+        "data/raw/speed/ms-s1max/engine.log"
+      ]
+    },
+    "mlx": {
+      "model_weight_gb_excluding_ngram": 75.302792952,
+      "display_gb": 75,
+      "tensor_bytes": 75302792952,
+      "precision": "exact safetensors payload summed, display rounded",
+      "basis": "fixed snapshot safetensors tensors excluding ngram scale, separate ngram_table.bin excluded; includes tensors in checkpoint even if no-vision omits loading them",
+      "model_revision": "dafff5c3d8168c9d13275661153911096499a80a",
+      "evidence": [
+        "data/raw/speed/macbook-m5max-mlxserve/model-manifest.json",
+        "data/raw/speed/macstudio-m5ultra-mlxserve-iq47/model-manifest.json"
+      ]
+    },
+    "vllm": {
+      "model_weight_gb_excluding_ngram": 75.150600952,
+      "display_gb": 75,
+      "tensor_bytes": 75150600952,
+      "precision": "exact safetensors payload summed, display rounded",
+      "basis": "70 safetensors in fixed source snapshot, separate ple-table shards excluded; full target checkpoint size, TP2 is whole model rather than per rank",
+      "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
+      "evidence": [
+        "data/raw/speed/spark-single-vllm-common-retry/engine.log",
+        "data/raw/speed/gx10-spark-vllm-common/engine.log"
+      ]
+    }
+  },
+  "targets": {
+    "cuda-5060ti": {
+      "group": "strata",
+      "model_weight_gb_excluding_ngram": 42.91746070528,
+      "display_gb": 43,
+      "precision": "approximate from rounded engine loading log",
+      "basis": "Strata native loaded39.97GiB, same IQ3_XXS pack for all3PC rows; excluding separate PLE table",
+      "evidence": [
+        "data/raw/speed/cuda-pro4500/engine.log",
+        "data/raw/speed/cuda-dual/engine.log",
+        "data/raw/speed/windows-5060ti-verified/engine.log"
+      ]
+    },
+    "cuda-pro4500": {
+      "group": "strata",
+      "model_weight_gb_excluding_ngram": 42.91746070528,
+      "display_gb": 43,
+      "precision": "approximate from rounded engine loading log",
+      "basis": "Strata native loaded39.97GiB, same IQ3_XXS pack for all3PC rows; excluding separate PLE table",
+      "evidence": [
+        "data/raw/speed/cuda-pro4500/engine.log",
+        "data/raw/speed/cuda-dual/engine.log",
+        "data/raw/speed/windows-5060ti-verified/engine.log"
+      ]
+    },
+    "cuda-dual": {
+      "group": "strata",
+      "model_weight_gb_excluding_ngram": 42.91746070528,
+      "display_gb": 43,
+      "precision": "approximate from rounded engine loading log",
+      "basis": "Strata native loaded39.97GiB, same IQ3_XXS pack for all3PC rows; excluding separate PLE table",
+      "evidence": [
+        "data/raw/speed/cuda-pro4500/engine.log",
+        "data/raw/speed/cuda-dual/engine.log",
+        "data/raw/speed/windows-5060ti-verified/engine.log"
+      ]
+    },
+    "ms-s1max": {
+      "group": "halogen",
+      "model_weight_gb_excluding_ngram": 73.014444032,
+      "display_gb": 73,
+      "precision": "approximate from rounded measured engine loading log",
+      "basis": "Halogen68.0GiB weights locked inRAM including quality overlay, separate47.7GiB lookup table not held inRAM",
+      "evidence": [
+        "data/raw/speed/ms-s1max/engine.log"
+      ]
+    },
+    "macbook-m5max": {
+      "group": "mlx",
+      "model_weight_gb_excluding_ngram": 75.302792952,
+      "display_gb": 75,
+      "tensor_bytes": 75302792952,
+      "precision": "exact safetensors payload summed, display rounded",
+      "basis": "fixed snapshot safetensors tensors excluding ngram scale, separate ngram_table.bin excluded; includes tensors in checkpoint even if no-vision omits loading them",
+      "model_revision": "dafff5c3d8168c9d13275661153911096499a80a",
+      "evidence": [
+        "data/raw/speed/macbook-m5max-mlxserve/model-manifest.json",
+        "data/raw/speed/macstudio-m5ultra-mlxserve-iq47/model-manifest.json"
+      ]
+    },
+    "macstudio-m5ultra": {
+      "group": "mlx",
+      "model_weight_gb_excluding_ngram": 75.302792952,
+      "display_gb": 75,
+      "tensor_bytes": 75302792952,
+      "precision": "exact safetensors payload summed, display rounded",
+      "basis": "fixed snapshot safetensors tensors excluding ngram scale, separate ngram_table.bin excluded; includes tensors in checkpoint even if no-vision omits loading them",
+      "model_revision": "dafff5c3d8168c9d13275661153911096499a80a",
+      "evidence": [
+        "data/raw/speed/macbook-m5max-mlxserve/model-manifest.json",
+        "data/raw/speed/macstudio-m5ultra-mlxserve-iq47/model-manifest.json"
+      ]
+    },
+    "spark-single": {
+      "group": "vllm",
+      "model_weight_gb_excluding_ngram": 75.150600952,
+      "display_gb": 75,
+      "tensor_bytes": 75150600952,
+      "precision": "exact safetensors payload summed, display rounded",
+      "basis": "70 safetensors in fixed source snapshot, separate ple-table shards excluded; full target checkpoint size, TP2 is whole model rather than per rank",
+      "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
+      "evidence": [
+        "data/raw/speed/spark-single-vllm-common-retry/engine.log",
+        "data/raw/speed/gx10-spark-vllm-common/engine.log"
+      ]
+    },
+    "gx10-spark": {
+      "group": "vllm",
+      "model_weight_gb_excluding_ngram": 75.150600952,
+      "display_gb": 75,
+      "tensor_bytes": 75150600952,
+      "precision": "exact safetensors payload summed, display rounded",
+      "basis": "70 safetensors in fixed source snapshot, separate ple-table shards excluded; full target checkpoint size, TP2 is whole model rather than per rank",
+      "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
+      "evidence": [
+        "data/raw/speed/spark-single-vllm-common-retry/engine.log",
+        "data/raw/speed/gx10-spark-vllm-common/engine.log"
+      ]
+    }
+  }
+}

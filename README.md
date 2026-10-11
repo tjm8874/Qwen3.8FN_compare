@@ -27,6 +27,19 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 
 ![全8構成の実機比較](images/comparison-progress.png)
 
+## ngramを除くモデル重みの容量
+
+画像の「重み (xxGB)」は、SSDへ置くPLE／ngram lookup tableを除いたモデル重みの容量目安です。**1GB＝10億バイト**で、GiB表示のエンジンログはGBへ換算して丸めています。搭載RAMの最低容量や、実行時の総メモリ使用量を示すものではありません。KVキャッシュ・作業領域・CUDA graph・追加ドラフト・GPU expert cacheの複製・OSのページキャッシュなどは別途必要です。SSD上のngramも、アクセスしたページがRAMにキャッシュされる場合があります。
+
+| エンジン・モデル | ngram除外の容量目安 | 画像表記 | 根拠 |
+|---|---:|---:|---|
+| Strata／IQ3_XXS（PC 3構成） | 約42.9GB | (43GB) | 各ロードログの39.97GiBを換算 |
+| Halogen／W4B＋overlay | 約73.0GB | (73GB) | ロード後にRAMへ固定された重み68.0GiB。lookup table47.7GiBは除外 |
+| MLX-Serve／iQ-MLX 4.7bpw（Mac 2構成） | 約75.3GB | (75GB) | 固定モデルのsafetensorsテンソル容量。独立ngram_table.bin約32.0GBは除外 |
+| vLLM／INT4 top-5（DGX 単体・2台） | 約75.2GB | (75GB) | 固定モデル70個のsafetensorsテンソル容量。独立FP8 PLE表約51.2GBは除外 |
+
+MLXとvLLMの値は保存モデルの重み容量であり、ロード時の省略や変換・追加ドラフトによる差は含めません。2台構成もモデル全体の容量です。各rankへ分割・複製される範囲と実行時の追加領域があるため、単純に2で割って各ノードの必要メモリとすることはできません。[計算根拠](data/model-memory.json)を保存しています。
+
 ## 所有者の意見
 
 2026年10月11日時点の所有者の見解です。

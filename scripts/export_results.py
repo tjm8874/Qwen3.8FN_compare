@@ -75,6 +75,7 @@ def main():
     public.mkdir(parents=True, exist_ok=True)
     targets = json.loads((root / "data/targets.json").read_text())
     exercises = (root / "data/exercises.txt").read_text().splitlines()
+    memory = json.loads((root / "data/model-memory.json").read_text())["targets"]
     rows = []
     for target in targets:
         case = target["id"]
@@ -161,6 +162,9 @@ def main():
                "input_tokens": 16384 if summary else "", "output_tokens": 2048 if summary else "",
                "dsh_state": "complete" if evaluation else "pending", "dsh_passed": evaluation["passed"] if evaluation else "",
                "dsh_total": evaluation["total"] if evaluation else ""}
+        row["model_weight_gb_excluding_ngram"] = memory[case]["model_weight_gb_excluding_ngram"]
+        row["model_weight_display_gb"] = memory[case]["display_gb"]
+        row["model_weight_size_basis"] = memory[case]["basis"]
         row["task_seconds_mean"] = ""
         row["task_seconds_median"] = ""
         row["task_duration_metric"] = ""
@@ -221,7 +225,7 @@ def render(root, rows):
     fontpath = "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc"
     def font(size):
         return ImageFont.truetype(fontpath, size)
-    image = Image.new("RGB", (1800, 1856), "#f2f5f9")
+    image = Image.new("RGB", (1800, 1904), "#f2f5f9")
     draw = ImageDraw.Draw(image)
     draw.rectangle((0, 0, 1800, 220), fill="#112638")
     draw.text((65, 40), "Qwen3.8 Flash Next 実機比較", font=font(58), fill="white")
@@ -238,7 +242,8 @@ def render(root, rows):
         name, recipe, detail = LABELS[row["target"]]
         draw.text((65, y + 24), name, font=font(30), fill="#122e42")
         draw.text((65, y + 79), detail, font=font(24), fill="#617687")
-        draw.text((525, y + 35), recipe, font=font(26), fill="#264154")
+        draw.text((525, y + 24), recipe, font=font(26), fill="#264154")
+        draw.text((525, y + 79), f"重み ({row['model_weight_display_gb']}GB)", font=font(24), fill="#617687")
         price = f"${row['price_usd']:,.0f}" if row["price_usd"] is not None else "確認中"
         draw.text((1060, y + 38), price, font=font(28), fill="#38546a")
         for x, key in [(1285, "prefill_tps_median"), (1475, "decode_tps_median")]:
@@ -264,6 +269,7 @@ def render(root, rows):
     windows_note = "5060 Ti：別Windows PC、PCIe5.0 x8。原ログ8試行・25問を照合済み。" if windows["speed_evidence"] == "raw_logs_validated" else "5060 Ti：別Windows PCの提供集計、PCIe5.0 x8。原ログは添付後に照合。"
     draw.text((65, 1766), windows_note, font=font(23), fill="#40586b")
     draw.text((65, 1808), "モデル・量子化・エンジン差あり。PCは本体$1,000込みの参考予算。", font=font(23), fill="#40586b")
+    draw.text((65, 1850), "重み：ngram除外・概算、1GB＝10億bytes。KV・作業領域等は別途必要。2台はモデル全体。", font=font(23), fill="#40586b")
     output = root / "images/comparison-progress.png"
     output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)
