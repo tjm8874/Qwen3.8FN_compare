@@ -1,27 +1,5 @@
 [
   {
-    "id": "cuda-dual",
-    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB + RTX 5060 Ti 16GB",
-    "engine": "Strata",
-    "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
-    "price_usd": 6500,
-    "price_basis": "user estimate: PC 1000 + PRO 4500 4700 + 5060 Ti 800",
-    "state": "speed and DSH25 complete (24/25)",
-    "engine_version": "0.1.42",
-    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
-  },
-  {
-    "id": "cuda-pro4500",
-    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB",
-    "engine": "Strata",
-    "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
-    "price_usd": 5700,
-    "price_basis": "user estimate: PC 1000 + PRO 4500 4700",
-    "state": "speed and DSH25 complete (25/25)",
-    "engine_version": "0.1.42",
-    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
-  },
-  {
     "id": "cuda-5060ti",
     "hardware": "Core i7-13700 / DDR4 64GB 2666 MT/s / PRIME Z790M-PLUS D4 / RTX 5060 Ti 16GB / PCIe5.0 x8 / Windows",
     "engine": "Strata",
@@ -38,6 +16,43 @@
     "engine_context": 131072,
     "agent_context": 32768,
     "prompt_cache": 0
+  },
+  {
+    "id": "cuda-pro4500",
+    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB",
+    "engine": "Strata",
+    "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
+    "price_usd": 5700,
+    "price_basis": "user estimate: PC 1000 + PRO 4500 4700",
+    "state": "speed and DSH25 complete (25/25)",
+    "engine_version": "0.1.42",
+    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
+  },
+  {
+    "id": "cuda-dual",
+    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX PRO 4500 Blackwell 32GB + RTX 5060 Ti 16GB",
+    "engine": "Strata",
+    "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
+    "price_usd": 6500,
+    "price_basis": "user estimate: PC 1000 + PRO 4500 4700 + 5060 Ti 800",
+    "state": "speed and DSH25 complete (24/25)",
+    "engine_version": "0.1.42",
+    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
+  },
+  {
+    "id": "ms-s1max",
+    "hardware": "MINISFORUM MS-S1 Max / 128GB / 2TB",
+    "engine": "Halogen Flash Server0.17.5",
+    "model": "peonist-ai/halogen-qwen3.8-flash-next W4B + quality overlay",
+    "recipe": "https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo",
+    "price_usd": 3879,
+    "state": "speed and DSH25 complete;24/25 passed",
+    "price_basis": "owner supplied reference system price, 2026-10-10",
+    "model_revision": "506567c641cfb737e0b01c1deff10813154c5529",
+    "engine_digest": "sha256:df161433d825e901d91811fe28561bc3ef830a552bbb59c1aaf58f8fd4e9bc1d",
+    "kernel": "7.0.0-38-generic",
+    "bios_uma": "Auto",
+    "iommu": "unchanged"
   },
   {
     "id": "macbook-m5max",
@@ -71,21 +86,6 @@
     "KV": "bf16",
     "PLE": "original FP8 NVMe reader, replicated",
     "MTP": "own drafthead10 experts dynamic3to7, targettop5"
-  },
-  {
-    "id": "ms-s1max",
-    "hardware": "MINISFORUM MS-S1 Max / 128GB / 2TB",
-    "engine": "Halogen Flash Server0.17.5",
-    "model": "peonist-ai/halogen-qwen3.8-flash-next W4B + quality overlay",
-    "recipe": "https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo",
-    "price_usd": 3879,
-    "state": "speed and DSH25 complete;24/25 passed",
-    "price_basis": "owner supplied reference system price, 2026-10-10",
-    "model_revision": "506567c641cfb737e0b01c1deff10813154c5529",
-    "engine_digest": "sha256:df161433d825e901d91811fe28561bc3ef830a552bbb59c1aaf58f8fd4e9bc1d",
-    "kernel": "7.0.0-38-generic",
-    "bios_uma": "Auto",
-    "iommu": "unchanged"
   },
   {
     "id": "macstudio-m5ultra",

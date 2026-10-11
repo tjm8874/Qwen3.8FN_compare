@@ -13,12 +13,12 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 <!-- RESULTS_START -->
 | 構成 | Prefill tps | Decode tps | タスク秒数 ↓ | 成功数（補足） | 参考価格 USD |
 |---|---:|---:|---:|---:|---:|
-| PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 62.6 | 24/25 | $6,500 |
-| PC : PRO 4500 32GB | 3,683.0 | 120.7 | 60.5 | 25/25 | $5,700 |
 | PC : 5060 Ti 16GB | 1,607.1 | 66.3 | 152.8 | 25/25 | $1,800 |
+| PC : PRO 4500 32GB | 3,683.0 | 120.7 | 60.5 | 25/25 | $5,700 |
+| PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 62.6 | 24/25 | $6,500 |
+| MS-S1 Max | 1,789.0 | 47.0 | 162.1 | 24/25 | $3,879 |
 | MacBook Pro M5 Max | 2,204.4 | 76.6 | 107.6 | 25/25 | $6,699 |
 | DGX Spark 1台 | 3,434.9 | 57.1 | 未測定 | 未確定 | $6,950 |
-| MS-S1 Max | 1,789.0 | 47.0 | 162.1 | 24/25 | $3,879 |
 | Mac Studio M5 Ultra | 4,635.5 | 119.8 | 57.9 | 25/25 | $9,999 |
 | GX10 + DGX Spark | 4,355.8 | 80.3 | 未測定 | 未確定 | $14,100 |
 <!-- RESULTS_END -->
@@ -31,16 +31,16 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 
 | 構成 | エンジン・モデル | 参考価格 USD | 状態 |
 |---|---|---:|---|
-| PC：PRO 4500＋5060 Ti | Strata 0.1.42／IQ3_XXS | $6,500* | 速度測定・DSH25完了 |
-| PC：PRO 4500のみ | Strata 0.1.42／IQ3_XXS | $5,700* | 速度測定・DSH25完了 |
 | PC：5060 Ti 16GB・i7-13700・DDR4 64GB | Strata 0.1.42／IQ3_XXS・Windows・PCIe5.0 x8 | $1,800* | 速度・TS-bench25問の原ログ照合済み（25/25） |
+| PC：PRO 4500のみ | Strata 0.1.42／IQ3_XXS | $5,700* | 速度測定・DSH25完了 |
+| PC：PRO 4500＋5060 Ti | Strata 0.1.42／IQ3_XXS | $6,500* | 速度測定・DSH25完了 |
+| MS-S1 Max 128GB・2TB | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo)／0.17.5・W4B＋品質オーバーレイ | $3,879* | 速度測定・DSH25完了 |
 | MacBook Pro M5 Max 128GB・2TB | [MLX-Serve 26.10.1](https://github.com/ddalcu/mlx-serve)／[iQ-MLX 4.7bpw](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-iQ-MLX-4.7bpw)・ファン最大 | $6,699* | 速度・TS-bench25問完了（25/25） |
 | DGX Spark 1台 | [vLLM 0.30.0共通ビルド](https://github.com/myllmbox/qwen38-flash-next-cluster-recipe)／INT4 top-5・FP8表 | $6,950† | 単体比較で採用・速度完了・新エンジンのTS-bench実行中 |
-| MS-S1 Max 128GB・2TB | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo)／0.17.5・W4B＋品質オーバーレイ | $3,879* | 速度測定・DSH25完了 |
 | Mac Studio M5 Ultra 256GB・2TB | MLX-Serve 26.10.1／iQ-MLX 4.7bpw・自動ファン | $9,999* | 速度測定・TS-bench25問完了（25/25） |
 | GX10＋DGX Spark | 単体と同じvLLM 0.30.0／INT4 top-5・FP8表 | $14,100* | TP2速度完了・単体の評価と復旧後にTS-bench実行 |
 
-\* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。別Windows PCの実売価格は未提示のため、3行目の$1,800は従来と同じ参考予算です。価格だけで能力を順位づけせず、タスク秒数と成功数も記録します。
+\* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。別Windows PCの実売価格は未提示のため、1行目の$1,800は従来と同じ参考予算です。価格だけで能力を順位づけせず、タスク秒数と成功数も記録します。
 
 MacBook Pro M5 Max 128GB・2TBの$6,699は所有者が示した実売価格、MS-S1 Max 128GB・2TBは$3,879です。GX10＋DGX Sparkは、所有者の指定に合わせて1台あたり$6,950とし、接続ケーブル$200を加えた**$14,100**（$6,950 × 2 ＋ $200）で比較します。GX10単体について、販売店で確認した価格とは区別します。
 
@@ -70,9 +70,9 @@ Mac Studio M5 Ultraでも、同じ固定リビジョンのiQ-MLX 4.7bpwモデル
 
 MacBookの選択構成によるTS-benchは25/25問に成功し、平均107.64032秒でした。725回収ファイルをM3U原本の全SHA256と独立照合し、207実要求の思考ON・samplingとツール応答、通信エラー0、外側タイムアウト0を確認しました。評価中の最大ファン642標本を検証し、終了後のApple自動制御への復帰と専用エンジン・トンネル・スリープ抑止の終了を確認しています。[評価結果](data/raw/evaluation/macbook-m5max-mlxserve/summary.json)を参照してください。
 
-## 5060 Tiの3行目は別Windows PCの測定へ更新
+## 5060 Tiの1行目は別Windows PCの測定へ更新
 
-3行目はCore i7-13700・DDR4 64GB（2666 MT/s）・RTX 5060 Ti 16GB、Windows、負荷中PCIe5.0 x8の構成です。所有者から受領したZIPの全880ファイルのSHA256を照合し、要求・SSE応答・実トークン数・ネイティブ時間・生成出力を全8試行で検証しました。5回の中央値はPrefill **1,607.1 tps**、Decode **66.3 tps**。範囲はそれぞれ1,595.1〜1,621.7、63.2〜67.1 tps、TTFTは10.2631秒、全所要時間は41.2018秒です。[検証済み集計](data/raw/speed/windows-5060ti-verified/summary.json)と[速度生ログ](data/raw/speed/windows-5060ti-verified/raw.tar.gz)を保存しています。所有者側で匿名化された受領ログの検証であり、モデル本体の再ハッシュや実機への接続確認は当方で実施していません。出力テキストのCRLFはLFへ正規化し、SSEから復元した出力と元の出力ハッシュに一致することを確認しました。
+1行目はCore i7-13700・DDR4 64GB（2666 MT/s）・RTX 5060 Ti 16GB、Windows、負荷中PCIe5.0 x8の構成です。所有者から受領したZIPの全880ファイルのSHA256を照合し、要求・SSE応答・実トークン数・ネイティブ時間・生成出力を全8試行で検証しました。5回の中央値はPrefill **1,607.1 tps**、Decode **66.3 tps**。範囲はそれぞれ1,595.1〜1,621.7、63.2〜67.1 tps、TTFTは10.2631秒、全所要時間は41.2018秒です。[検証済み集計](data/raw/speed/windows-5060ti-verified/summary.json)と[速度生ログ](data/raw/speed/windows-5060ti-verified/raw.tar.gz)を保存しています。所有者側で匿名化された受領ログの検証であり、モデル本体の再ハッシュや実機への接続確認は当方で実施していません。出力テキストのCRLFはLFへ正規化し、SSEから復元した出力と元の出力ハッシュに一致することを確認しました。
 
 受領ログはStrata 0.1.42・同じIQ3_XXSの固定リビジョン、同じ保存済み要求、16K入力・2K出力、再利用0、3回ウォームアップ後5回測定です。旧cudaserverの1,333.1／60.2 tpsと比べ、Prefill約20.6％、Decode約10.1％の改善でした。H2D転送プローブは7.2→24.2 GB/sですが、CPU・RAM・OS・SSD・expert cache・自動配置も異なります。旧PCIe4.0 x4は所有者申告で旧監視ログにはリンク情報がないため、速度差をPCIeだけの効果とは断定しません。
 
@@ -120,7 +120,7 @@ ts-benchにはDSH用のアダプターを追加しています。固定コミッ
 
 ## モデル差を含めて、購入時の選択肢を比べる
 
-PCの3行は同一IQ3_XXSモデルを使います。最初の2行は同じi5-14400 PCのGPU構成比較ですが、3行目はi7-13700の別Windows PCで、CPU・OS・PCIe等も異なります。全8行では量子化、Uncensored版、モデルの削減、実行エンジンが異なります。DGX Spark 1台の削減モデルも採用し、「1台買った場合、このレシピは役立つか」を速度と評価結果から検討します。DGXについては、まずSpark単体で同じ固定INT4 top-5チェックポイントを使い、TensorFoldとvLLMのPrefill・Decodeを比較します。採用したエンジンの同じビルド・モデル・実行時量子化・KV精度・MTP設定でGX10＋Sparkの2台構成を測定し、台数を増やした場合の速度倍率を算出します。エンジン間の実行時形式の違いは記録し、PrefillとDecodeで順位が異なる場合は両方の結果を示して採用を決めます。単体ではPrefill・Decodeとも速かったvLLMを採用し、2台化による速度倍率はPrefill約1.27倍、Decode約1.41倍でした。この比較から、ハードウェアだけの優劣を断定することはできません。
+PCの3行は同一IQ3_XXSモデルを使います。2・3行目は同じi5-14400 PCのGPU構成比較ですが、1行目はi7-13700の別Windows PCで、CPU・OS・PCIe等も異なります。全8行では量子化、Uncensored版、モデルの削減、実行エンジンが異なります。DGX Spark 1台の削減モデルも採用し、「1台買った場合、このレシピは役立つか」を速度と評価結果から検討します。DGXについては、まずSpark単体で同じ固定INT4 top-5チェックポイントを使い、TensorFoldとvLLMのPrefill・Decodeを比較します。採用したエンジンの同じビルド・モデル・実行時量子化・KV精度・MTP設定でGX10＋Sparkの2台構成を測定し、台数を増やした場合の速度倍率を算出します。エンジン間の実行時形式の違いは記録し、PrefillとDecodeで順位が異なる場合は両方の結果を示して採用を決めます。単体ではPrefill・Decodeとも速かったvLLMを採用し、2台化による速度倍率はPrefill約1.27倍、Decode約1.41倍でした。この比較から、ハードウェアだけの優劣を断定することはできません。
 
 ## データをたどれる形で公開する
 
