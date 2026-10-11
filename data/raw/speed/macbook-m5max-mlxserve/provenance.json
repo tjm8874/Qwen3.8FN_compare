@@ -1,0 +1,49 @@
+{
+  "engine": "MLX-Serve",
+  "version": "26.10.1",
+  "release_sha256": "e53056e481364ff72188fafea8b3eb0aeb0b5b7cebcd6e6e7d26bf1ce4223873",
+  "mlx_version": "0.32.3",
+  "nax": true,
+  "model_revision": "dafff5c3d8168c9d13275661153911096499a80a",
+  "context": 32768,
+  "concurrency": 1,
+  "prefix_cache": false,
+  "vision": false,
+  "mtp": {
+    "loaded": true,
+    "default_on": true,
+    "acceptance": "exact",
+    "acceptance_param": null,
+    "greedy_tail": false,
+    "depth": 6,
+    "adaptive": true,
+    "max_ctx": 0
+  },
+  "pld": {
+    "default_on": true,
+    "draft_len": 5,
+    "key_len": 3
+  },
+  "fan_control_tool": {
+    "name": "ThermalForge",
+    "version": "0.2.3",
+    "commit": "3fbaa527aee05a5a0ed2606f00b50254df9d614f"
+  },
+  "fan_policy": "maximum during calibration and all full trials; Apple automatic restored after engine stop",
+  "rpm": {
+    "0": {
+      "min": 7805,
+      "max": 7847,
+      "target": 7826
+    },
+    "1": {
+      "min": 7811,
+      "max": 7843,
+      "target": 7826
+    }
+  },
+  "fan_samples": 57,
+  "completed_utc": "2026-10-11T04:58:15.700465+00:00",
+  "dsh": "deferred, not run",
+  "trial_drift": "Trial05 slower; temperatures recorded by SMC sensor names, no causal diagnosis established"
+}

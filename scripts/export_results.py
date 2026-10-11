@@ -15,11 +15,11 @@ LABELS = {
     "cuda-dual": ("PC : PRO 4500 + 5060 Ti", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
     "cuda-pro4500": ("PC : PRO 4500 32GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
     "cuda-5060ti": ("PC : 5060 Ti 16GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
-    "macbook-m5max": ("MacBook Pro M5 Max", "MTPLX / Optimized Speed 4/8bit", "128GB / 2TB / 標準ファン"),
+    "macbook-m5max": ("MacBook Pro M5 Max", "MLX-Serve / iQ-MLX 4.7bpw", "128GB / 2TB / ファン最大"),
     "spark-single": ("DGX Spark 1台", "TensorFold / INT4 top-5", "128GB / 4TB"),
     "ms-s1max": ("MS-S1 Max", "Halogen / W4B + overlay", "128GB / 2TB"),
     "macstudio-m5ultra": ("Mac Studio M5 Ultra", "MLX-Serve / Uncensored 8bit", "256GB / 2TB"),
-    "gx10-spark": ("GX10 + DGX Spark", "vLLM / hybrid 4/8bit", "128GB × 2 / ケーブル込み"),
+    "gx10-spark": ("GX10 + DGX Spark", "vLLM / INT4 top-5（準備中）", "128GB × 2 / ケーブル込み"),
 }
 
 
@@ -46,6 +46,23 @@ def save(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 
 
+def archive_logs(archive, clean, case, hashes, contents):
+    """Keep an existing verified archive byte-for-byte when its files are unchanged."""
+    manifest = archive.with_name("archive-manifest.json")
+    if archive.is_file() and manifest.is_file():
+        previous = json.loads(manifest.read_text())
+        if (previous["files"] == hashes and
+                previous["archive_sha256"] == hashlib.sha256(archive.read_bytes()).hexdigest()):
+            return
+    archive.parent.mkdir(parents=True, exist_ok=True)
+    with tarfile.open(archive, "w:gz", compresslevel=9) as tar:
+        tar.add(clean, arcname=case)
+    save(manifest, {"files": hashes,
+         "archive_sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
+         "redaction_rules": ["API/authorization/password fields", "private IPs", "personal home directory prefix", "GPU UUID"],
+         "contents": contents})
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", type=Path, required=True)
@@ -58,7 +75,9 @@ def main():
     rows = []
     for target in targets:
         case = target["id"]
-        raw = root / "data/raw/speed" / case
+        speed_case = target.get("speed_case", case)
+        evaluation_case = target.get("evaluation_case", case)
+        raw = root / "data/raw/speed" / speed_case
         summary = None
         if (raw / "summary.json").is_file():
             summary = json.loads((raw / "summary.json").read_text())
@@ -66,7 +85,7 @@ def main():
             for i in range(1, 6):
                 m = json.loads((raw / f"trial-{i:02d}/measurement.json").read_text())
                 assert m["valid"] and m["input_tokens"] == 16384 and m["output_tokens"] == 2048 and m["reused_tokens"] == 0
-            clean = root / ".private/sanitized-speed" / case
+            clean = root / ".private/sanitized-speed" / speed_case
             clean.mkdir(parents=True, exist_ok=True)
             hashes = {}
             for source in sorted(raw.rglob("*")):
@@ -85,19 +104,13 @@ def main():
                 hashes[str(rel)] = {"original_sha256": hashlib.sha256(original).hexdigest(),
                                     "public_sha256": hashlib.sha256(exported).hexdigest(),
                                     "redacted": original != exported}
-                if source.name in ("summary.json", "measurement.json", "engine-settings.json", "tokenizer-calibration.json"):
-                    dest = public / "data/raw/speed" / case / rel
+                if source.name in ("summary.json", "measurement.json", "engine-settings.json", "tokenizer-calibration.json", "provenance.json", "model-manifest.json"):
+                    dest = public / "data/raw/speed" / speed_case / rel
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     dest.write_bytes(exported)
-            archive = public / "data/raw/speed" / case / "raw.tar.gz"
-            archive.parent.mkdir(parents=True, exist_ok=True)
-            with tarfile.open(archive, "w:gz", compresslevel=9) as tar:
-                tar.add(clean, arcname=case)
-            save(archive.with_name("archive-manifest.json"), {"files": hashes,
-                 "archive_sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
-                 "redaction_rules": ["API/authorization/password fields", "private IPs", "personal home directory prefix", "GPU UUID"],
-                 "contents": "all warmups, measured trials, native streams, request payloads, output and available telemetry"})
-        ev = root / "data/raw/evaluation" / case / "summary.json"
+            archive = public / "data/raw/speed" / speed_case / "raw.tar.gz"
+            archive_logs(archive, clean, speed_case, hashes, "all warmups, measured trials, native streams, request payloads, output and available telemetry")
+        ev = root / "data/raw/evaluation" / evaluation_case / "summary.json"
         evaluation = json.loads(ev.read_text()) if ev.is_file() else None
         if evaluation:
             assert evaluation["state"] == "complete" and evaluation["total"] == 25
@@ -105,7 +118,7 @@ def main():
             assert all(r["result_present"] and r["result_file_count"] == 1 for r in evaluation["rows"])
             assert evaluation["passed"] == sum(r["overallSuccess"] is True for r in evaluation["rows"])
             raw_eval = ev.parent
-            clean_eval = root / ".private/sanitized-evaluation" / case
+            clean_eval = root / ".private/sanitized-evaluation" / evaluation_case
             clean_eval.mkdir(parents=True, exist_ok=True)
             hashes_eval = {}
             for source in sorted(raw_eval.rglob("*")):
@@ -125,17 +138,13 @@ def main():
                                          "public_sha256": hashlib.sha256(exported).hexdigest(),
                                          "redacted": original != exported}
                 if source.name in ("summary.json", "prepared.json", "receipt.json") or source.name.startswith("benchmark-"):
-                    dest = public / "data/raw/evaluation" / case / rel
+                    dest = public / "data/raw/evaluation" / evaluation_case / rel
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     dest.write_bytes(exported)
-            archive_eval = public / "data/raw/evaluation" / case / "raw.tar.gz"
-            with tarfile.open(archive_eval, "w:gz", compresslevel=9) as tar:
-                tar.add(clean_eval, arcname=case)
-            save(archive_eval.with_name("archive-manifest.json"), {"files": hashes_eval,
-                 "archive_sha256": hashlib.sha256(archive_eval.read_bytes()).hexdigest(),
-                 "redaction_rules": ["API/authorization/password fields", "private IPs", "personal home directory prefix", "GPU UUID"],
-                 "contents": "DSH25 benchmark results, agent logs, actual upstream requests and responses"})
+            archive_eval = public / "data/raw/evaluation" / evaluation_case / "raw.tar.gz"
+            archive_logs(archive_eval, clean_eval, evaluation_case, hashes_eval, "DSH25 benchmark results, agent logs, actual upstream requests and responses")
         row = {"target": case, "hardware": target["hardware"], "engine": target["engine"], "model": target["model"],
+               "speed_case": speed_case, "evaluation_case": evaluation_case,
                "price_usd": target.get("price_usd"), "price_basis": target.get("price_basis", "not yet verified"),
                "speed_state": "complete" if summary else "pending", "speed_samples": 5 if summary else "",
                "input_tokens": 16384 if summary else "", "output_tokens": 2048 if summary else "",

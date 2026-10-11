@@ -1,0 +1,32 @@
+{
+  "input_tokens": 16384,
+  "output_tokens": 2048,
+  "reused_tokens": 0,
+  "prefill_tps": 2204.365,
+  "decode_tps": 77.766,
+  "native_timings": {
+    "prompt_n": 16384,
+    "cached_n": 0,
+    "prompt_ms": 7432.526,
+    "prompt_per_second": 2204.365,
+    "predicted_n": 2048,
+    "predicted_ms": 26335.385,
+    "predicted_per_second": 77.766,
+    "tokenize_ms": 8.212
+  },
+  "client_ttft_seconds": 7.4417628749997675,
+  "wall_seconds": 33.81380354199973,
+  "finish_reason": "length",
+  "mtp_acceptance": null,
+  "output_sha256": "2e77d1b4cecc3e9e8359c1d5aca7b823b5c8ebe4f5a5bc5c39d3c7286d8913dc",
+  "usage": {
+    "prompt_tokens": 16384,
+    "completion_tokens": 2048,
+    "total_tokens": 18432,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_content": "",
+  "valid": true
+}

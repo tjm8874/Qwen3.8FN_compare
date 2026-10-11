@@ -17,7 +17,7 @@
     "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
     "price_usd": 5700,
     "price_basis": "user estimate: PC 1000 + PRO 4500 4700",
-    "state": "speed measured; DSH25 running",
+    "state": "speed and DSH25 complete (25/25)",
     "engine_version": "0.1.42",
     "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
   },
@@ -28,21 +28,23 @@
     "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
     "price_usd": 1800,
     "price_basis": "user estimate: PC 1000 + 5060 Ti 800",
-    "state": "speed measured; DSH running or queued",
+    "state": "speed and DSH25 complete (24/25)",
     "engine_version": "0.1.42",
     "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
   },
   {
     "id": "macbook-m5max",
     "hardware": "MacBook Pro M5 Max / 128GB / 2TB",
-    "engine": "MTPLX2.12.2",
-    "model": "Youssofal/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed 4/8bit",
-    "recipe": "https://github.com/youssofal/MTPLX",
+    "engine": "MLX-Serve 26.10.1",
+    "model": "ddalcu/Qwen3.8-Flash-Next-MLX-Serve-iQ-MLX-4.7bpw",
+    "recipe": "https://github.com/ddalcu/mlx-serve",
     "price_usd": 6699,
-    "state": "speed complete;DSH25 running",
+    "state": "speed complete; DSH deferred to next day",
     "price_basis": "owner supplied actual retail price, 2026-10-10",
-    "model_revision": "34ae535f2c817737a9c73c364fd6f20629f9a8f7",
-    "fan_policy": "Apple automatic"
+    "model_revision": "dafff5c3d8168c9d13275661153911096499a80a",
+    "fan_policy": "maximum, target7826rpm; actual7805-7847 and7811-7843rpm; Apple auto restored",
+    "speed_case": "macbook-m5max-mlxserve",
+    "evaluation_case": "macbook-m5max-mlxserve"
   },
   {
     "id": "spark-single",
@@ -51,7 +53,7 @@
     "model": "125B-A5B INT4 AutoRound, top-5 expert pruning (accepted)",
     "recipe": "https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold",
     "price_usd": 6950,
-    "state": "preparing",
+    "state": "speed complete; DSH paused after16 valid tasks, resume from17 later",
     "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
     "recipe_commit": "364f21a1a46a366fa39c4da0d53b7b1f38624610",
     "image_digest": "sha256:cb98098439d95d2bff27bc771ba180e5857613ecc41f6b6e81e494782df9433a",
@@ -87,10 +89,10 @@
   {
     "id": "gx10-spark",
     "hardware": "ASUS GX10 + DGX Spark / 128GB x 2",
-    "engine": "vLLM recipe v5.2 (staged, not yet measured)",
-    "model": "Qwen3.8-Flash-Next Uncensored hybrid 4/8bit",
+    "engine": "custom vLLM 0.30.0 / recipe v5.2 (not yet measured)",
+    "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
     "price_usd": 14100,
-    "state": "model re-download/storage preparation required; restore DeepSeek V4.1 after benchmarks",
+    "state": "capacity resolved; model and engine staging pending; DSH deferred",
     "recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
     "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502",
     "price_basis": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
@@ -98,6 +100,8 @@
       "gx10": 6950,
       "dgx_spark": 6950,
       "connection_cable": 200
-    }
+    },
+    "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
+    "image_digest": "sha256:697d4364853312f3b50354020eb99cb12585228c9d16d1288261edb9631fa93b"
   }
 ]

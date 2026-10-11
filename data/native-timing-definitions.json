@@ -48,5 +48,23 @@
     "validation_status": "live8 full-length trials and SSE completion validated",
     "fan_policy": "Apple automatic",
     "speed_drift_observed": "measured trials decreased from1157.622 to843.835prefill,54.227to43.693decode; cause not established by available telemetry"
+  },
+  "macbook-m5max-mlxserve": {
+    "engine_version": "MLX-Serve26.10.1",
+    "release_sha256": "e53056e481364ff72188fafea8b3eb0aeb0b5b7cebcd6e6e7d26bf1ce4223873",
+    "prefill_tps": "native timings.prompt_per_second; (16384 - cached_n) / (prompt_ms/1000), rounded3 decimals",
+    "decode_tps": "native timings.predicted_per_second; predicted_n / (predicted_ms/1000), rounded3 decimals",
+    "decode_numerator": "all generated tokens (2048)",
+    "clock_scope_note": "Use native server counters as reported; arithmetic agrees with native timers to reporting precision. Binary internal timer implementation was not independently audited. Client TTFT and wall time are separate.",
+    "cache_reuse": "prefix cache disabled; cached_n0 and usage.cached_tokens0 verified in all8 full trials",
+    "warmups": 3,
+    "measured_trials": 5,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "thinking": false,
+    "fan_policy": "maximum target7826rpm; RPM telemetry retained; automatic restored after engine stop",
+    "validation_status": "all8 full trials native counts, request settings, output hashes and completed SSE validated",
+    "calibration": "16-output request excluded from statistics",
+    "historical_case": "macbook-m5max is previous MTPLX2.12.2 with automatic fans; its raw data remains unchanged"
   }
 }
