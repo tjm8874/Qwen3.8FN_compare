@@ -9,7 +9,7 @@
   },
   "reason": "Higher median Prefill and Decode and shorter wall time under same8input prompts, fixed target source,32Kcontext,bf16KV; different engine implementations/PLE residency/MTP disclosed",
   "two_node_case": "gx10-spark-vllm-common",
-  "two_node_status": "not started",
+  "two_node_status": "measurement in progress; speed not yet available",
   "tensorfold": {
     "case": "spark-single-tensorfold-common",
     "repetitions": 5,
