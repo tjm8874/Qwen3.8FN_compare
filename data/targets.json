@@ -23,14 +23,17 @@
   },
   {
     "id": "cuda-5060ti",
-    "hardware": "Core i5-14400 / DDR4 64GB / Z790A / RTX 5060 Ti 16GB",
+    "hardware": "Core i7-13700 / DDR4 64GB 2666 MT/s / PRIME Z790M-PLUS D4 / RTX 5060 Ti 16GB / PCIe5.0 x8 / Windows",
     "engine": "Strata",
     "model": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS",
     "price_usd": 1800,
-    "price_basis": "user estimate: PC 1000 + 5060 Ti 800",
-    "state": "speed and DSH25 complete (24/25)",
+    "price_basis": "reference budget only: PC1000 + RTX5060Ti800; new Windows PC actual purchase price not supplied",
+    "state": "owner supplied speed report; raw logs pending next day; DSH not yet run",
     "engine_version": "0.1.42",
-    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406"
+    "engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406",
+    "speed_case": "windows-5060ti",
+    "evaluation_case": "windows-5060ti",
+    "speed_evidence": "owner_supplied_report"
   },
   {
     "id": "macbook-m5max",
@@ -102,7 +105,7 @@
     "engine": "custom vLLM0.30.0 / v5.2 common build",
     "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
     "price_usd": 14100,
-    "state": "same-build TP2 speed preparation and measurement in progress",
+    "state": "speed complete and original DeepSeek restored; DSH deferred",
     "price_basis": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
     "price_components_usd": {
       "gx10": 6950,

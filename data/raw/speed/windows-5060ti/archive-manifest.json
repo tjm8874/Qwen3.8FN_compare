@@ -1,0 +1,22 @@
+{
+  "files": {
+    "comparison-report.txt": {
+      "original_sha256": "e211e6207bc00c2181f1371458e2cd4c894aa71ca779d2cf98cdf0fe46fdf864",
+      "public_sha256": "5088a325ece0b1352e187985aa308bf90939c2a0159b6af85e9c498623b433f4",
+      "redacted": true
+    },
+    "reported-summary.json": {
+      "original_sha256": "6ed86598304663e7793205ccc2ca05c5728634e0609b89b53b07cb8190302f33",
+      "public_sha256": "6ed86598304663e7793205ccc2ca05c5728634e0609b89b53b07cb8190302f33",
+      "redacted": false
+    }
+  },
+  "archive_sha256": "b015ada172f9f9198e83a8bff66df1718ebd5bb6a292e524a7c2864d7dde027f",
+  "redaction_rules": [
+    "API/authorization/password fields",
+    "private IPs",
+    "personal home directory prefix",
+    "GPU UUID"
+  ],
+  "contents": "owner supplied comparison report; raw trial logs pending"
+}

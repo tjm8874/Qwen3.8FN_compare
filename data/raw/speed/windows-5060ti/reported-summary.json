@@ -1,0 +1,45 @@
+{
+  "case": "windows-5060ti",
+  "repetitions": 5,
+  "evidence_level": "owner_supplied_report",
+  "independently_validated_raw_logs": false,
+  "raw_logs_expected": "Owner will attach next day",
+  "source_report_sha256": "e211e6207bc00c2181f1371458e2cd4c894aa71ca779d2cf98cdf0fe46fdf864",
+  "metrics": {
+    "prefill_tps": {
+      "median": 1607.1,
+      "min": 1595.1,
+      "max": 1621.7
+    },
+    "decode_tps": {
+      "median": 66.3,
+      "min": 63.2,
+      "max": 67.1
+    },
+    "client_ttft_seconds": {
+      "median": 10.2631,
+      "min": 10.1603,
+      "max": 10.3262
+    },
+    "wall_seconds": {
+      "median": 41.2018,
+      "min": 40.7749,
+      "max": 42.5603
+    }
+  },
+  "reported_protocol": {
+    "warmups": 3,
+    "trials": 5,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "reused_tokens": 0,
+    "thinking": false,
+    "temperature": 0,
+    "seed": 16,
+    "concurrency": 1
+  },
+  "reported_hardware": "i7-13700 / DDR4 64GB 2666MT/s / RTX5060Ti16GB / PCIe5.0 x8 / Windows",
+  "reported_engine_version": "Strata0.1.42",
+  "reported_engine_commit": "61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406",
+  "reported_model_revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09"
+}

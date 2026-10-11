@@ -9,7 +9,7 @@
   },
   "reason": "Higher median Prefill and Decode and shorter wall time under same8input prompts, fixed target source,32Kcontext,bf16KV; different engine implementations/PLE residency/MTP disclosed",
   "two_node_case": "gx10-spark-vllm-common",
-  "two_node_status": "measurement in progress; speed not yet available",
+  "two_node_status": "speed validated and original DeepSeek restored",
   "tensorfold": {
     "case": "spark-single-tensorfold-common",
     "repetitions": 5,
@@ -66,5 +66,40 @@
   "context": 32768,
   "KV": "bf16",
   "ple_quantization": "FP8 in both; GPUresident TensorFold versus NVMe reader vLLM",
-  "MTP_difference": "TensorFold maximum15 versus vLLM dynamic3to7 with drafttop10; chosen vLLM configuration unchanged in pair"
+  "MTP_difference": "TensorFold maximum15 versus vLLM dynamic3to7 with drafttop10; chosen vLLM configuration unchanged in pair",
+  "two_node": {
+    "case": "gx10-spark-vllm-common",
+    "repetitions": 5,
+    "metrics": {
+      "prefill_tps": {
+        "median": 4355.8366630457385,
+        "min": 4332.909080004331,
+        "max": 4361.918411786543
+      },
+      "decode_tps": {
+        "median": 80.33130264209859,
+        "min": 76.7136483575475,
+        "max": 81.70463623793182
+      },
+      "client_ttft_seconds": {
+        "median": 3.7963428180664778,
+        "min": 3.7953186449594796,
+        "max": 3.817046107025817
+      },
+      "wall_seconds": {
+        "median": 29.272891543107107,
+        "min": 28.843329427065328,
+        "max": 30.469660761067644
+      }
+    }
+  },
+  "ratios_two_nodes_over_single": {
+    "prefill_tps": 1.2681160025189004,
+    "decode_tps": 1.407940023304432,
+    "client_ttft_seconds": 0.7893281840178176,
+    "wall_seconds": 0.7195950215580985
+  },
+  "same_single_pair_runtime_settings_verified": true,
+  "rdma_verified": "Both rails NET/IB on both nodes; native RoCEnante all-reduce live; RDMA transmit/receive counters increased on both rails",
+  "original_service_restored": true
 }

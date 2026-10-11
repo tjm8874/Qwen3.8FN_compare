@@ -1,0 +1,76 @@
+IQ3_XXS / RTX 5060 Ti 16GB: CudaServer とこのPCの速度比較
+測定日: 2026-10-10 (America/Los_Angeles)
+
+結果 (本測定5回の中央値)
+                        CudaServer        このPC          比率
+Prefill tokens/s        1333.1            1607.1          1.2055 (+20.6%)
+Decode tokens/s         60.2              66.3            1.1013 (+10.1%)
+TTFT seconds            12.3301           10.2631         0.8324 (-16.8%)
+Wall seconds            46.3664           41.2018         0.8886 (-11.1%)
+H2D probe GB/s          7.2               24.2            3.3611
+
+このPCの本測定の範囲:
+Prefill 1595.1–1621.7 tokens/s
+Decode 63.2–67.1 tokens/s
+TTFT 10.1603–10.3262 seconds
+Wall 40.7749–42.5603 seconds
+MTP acceptance median 0.621308 (CudaServer 0.651265)
+
+共通条件:
+Strata 0.1.42 / source commit 61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406
+Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS
+HF model revision ed59f92082b1e93c0e96d60a8b11aab089b52f09
+入力16384 tokens (chat template込み)、出力2048 tokens
+thinking OFF、temperature 0、seed 16、同時実行1
+同じ保存済みリクエストを使用。全8入力のトークン数をローカルで検証。
+ウォームアップ3回、本測定5回。8回すべて固定長・再利用0・finish_reason=length。
+expert-cache auto、prefill auto、spec 4、spec-min-p 0.5、KV int8、max-context 131072
+両GGUFのSHA-256が固定HF revisionの公式値と一致。
+第1ファイル: 219ea929900dfa9ef091f3aa473fdba6874b65fcb36526d7d851ac9e95856d15
+第2ファイルの検証値は ple-shard-verification.json に保存。
+MTPは固定版のfetch/pack/rt手順で新規取得・変換。
+ネイティブPrefill/Decodeの定義は元のstrata_speed.pyを使用。
+
+このPCの条件:
+Core i7-13700 / PRIME Z790M-PLUS D4 / DDR4 64GB、2666 MT/s
+RTX 5060 Ti 16GB / NVIDIA driver 616.92 / Windows WDDM
+負荷中の全GPU-active監視サンプルでPCIe Gen5 x8。
+x16はマザーボードのスロット形状。RTX 5060 Tiが使用するレーン数はx8。
+モデル・PLE・MTP・測定ログはCドライブのNVMe SSD。
+標準の自動冷却。測定中GPU温度53–64 C。
+本測定の最小空き物理RAM: 8.974 GiB。
+本測定の最小コミット余裕: 1.289 GiB。
+
+設定差と比較の限界:
+Windowsのコミット余裕が小さいため、--prompt-cache 0 を追加。
+元のCudaServer測定でも再利用は0だが、チェックポイント保存処理の有無は異なる。
+CPU prefill shareはWindowsのコミット制限によりエンジンが自動で無効化。
+自動配置のGPU expert cacheはこのPC4503 slots (7.32 GiB)、CudaServer4784 (7.77 GiB)。
+CPU参加スレッドはこのPC16、CudaServer10。
+エンジンの実行中PCIe配分はこのPCpcie_frac 0.35、CudaServer 0.10。
+CPU専門家処理のプローブはこのPC73 us/expert、CudaServer60 us/expert。
+このPCの初回起動時H2Dは18.4 GB/s、測定に使った再起動時は24.2 GB/s。
+CudaServerのPCIe 4.0 x4は所有者申告。旧GPU監視ログにはリンク情報がない。
+CPU、RAM、OS、SSD、VRAMの使用状況、自動配置が異なる。
+速度差はPC全体の比較であり、PCIeだけによる改善率を示さない。
+今回の対象は速度測定。DSH 25問の品質評価は実施していない。
+
+保存先:
+集計: E:\AI\AntiGravity\cudaserver\results\windows-5060ti-summary.json
+ハードウェア情報: E:\AI\AntiGravity\cudaserver\results\hardware.json
+キャッシュ設定差: E:\AI\AntiGravity\cudaserver\results\windows-config-difference.json
+全生ログ・要求・SSE・出力・2秒間隔テレメトリ:
+<WINDOWS_HOME>\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\StrataBenchmark\results\windows-5060ti
+
+起動:
+E:\AI\AntiGravity\cudaserver\Strata\run-iq3_xxs.bat
+Web UI: http://127.0.0.1:8190/
+OpenAI API: http://127.0.0.1:8190/v1
+固定版を保持するため、比較中にUPDATE.batや自動更新を実行しない。
+
+測定方法・既存結果:
+https://github.com/tjm8874/Qwen3.8FN_compare
+Strata:
+https://github.com/Niko1221/Strata
+GPUのx8仕様:
+https://www.msi.com/Graphics-Card/GeForce-RTX-5060-Ti-16G-GAMING/Specification
