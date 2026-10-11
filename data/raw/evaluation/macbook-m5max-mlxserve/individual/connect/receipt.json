@@ -1,0 +1,10 @@
+{
+  "exercise": "connect",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 86.90042495800003,
+  "benchmark_duration_ms": 85819,
+  "result_present": true
+}

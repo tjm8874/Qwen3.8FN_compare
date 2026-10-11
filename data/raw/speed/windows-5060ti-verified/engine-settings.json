@@ -1,0 +1,41 @@
+{
+  "exe": "E:/benchmark\\Strata\\engine\\strata.exe",
+  "args": [
+    "--pack",
+    "<WINDOWS_HOME>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\StrataBenchmark\\data\\packs\\iq3_xxs",
+    "--native",
+    "<WINDOWS_HOME>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\StrataBenchmark\\data\\models\\IQ3_XXS\\Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf",
+    "--ple-gguf",
+    "<WINDOWS_HOME>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\StrataBenchmark\\data\\models\\IQ3_XXS\\Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf",
+    "--expert-profile",
+    "E:/benchmark\\Strata\\data\\expert-profile.bin",
+    "--expert-cache",
+    "auto",
+    "--prefill",
+    "auto",
+    "--spec",
+    "4",
+    "--spec-min-p",
+    "0.5",
+    "--mtp",
+    "<WINDOWS_HOME>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\StrataBenchmark\\data\\mtp\\rt",
+    "--max-context",
+    "131072",
+    "--kv",
+    "int8",
+    "--prompt-cache",
+    "0"
+  ],
+  "cwd": "E:/benchmark\\Strata",
+  "tokenizer": "<WINDOWS_HOME>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\StrataBenchmark\\data\\packs\\iq3_xxs\\tokenizer",
+  "model_name": "qwen3.8-flash-next-iq3_xxs",
+  "log": "E:/benchmark\\Strata\\strata-iq3_xxs.log",
+  "lib_dirs": [
+    "<WINDOWS_HOME>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\StrataBenchmark\\venv\\Lib\\site-packages\\nvidia\\cu13\\bin\\x86_64"
+  ],
+  "port": 8190,
+  "gpu": 0,
+  "gpus_asked": true,
+  "host": "127.0.0.1",
+  "open_browser": false
+}

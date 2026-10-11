@@ -1,0 +1,10 @@
+{
+  "exercise": "dnd-character",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 113.55108651699993,
+  "benchmark_duration_ms": 109248,
+  "result_present": true
+}

@@ -1,0 +1,10 @@
+{
+  "exercise": "robot-name",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 131.18058487500002,
+  "benchmark_duration_ms": 130065,
+  "result_present": true
+}

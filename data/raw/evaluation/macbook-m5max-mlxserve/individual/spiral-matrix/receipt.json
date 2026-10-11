@@ -1,0 +1,10 @@
+{
+  "exercise": "spiral-matrix",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 88.21695,
+  "benchmark_duration_ms": 87087,
+  "result_present": true
+}

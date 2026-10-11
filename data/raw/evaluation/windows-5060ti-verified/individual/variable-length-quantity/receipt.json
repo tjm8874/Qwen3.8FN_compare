@@ -1,0 +1,10 @@
+{
+  "exercise": "variable-length-quantity",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 125.31290637499933,
+  "benchmark_duration_ms": 124267,
+  "result_present": true
+}

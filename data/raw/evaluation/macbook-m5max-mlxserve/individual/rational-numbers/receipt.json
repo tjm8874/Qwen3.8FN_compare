@@ -1,0 +1,10 @@
+{
+  "exercise": "rational-numbers",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 83.06748970900003,
+  "benchmark_duration_ms": 81932,
+  "result_present": true
+}

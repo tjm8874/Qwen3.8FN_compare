@@ -1,0 +1,25 @@
+{
+  "valid": true,
+  "input_tokens": 16384,
+  "output_tokens": 2048,
+  "reused_tokens": 0,
+  "prefill_tps": 1607.6,
+  "decode_tps": 66.4,
+  "native_timings": {
+    "cache_n": 0,
+    "prompt_n": 16384,
+    "prompt_ms": 10191.5,
+    "prompt_per_token_ms": 0.622,
+    "prompt_per_second": 1607.6,
+    "predicted_n": 2048,
+    "predicted_ms": 30825.0,
+    "predicted_per_token_ms": 15.051,
+    "predicted_per_second": 66.4,
+    "draft_n": 1877,
+    "draft_n_accepted": 1191
+  },
+  "client_ttft_seconds": 10.256168099993374,
+  "wall_seconds": 41.05044619999535,
+  "finish_reason": "length",
+  "mtp_acceptance": 0.6345231752797017
+}

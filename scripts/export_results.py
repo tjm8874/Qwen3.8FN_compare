@@ -256,7 +256,9 @@ def render(root, rows):
     if pair and pair["scaling_reference_case"]:
         text = f"同一vLLM・モデルで1台→2台：Prefill {pair['prefill_tps_ratio_vs_single']:.3f}倍 / Decode {pair['decode_tps_ratio_vs_single']:.3f}倍。"
         draw.text((65, 1724), text, font=font(23), fill="#087e8b")
-    draw.text((65, 1766), "5060 Ti：別Windows PCの提供集計、PCIe5.0 x8。原ログは添付後に照合。", font=font(23), fill="#40586b")
+    windows = next(r for r in rows if r["target"] == "cuda-5060ti")
+    windows_note = "5060 Ti：別Windows PC、PCIe5.0 x8。原ログ8試行・25問を照合済み。" if windows["speed_evidence"] == "raw_logs_validated" else "5060 Ti：別Windows PCの提供集計、PCIe5.0 x8。原ログは添付後に照合。"
+    draw.text((65, 1766), windows_note, font=font(23), fill="#40586b")
     draw.text((65, 1808), "モデル・量子化・エンジン差あり。PCは本体$1,000込みの参考予算。", font=font(23), fill="#40586b")
     output = root / "images/comparison-progress.png"
     output.parent.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,52 @@
+{
+  "at": "2026-10-11T16:05:39.465895+00:00",
+  "case": "windows-5060ti-verified",
+  "archive_sha256": "f0aef6ba9cbe8d7f054f8e0bab0f4df73edf8c84899a4477dbd19f7a6eec5ce3",
+  "package_hashes_verified": 880,
+  "speed_warmups_verified": 3,
+  "speed_trials_verified": 5,
+  "native_SSE_usage_timings_output_verified": true,
+  "metrics": {
+    "prefill_tps": {
+      "median": 1607.1,
+      "min": 1595.1,
+      "max": 1621.7
+    },
+    "decode_tps": {
+      "median": 66.3,
+      "min": 63.2,
+      "max": 67.1
+    },
+    "client_ttft_seconds": {
+      "median": 10.263081400000374,
+      "min": 10.160255499999039,
+      "max": 10.32615990001068
+    },
+    "wall_seconds": {
+      "median": 41.20180870000331,
+      "min": 40.774915100002545,
+      "max": 42.5603059999994
+    },
+    "mtp_acceptance": {
+      "median": 0.6213080168776371,
+      "min": 0.6197257383966245,
+      "max": 0.6605206073752712
+    }
+  },
+  "total": 25,
+  "passed": 25,
+  "requests": 207,
+  "tool_response_requests": 157,
+  "errors": 0,
+  "outer_timeouts": 0,
+  "task_seconds_mean": 152.76628,
+  "benchmark_duration_ms_sum": 3819157,
+  "runner_seconds_mean": 156.94136413604002,
+  "fixed_revisions_sampling_verified": true,
+  "active_pcie5_x8_samples": 163,
+  "reported_model_sha_verified": true,
+  "model_files_not_in_package": true,
+  "engine_context_tokens": 131072,
+  "agent_context_tokens": 32768,
+  "source_is_owner_sanitized_export": true
+}

@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-11T15:40:48.882Z",
+    "agent": "dsh",
+    "model": "benchmark-model",
+    "provider": "local",
+    "version": "0.1.5-rc.3",
+    "totalExercises": 1,
+    "benchmarkVersion": "1.1.0"
+  },
+  "summary": {
+    "successRate": 100,
+    "totalDuration": 720128,
+    "avgDuration": 720128,
+    "successCount": 1,
+    "totalCount": 1,
+    "agentSuccessCount": 1,
+    "testSuccessCount": 1,
+    "testFailedCount": 0
+  },
+  "results": [
+    {
+      "exercise": "react",
+      "agentSuccess": true,
+      "testSuccess": true,
+      "overallSuccess": true,
+      "agentDuration": 716097,
+      "testDuration": 3999,
+      "totalDuration": 720128
+    }
+  ]
+}

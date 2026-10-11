@@ -1,0 +1,36 @@
+{
+  "case": "windows-5060ti-verified",
+  "repetitions": 5,
+  "metrics": {
+    "prefill_tps": {
+      "median": 1607.1,
+      "min": 1595.1,
+      "max": 1621.7
+    },
+    "decode_tps": {
+      "median": 66.3,
+      "min": 63.2,
+      "max": 67.1
+    },
+    "client_ttft_seconds": {
+      "median": 10.263081400000374,
+      "min": 10.160255499999039,
+      "max": 10.32615990001068
+    },
+    "wall_seconds": {
+      "median": 41.20180870000331,
+      "min": 40.774915100002545,
+      "max": 42.5603059999994
+    },
+    "mtp_acceptance": {
+      "median": 0.6213080168776371,
+      "min": 0.6197257383966245,
+      "max": 0.6605206073752712
+    }
+  },
+  "ratio_to_cudaserver": {
+    "prefill_tps": 1.205535968794539,
+    "decode_tps": 1.1013289036544849
+  },
+  "evidence_level": "independently_validated_owner_raw_package"
+}
