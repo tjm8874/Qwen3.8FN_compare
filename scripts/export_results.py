@@ -12,9 +12,9 @@ import tarfile
 
 
 LABELS = {
-    "cuda-dual": ("PC : PRO 4500 + 5060 Ti", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400 2枚挿し"),
-    "cuda-pro4500": ("PC : PRO 4500 32GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
-    "cuda-5060ti": ("PC : 5060 Ti 16GB", "Strata / IQ3_XXS", "DDR4 64GB / i7-13700"),
+    "cuda-dual": ("PC : PRO 4500 + 5060 Ti", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400 Linux"),
+    "cuda-pro4500": ("PC : PRO 4500 32GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400 Linux"),
+    "cuda-5060ti": ("PC : 5060 Ti 16GB", "Strata / IQ3_XXS", "DDR4 64GB / 17-13700 Win"),
     "macbook-m5max": ("MacBook Pro M5 Max", "MLX-Serve / iQ-MLX 4.7bpw", "128GB / 2TB / ファン最大"),
     "spark-single": ("DGX Spark 1台", "vLLM 0.30.0 / INT4 top-5", "128GB / 4TB"),
     "ms-s1max": ("MS-S1 Max", "Halogen / W4B + overlay", "128GB / 2TB"),
