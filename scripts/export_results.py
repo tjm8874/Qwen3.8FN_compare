@@ -18,7 +18,7 @@ LABELS = {
     "macbook-m5max": ("MacBook Pro M5 Max", "MLX-Serve / iQ-MLX 4.7bpw", "128GB / 2TB / ファン最大"),
     "spark-single": ("DGX Spark 1台", "TensorFold / INT4 top-5", "128GB / 4TB"),
     "ms-s1max": ("MS-S1 Max", "Halogen / W4B + overlay", "128GB / 2TB"),
-    "macstudio-m5ultra": ("Mac Studio M5 Ultra", "MLX-Serve / Uncensored 8bit", "256GB / 2TB"),
+    "macstudio-m5ultra": ("Mac Studio M5 Ultra", "MLX-Serve / iQ-MLX 4.7bpw", "256GB / 2TB / 自動ファン"),
     "gx10-spark": ("GX10 + DGX Spark", "vLLM / INT4 top-5（準備中）", "128GB × 2 / ケーブル込み"),
 }
 
@@ -81,6 +81,7 @@ def main():
         summary = None
         if (raw / "summary.json").is_file():
             summary = json.loads((raw / "summary.json").read_text())
+            assert summary["case"] == speed_case, "Selected recipe and measured case must match"
             assert summary["repetitions"] == 5
             for i in range(1, 6):
                 m = json.loads((raw / f"trial-{i:02d}/measurement.json").read_text())

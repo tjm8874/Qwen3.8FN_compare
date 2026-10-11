@@ -2,13 +2,13 @@
 
 Qwen3.8-Flash-Nextを、現在購入できるPC・Mac・DGX Sparkで動かした際の速度とコーディング能力を測定します。各実機に適したエンジン・モデルを実測して選び、購入後の使い勝手を判断できるデータを残します。比較表は実機ごとに1行とし、試した候補の生ログも保存します。
 
-**2026年10月10日現在、PCの3構成・Mac Studio・DGX Spark 1台・MS-S1 Max・MacBookの速度測定が完了しました。PRO 4500単独はDSHの25/25問、5060 Ti単独・GPU分割構成・Mac Studio・MS-S1 Maxは24/25問に成功しました。** 以下は途中経過です。著者の公表値や短い動作確認の数値を、今回の実測として扱いません。
+**2026年10月10日現在、PCの3構成・Mac Studio・DGX Spark 1台・MS-S1 Max・MacBookの速度測定が完了しました。PRO 4500単独はDSHの25/25問、5060 Ti単独・GPU分割構成・MS-S1 Maxは24/25問に成功しました。MacBookとMac StudioはMLX-Serve 26.10.1・iQ-MLX 4.7bpwの速度に更新し、このモデルのDSHは未実施です。** 以下は途中経過です。著者の公表値や短い動作確認の数値を、今回の実測として扱いません。
 
 ## 16K入力では、PRO 4500単独がGPU分割より速かった
 
 今回のStrata・IQ3_XXS・自動配置では、PRO 4500単独のDecode中央値は120.7 tps、PRO 4500＋5060 Tiは101.0 tpsでした。GPUを追加すれば単一リクエストが速くなるとは限らず、この条件で速度を重視するならPRO 4500単独が有力です。配置や条件を変えた場合、別の結論になる可能性があります。
 
-Mac Studio M5 Ultraの既存8bitモデルはDecode中央値100.5 tpsでした。PCとはモデル・量子化・エンジンが異なり、Mac StudioのDSH評価は24/25問に成功し、reactが不成功でした。PCのGPU分割構成もDSHの24/25問に成功しました（不成功：react）。PRO 4500単独は25/25問に成功しました。5060 Ti単独は24/25問に成功しました（不成功：react）。価格や速度だけで全構成の購入順位を決めず、残りの25問評価と合わせて検討します。
+Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.5 tps、Decode中央値119.8 tpsでした。モデル・量子化・エンジンが異なるため、PCと同じ条件のハードウェア比較ではありません。このMac Studio構成のDSH評価は翌日以降に実施します。価格や速度だけで全構成の購入順位を決めず、25問の評価結果と合わせて検討します。
 
 <!-- RESULTS_START -->
 | 構成 | Prefill tps | Decode tps | DSH 成功数 | 参考価格 USD |
@@ -19,7 +19,7 @@ Mac Studio M5 Ultraの既存8bitモデルはDecode中央値100.5 tpsでした。
 | MacBook Pro M5 Max | 2,204.4 | 76.6 | 未確定 | $6,699 |
 | DGX Spark 1台 | 2,620.8 | 53.4 | 未確定 | $6,950 |
 | MS-S1 Max | 1,789.0 | 47.0 | 24/25 | $3,879 |
-| Mac Studio M5 Ultra | 3,125.0 | 100.5 | 24/25 | $9,999 |
+| Mac Studio M5 Ultra | 4,635.5 | 119.8 | 未確定 | $9,999 |
 | GX10 + DGX Spark | 未測定 | 未測定 | 未確定 | $14,100 |
 <!-- RESULTS_END -->
 
@@ -37,7 +37,7 @@ Mac Studio M5 Ultraの既存8bitモデルはDecode中央値100.5 tpsでした。
 | MacBook Pro M5 Max 128GB・2TB | [MLX-Serve 26.10.1](https://github.com/ddalcu/mlx-serve)／[iQ-MLX 4.7bpw](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-iQ-MLX-4.7bpw)・ファン最大 | $6,699* | 速度測定完了・DSHは翌日以降 |
 | DGX Spark 1台 | [TensorFold指定レシピ](https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold)／INT4・専門家削減モデル | $6,950† | 速度測定完了・DSHは16問後に中断 |
 | MS-S1 Max 128GB・2TB | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo)／0.17.5・W4B＋品質オーバーレイ | $3,879* | 速度測定・DSH25完了 |
-| Mac Studio M5 Ultra 256GB・2TB | 既存MLX-Serve／Uncensored 8bit | $9,999* | 速度測定・DSH25完了 |
+| Mac Studio M5 Ultra 256GB・2TB | MLX-Serve 26.10.1／iQ-MLX 4.7bpw・自動ファン | $9,999* | 速度測定完了・DSHは翌日以降 |
 | GX10＋DGX Spark | [専用レシピv5.2](https://github.com/myllmbox/qwen38-flash-next-cluster-recipe)／custom vLLM 0.30.0・INT4 top-5候補 | $14,100* | 容量確保済み・16K速度測定を準備中 |
 
 \* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。価格だけで能力を順位づけせず、速度と25問の成功数を併記します。
@@ -46,7 +46,7 @@ MacBook Pro M5 Max 128GB・2TBの$6,699は所有者が示した実売価格、MS
 
 † [NVIDIA US公式ページ](https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/)の2026年10月10日の表示価格。128GB・4TB構成は在庫なしであり、この価格で今すぐ購入できることを示しません。
 
-Mac Studioは**M5 Ultra・256GB・2TB、$9,999**が正しい構成です。稼働中のMLX-Serveは申告上の26.10.1に対し、バイナリが26.9.7-devと表示しました。既存サービスを変更せず、実際のバージョン・設定を生ログに保存しています。
+Mac Studioは**M5 Ultra・256GB・2TB、$9,999**が正しい構成です。従来の8bitサービスは、申告上の26.10.1に対し、バイナリが26.9.7-devと表示しました。今回の速度更新には検証済みの26.10.1本体を別途使用し、測定後は従来の8bitサービスへ戻しました。
 
 ## 16K入力の速度を測る
 
@@ -63,6 +63,10 @@ MacBook Pro M5 MaxはMLX-Serve 26.10.1（MLX 0.32.3・NAX有効）、iQ-MLX 4.7b
 Prefill中央値は**2,204.4 tps**、Decode中央値は**76.6 tps**、TTFT中央値は7.44秒でした。5回の本測定の範囲はPrefill 1,992.8〜2,252.0 tps、Decode 70.1〜77.8 tpsです。両ファンの目標は7,826rpm、測定期間に5秒間隔で記録した実回転数はそれぞれ7,805〜7,847rpm、7,811〜7,843rpmでした。終了後は測定専用エンジンを停止し、Appleの自動ファン制御へ戻しています。最終試行には速度低下が見られましたが、取得した温度センサー値だけから原因を断定しません。[設定・モデルハッシュ](data/raw/speed/macbook-m5max-mlxserve/provenance.json)と[生ログ](data/raw/speed/macbook-m5max-mlxserve/raw.tar.gz)を保存しました。この構成のDSH評価はまだ実施していません。
 
 以前のMTPLX 2.12.2・Optimized Speed 4/8bit・自動ファンでは、Prefill中央値920.8 tps、Decode中央値44.3 tpsでした。[以前の速度ログ](data/raw/speed/macbook-m5max/raw.tar.gz)は履歴として残し、実機ごとに1行の比較表には今回のMLX-Serve構成を採用しています。エンジン・モデル・冷却条件を同時に変更したため、改善をファンだけの効果とは扱いません。MTPLXで途中まで実行したDSHは中止し、正式な25問の成績には含めません。
+
+Mac Studio M5 Ultraでも、同じ固定リビジョンのiQ-MLX 4.7bpwモデルをMLX-Serve 26.10.1で測定しました。文脈32K、同時1件、入力キャッシュ無効、vision無効、MTP深度6・適応動作、prompt lookup有効です。ファンはAppleの自動制御を維持しました。Prefill中央値は**4,635.5 tps**（4,626.2〜4,644.3）、Decode中央値は**119.8 tps**（117.7〜123.8）、TTFT中央値は3.54秒でした。[設定](data/raw/speed/macstudio-m5ultra-mlxserve-iq47/provenance.json)と[生ログ](data/raw/speed/macstudio-m5ultra-mlxserve-iq47/raw.tar.gz)を保存しました。
+
+従来のMLX-Serve 26.9.7-dev・Uncensored 8bitでは、速度中央値3,125.0／100.5 tps、DSH24/25問（不成功：react）でした。[従来の速度ログ](data/raw/speed/macstudio-m5ultra/raw.tar.gz)と[DSH結果](data/raw/evaluation/macstudio-m5ultra/summary.json)は保持しています。新しい4.7bpwモデルのDSHは未実施なので、この成功数を新構成の成績へ引き継いでいません。
 
 ## DSHでts-benchの25問を評価する
 

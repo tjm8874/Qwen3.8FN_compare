@@ -77,14 +77,18 @@
   {
     "id": "macstudio-m5ultra",
     "hardware": "Mac Studio M5 Ultra / 256GB / 2TB",
-    "engine": "MLX-Serve 26.9.7-dev (existing OrcaRouter route, unchanged)",
-    "model": "Qwen3.8-Flash-Next Uncensored / 8bit, ngram 8bit",
+    "engine": "MLX-Serve26.10.1",
+    "model": "ddalcu/Qwen3.8-Flash-Next-MLX-Serve-iQ-MLX-4.7bpw",
     "price_usd": 9999,
     "price_basis": "user supplied reference system price; corrected 2026-10-10",
-    "state": "speed and DSH25 complete (24/25)",
+    "state": "new model speed complete; DSH deferred, old8bit service restored",
     "engine_declared_version": "26.10.1",
-    "engine_verified_version": "26.9.7-dev",
-    "engine_commit": "83e7fcc27be60b470f1f441f9ac508598a732473"
+    "engine_verified_version": "26.10.1",
+    "model_revision": "dafff5c3d8168c9d13275661153911096499a80a",
+    "engine_release_sha256": "e53056e481364ff72188fafea8b3eb0aeb0b5b7cebcd6e6e7d26bf1ce4223873",
+    "speed_case": "macstudio-m5ultra-mlxserve-iq47",
+    "evaluation_case": "macstudio-m5ultra-mlxserve-iq47",
+    "fan_policy": "Apple automatic"
   },
   {
     "id": "gx10-spark",

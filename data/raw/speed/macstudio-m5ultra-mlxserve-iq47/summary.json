@@ -1,0 +1,26 @@
+{
+  "case": "macstudio-m5ultra-mlxserve-iq47",
+  "repetitions": 5,
+  "metrics": {
+    "prefill_tps": {
+      "median": 4635.528,
+      "min": 4626.228,
+      "max": 4644.332
+    },
+    "decode_tps": {
+      "median": 119.819,
+      "min": 117.733,
+      "max": 123.839
+    },
+    "client_ttft_seconds": {
+      "median": 3.5429430829999973,
+      "min": 3.5365264170000046,
+      "max": 3.5502039580000115
+    },
+    "wall_seconds": {
+      "median": 20.656154500000014,
+      "min": 20.11335100000001,
+      "max": 20.965641208000008
+    }
+  }
+}

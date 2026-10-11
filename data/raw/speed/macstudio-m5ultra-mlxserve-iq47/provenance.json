@@ -1,0 +1,32 @@
+{
+  "engine": "MLX-Serve",
+  "version": "26.10.1",
+  "release_sha256": "e53056e481364ff72188fafea8b3eb0aeb0b5b7cebcd6e6e7d26bf1ce4223873",
+  "mlx_version": "0.32.3",
+  "nax": true,
+  "model_revision": "dafff5c3d8168c9d13275661153911096499a80a",
+  "model_sha256_verified_files": 113,
+  "context": 32768,
+  "concurrency": 1,
+  "prefix_cache": false,
+  "vision": false,
+  "mtp": {
+    "loaded": true,
+    "default_on": true,
+    "acceptance": "exact",
+    "acceptance_param": null,
+    "greedy_tail": false,
+    "depth": 6,
+    "adaptive": true,
+    "max_ctx": 0
+  },
+  "pld": {
+    "default_on": true,
+    "draft_len": 5,
+    "key_len": 3
+  },
+  "fan_policy": "Apple automatic; desktop unchanged",
+  "original_8bit_service_restored": true,
+  "completed_utc": "2026-10-11T05:10:52.890690+00:00",
+  "dsh": "not run; old8bit DSH24/25 not applied to this model"
+}
