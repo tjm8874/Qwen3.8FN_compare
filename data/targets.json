@@ -75,7 +75,7 @@
     "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
     "recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
     "price_usd": 6950,
-    "state": "vLLM selected; speed complete; fresh DSH25 running after excluded context-error diagnostic",
+    "state": "selected vLLM speed and fresh DSH25 complete;23/25; original DeepSeek restored before TP2",
     "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
     "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502",
     "image_digest": "sha256:697d4364853312f3b50354020eb99cb12585228c9d16d1288261edb9631fa93b",
@@ -109,7 +109,7 @@
     "engine": "custom vLLM0.30.0 / v5.2 common build",
     "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
     "price_usd": 14100,
-    "state": "same-build TP2 speed complete; DSH25 queued after single and original service restoration",
+    "state": "TP2 speed complete; fresh DSH25 engine loading after single completion and original restoration",
     "price_basis": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
     "price_components_usd": {
       "gx10": 6950,

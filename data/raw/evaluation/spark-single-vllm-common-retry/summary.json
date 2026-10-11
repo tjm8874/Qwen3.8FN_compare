@@ -1,0 +1,257 @@
+{
+  "state": "complete",
+  "total": 25,
+  "passed": 23,
+  "rows": [
+    {
+      "exercise": "acronym",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 175.734401209,
+      "benchmark_duration_ms": 174644,
+      "result_present": true
+    },
+    {
+      "exercise": "anagram",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 104.70916525000004,
+      "benchmark_duration_ms": 103611,
+      "result_present": true
+    },
+    {
+      "exercise": "bank-account",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 94.79183004200002,
+      "benchmark_duration_ms": 93677,
+      "result_present": true
+    },
+    {
+      "exercise": "binary-search",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 66.82365195800003,
+      "benchmark_duration_ms": 65678,
+      "result_present": true
+    },
+    {
+      "exercise": "binary-search-tree",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 86.29002891699997,
+      "benchmark_duration_ms": 85191,
+      "result_present": true
+    },
+    {
+      "exercise": "bowling",
+      "overallSuccess": false,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 216.56154116599998,
+      "benchmark_duration_ms": 215495,
+      "result_present": true
+    },
+    {
+      "exercise": "complex-numbers",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 95.91626591700003,
+      "benchmark_duration_ms": 94790,
+      "result_present": true
+    },
+    {
+      "exercise": "connect",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 175.70115962500006,
+      "benchmark_duration_ms": 174622,
+      "result_present": true
+    },
+    {
+      "exercise": "crypto-square",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 101.01608029199997,
+      "benchmark_duration_ms": 99939,
+      "result_present": true
+    },
+    {
+      "exercise": "diamond",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 95.39684204199989,
+      "benchmark_duration_ms": 94313,
+      "result_present": true
+    },
+    {
+      "exercise": "dnd-character",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 68.49803470799998,
+      "benchmark_duration_ms": 67360,
+      "result_present": true
+    },
+    {
+      "exercise": "flatten-array",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 108.5176731250001,
+      "benchmark_duration_ms": 107403,
+      "result_present": true
+    },
+    {
+      "exercise": "food-chain",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 86.37147841699993,
+      "benchmark_duration_ms": 85260,
+      "result_present": true
+    },
+    {
+      "exercise": "house",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 87.56539554200003,
+      "benchmark_duration_ms": 86480,
+      "result_present": true
+    },
+    {
+      "exercise": "pascals-triangle",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 60.998155,
+      "benchmark_duration_ms": 59885,
+      "result_present": true
+    },
+    {
+      "exercise": "rational-numbers",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 120.36813262500004,
+      "benchmark_duration_ms": 119282,
+      "result_present": true
+    },
+    {
+      "exercise": "react",
+      "overallSuccess": false,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 263.23986220899997,
+      "benchmark_duration_ms": 262116,
+      "result_present": true
+    },
+    {
+      "exercise": "rectangles",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 114.33047537499988,
+      "benchmark_duration_ms": 113224,
+      "result_present": true
+    },
+    {
+      "exercise": "relative-distance",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 132.72563449999961,
+      "benchmark_duration_ms": 131609,
+      "result_present": true
+    },
+    {
+      "exercise": "robot-name",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 744.195348667,
+      "benchmark_duration_ms": 742988,
+      "result_present": true
+    },
+    {
+      "exercise": "spiral-matrix",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 51.639729417000126,
+      "benchmark_duration_ms": 50538,
+      "result_present": true
+    },
+    {
+      "exercise": "transpose",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 79.15622095800018,
+      "benchmark_duration_ms": 78034,
+      "result_present": true
+    },
+    {
+      "exercise": "two-bucket",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 171.32102912500022,
+      "benchmark_duration_ms": 170189,
+      "result_present": true
+    },
+    {
+      "exercise": "variable-length-quantity",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 123.35793945900014,
+      "benchmark_duration_ms": 122247,
+      "result_present": true
+    },
+    {
+      "exercise": "wordy",
+      "overallSuccess": true,
+      "process_returncode": 0,
+      "outer_timeout": false,
+      "result_file_count": 1,
+      "runner_wall_seconds": 188.55171174999987,
+      "benchmark_duration_ms": 187376,
+      "result_present": true
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 Qwen3.8-Flash-Nextを、現在購入できるPC・Mac・DGX Sparkで動かした際の速度とコーディング能力を測定します。各実機に適したエンジン・モデルを実測して選び、購入後の使い勝手を判断できるデータを残します。比較表は実機ごとに1行とし、試した候補の生ログも保存します。
 
-**2026年10月11日現在、全8構成の速度を掲載しています。画像の右端はts-bench 25問の平均所要時間「タスク秒数」です。Windowsの原ログを受領し、速度8試行と25問を照合しました。Windowsは平均152.77秒、MacBookは107.64秒、Mac Studioは57.94秒で、いずれも25/25問に成功しました。DGX単体は評価中、DGX2台は単体の終了・復旧後に実行します。** 成功数と測定条件は以下に残しています。
+**2026年10月11日現在、全8構成の速度を掲載しています。画像の右端はts-bench 25問の平均所要時間「タスク秒数」です。Windowsの原ログを受領し、速度8試行と25問を照合しました。Windowsは平均152.77秒、MacBookは107.64秒、Mac Studioは57.94秒で、いずれも25/25問に成功しました。DGX単体は平均143.44秒・23/25問で完了し、元DeepSeekの復旧後にDGX2台の評価を開始しています。** 成功数と測定条件は以下に残しています。
 
 ## 16K入力では、PRO 4500単独がGPU分割より速かった
 
@@ -18,7 +18,7 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 | PC : PRO 4500 + 5060 Ti | 3,157.1 | 101.0 | 62.6 | 24/25 | $6,500 |
 | MS-S1 Max | 1,789.0 | 47.0 | 162.1 | 24/25 | $3,879 |
 | MacBook Pro M5 Max | 2,204.4 | 76.6 | 107.6 | 25/25 | $6,699 |
-| DGX Spark 1台 | 3,434.9 | 57.1 | 未測定 | 未確定 | $6,950 |
+| DGX Spark 1台 | 3,434.9 | 57.1 | 143.4 | 23/25 | $6,950 |
 | Mac Studio M5 Ultra | 4,635.5 | 119.8 | 57.9 | 25/25 | $9,999 |
 | GX10 + DGX Spark | 4,355.8 | 80.3 | 未測定 | 未確定 | $14,100 |
 <!-- RESULTS_END -->
@@ -46,9 +46,9 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 | PC：PRO 4500＋5060 Ti | Strata 0.1.42／IQ3_XXS | $6,500* | 速度測定・DSH25完了 |
 | MS-S1 Max 128GB・2TB | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo)／0.17.5・W4B＋品質オーバーレイ | $3,879* | 速度測定・DSH25完了 |
 | MacBook Pro M5 Max 128GB・2TB | [MLX-Serve 26.10.1](https://github.com/ddalcu/mlx-serve)／[iQ-MLX 4.7bpw](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-iQ-MLX-4.7bpw)・ファン最大 | $6,699 | 速度・TS-bench25問完了（25/25） |
-| DGX Spark 1台 | [vLLM 0.30.0共通ビルド](https://github.com/myllmbox/qwen38-flash-next-cluster-recipe)／INT4 top-5・FP8表 | $6,950† | 単体比較で採用・速度完了・新エンジンのTS-bench実行中 |
+| DGX Spark 1台 | [vLLM 0.30.0共通ビルド](https://github.com/myllmbox/qwen38-flash-next-cluster-recipe)／INT4 top-5・FP8表 | $6,950† | 速度・新エンジンのTS-bench25問完了（23/25） |
 | Mac Studio M5 Ultra 256GB・2TB | MLX-Serve 26.10.1／iQ-MLX 4.7bpw・自動ファン | $9,999 | 速度測定・TS-bench25問完了（25/25） |
-| GX10＋DGX Spark | 単体と同じvLLM 0.30.0／INT4 top-5・FP8表 | $14,100* | TP2速度完了・単体の評価と復旧後にTS-bench実行 |
+| GX10＋DGX Spark | 単体と同じvLLM 0.30.0／INT4 top-5・FP8表 | $14,100* | TP2速度完了・TS-bench評価用エンジンをロード中 |
 
 \* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。別Windows PCの実売価格は未提示のため、1行目の$1,800は従来と同じ参考予算です。価格だけで能力を順位づけせず、タスク秒数と成功数も記録します。
 
@@ -70,7 +70,7 @@ MS-S1 MaxはUbuntuのカーネル7.0.0-38、BIOSのUMA設定Auto、GPU用GTT上�
 
 MacBook Pro M5 MaxはMLX-Serve 26.10.1（MLX 0.32.3・NAX有効）、iQ-MLX 4.7bpwモデル、ファン最大固定で再測定しました。モデルのリビジョンは`dafff5c3d8168c9d13275661153911096499a80a`、文脈32K、同時1件、入力キャッシュ無効、vision無効です。MTPはエンジン既定の深度6・適応動作、prompt lookupも既定で有効にしました。モデルのn-gram表を含めて読み込み、モデルの転送・検証を終えてから測定しています。
 
-Prefill中央値は**2,204.4 tps**、Decode中央値は**76.6 tps**、TTFT中央値は7.44秒でした。5回の本測定の範囲はPrefill 1,992.8〜2,252.0 tps、Decode 70.1〜77.8 tpsです。両ファンの目標は7,826rpm、測定期間に5秒間隔で記録した実回転数はそれぞれ7,805〜7,847rpm、7,811〜7,843rpmでした。終了後は測定専用エンジンを停止し、Appleの自動ファン制御へ戻しています。最終試行には速度低下が見られましたが、取得した温度センサー値だけから原因を断定しません。[設定・モデルハッシュ](data/raw/speed/macbook-m5max-mlxserve/provenance.json)と[生ログ](data/raw/speed/macbook-m5max-mlxserve/raw.tar.gz)を保存しました。この構成のDSH評価は最大ファンの条件で実行中です。
+Prefill中央値は**2,204.4 tps**、Decode中央値は**76.6 tps**、TTFT中央値は7.44秒でした。5回の本測定の範囲はPrefill 1,992.8〜2,252.0 tps、Decode 70.1〜77.8 tpsです。両ファンの目標は7,826rpm、測定期間に5秒間隔で記録した実回転数はそれぞれ7,805〜7,847rpm、7,811〜7,843rpmでした。終了後は測定専用エンジンを停止し、Appleの自動ファン制御へ戻しています。最終試行には速度低下が見られましたが、取得した温度センサー値だけから原因を断定しません。[設定・モデルハッシュ](data/raw/speed/macbook-m5max-mlxserve/provenance.json)と[生ログ](data/raw/speed/macbook-m5max-mlxserve/raw.tar.gz)を保存しました。この構成のDSH評価は最大ファンの条件で25/25問に成功しました。
 
 以前のMTPLX 2.12.2・Optimized Speed 4/8bit・自動ファンでは、Prefill中央値920.8 tps、Decode中央値44.3 tpsでした。[以前の速度ログ](data/raw/speed/macbook-m5max/raw.tar.gz)は履歴として残し、実機ごとに1行の比較表には今回のMLX-Serve構成を採用しています。エンジン・モデル・冷却条件を同時に変更したため、改善をファンだけの効果とは扱いません。MTPLXで途中まで実行したDSHは中止し、正式な25問の成績には含めません。
 
@@ -98,6 +98,8 @@ WindowsのTS-benchは25/25問に成功し、各採点JSONの `totalDuration` 合
 | vLLM 0.30.0共通ビルド | 3,434.89 | 57.06 | 40.68 |
 
 vLLMはPrefillが約32.4％、Decodeが約19.6％速く、全所要時間も約17.4％短かったため、Sparkの比較表にはvLLMを採用しました。[比較データ](data/spark-engine-comparison.json)、[TensorFold生ログ](data/raw/speed/spark-single-tensorfold-common/raw.tar.gz)、[vLLM生ログ](data/raw/speed/spark-single-vllm-common-retry/raw.tar.gz)を保存しています。
+
+Spark単体の新しいvLLM構成によるTS-benchは、25問を完走し23問に成功しました。不成功はbowlingとreactで、通常のモデル不成功として平均に含めています。平均所要時間は**143.43804秒**。992回収ファイルをM3U原本の全SHA256と独立照合し、222実要求の思考ON・sampling・SSE完了・実トークン数と32K文脈枠、固定コミット・同25問、通信エラー0・外側タイムアウト0を確認しました。専用エンジンと一時トンネルは停止済みです。元DeepSeekの8888モデルAPI復旧記録と、続く2台測定前の元head/workerの同一ID・Config・稼働状態を照合しました。[25問集計](data/raw/evaluation/spark-single-vllm-common-retry/summary.json)と[評価生ログ](data/raw/evaluation/spark-single-vllm-common-retry/raw.tar.gz)を保存しています。
 
 モデルの固定リビジョンは`1464274120d36a4d8fcaa934552334a7d83ce0fd`です。PLE表の精度は両エンジンとも元のFP8を維持していますが、TensorFoldはGPU常駐、vLLMはNVMeから読み取ります。MTPもTensorFoldは最大15、vLLMは動的3〜7で、vLLMのドラフトだけが10専門家、対象モデルは5専門家です。エンジン間の比較は各実装を含むレシピの比較であり、実装差を取り除いた比較ではありません。
 

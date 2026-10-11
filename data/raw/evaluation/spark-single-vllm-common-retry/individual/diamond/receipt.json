@@ -1,0 +1,10 @@
+{
+  "exercise": "diamond",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 95.39684204199989,
+  "benchmark_duration_ms": 94313,
+  "result_present": true
+}
