@@ -49,15 +49,21 @@
   {
     "id": "spark-single",
     "hardware": "DGX Spark / 128GB",
-    "engine": "TensorFold native",
-    "model": "125B-A5B INT4 AutoRound, top-5 expert pruning (accepted)",
-    "recipe": "https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark-TensorFold",
+    "engine": "custom vLLM0.30.0 / v5.2 common build",
+    "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
+    "recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
     "price_usd": 6950,
-    "state": "speed complete; DSH paused after16 valid tasks, resume from17 later",
+    "state": "vLLM selected after single-node engine comparison; speed complete, new-engine DSH deferred",
     "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
-    "recipe_commit": "364f21a1a46a366fa39c4da0d53b7b1f38624610",
-    "image_digest": "sha256:cb98098439d95d2bff27bc771ba180e5857613ecc41f6b6e81e494782df9433a",
-    "price_basis": "NVIDIA US store listed reference price 2026-10-10; out of stock"
+    "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502",
+    "image_digest": "sha256:697d4364853312f3b50354020eb99cb12585228c9d16d1288261edb9631fa93b",
+    "price_basis": "NVIDIA US store listed reference price 2026-10-10; out of stock",
+    "speed_case": "spark-single-vllm-common-retry",
+    "evaluation_case": "spark-single-vllm-common-retry",
+    "context": 32768,
+    "KV": "bf16",
+    "PLE": "original FP8 NVMe reader, replicated",
+    "MTP": "own drafthead10 experts dynamic3to7, targettop5"
   },
   {
     "id": "ms-s1max",
@@ -93,10 +99,10 @@
   {
     "id": "gx10-spark",
     "hardware": "ASUS GX10 + DGX Spark / 128GB x 2",
-    "engine": "pending: single-Spark TensorFold versus vLLM selection, then same build on2nodes",
+    "engine": "custom vLLM0.30.0 / v5.2 common build",
     "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
     "price_usd": 14100,
-    "state": "shared model verified; engine selection pending single-Spark comparison",
+    "state": "same-build TP2 speed preparation and measurement in progress",
     "price_basis": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
     "price_components_usd": {
       "gx10": 6950,
@@ -107,6 +113,11 @@
     "candidate_image_digest": "sha256:697d4364853312f3b50354020eb99cb12585228c9d16d1288261edb9631fa93b",
     "candidate_recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
     "candidate_recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502",
-    "scaling_policy": "same adopted engine build, model revision, runtime quantization,KV,MTP,context,sampling and serial16K/2048 protocol on1and2nodes"
+    "scaling_policy": "same adopted engine build, model revision, runtime quantization,KV,MTP,context,sampling and serial16K/2048 protocol on1and2nodes",
+    "speed_case": "gx10-spark-vllm-common",
+    "evaluation_case": "gx10-spark-vllm-common",
+    "image_digest": "sha256:697d4364853312f3b50354020eb99cb12585228c9d16d1288261edb9631fa93b",
+    "recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
+    "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502"
   }
 ]

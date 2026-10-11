@@ -16,10 +16,10 @@ LABELS = {
     "cuda-pro4500": ("PC : PRO 4500 32GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
     "cuda-5060ti": ("PC : 5060 Ti 16GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
     "macbook-m5max": ("MacBook Pro M5 Max", "MLX-Serve / iQ-MLX 4.7bpw", "128GB / 2TB / ファン最大"),
-    "spark-single": ("DGX Spark 1台", "TensorFold / INT4 top-5", "128GB / 4TB"),
+    "spark-single": ("DGX Spark 1台", "vLLM 0.30.0 / INT4 top-5", "128GB / 4TB"),
     "ms-s1max": ("MS-S1 Max", "Halogen / W4B + overlay", "128GB / 2TB"),
     "macstudio-m5ultra": ("Mac Studio M5 Ultra", "MLX-Serve / iQ-MLX 4.7bpw", "256GB / 2TB / 自動ファン"),
-    "gx10-spark": ("GX10 + DGX Spark", "単体比較後にエンジン採用", "128GB × 2 / ケーブル込み"),
+    "gx10-spark": ("GX10 + DGX Spark", "vLLM 0.30.0 / INT4 top-5", "128GB × 2 / ケーブル込み"),
 }
 
 

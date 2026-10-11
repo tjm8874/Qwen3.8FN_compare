@@ -1,0 +1,70 @@
+{
+  "selected_engine": "custom vLLM0.30.0 / common v5.2 image",
+  "selected_single_case": "spark-single-vllm-common-retry",
+  "other_single_case": "spark-single-tensorfold-common",
+  "ratios_vllm_over_tensorfold": {
+    "prefill_tps": 1.3242066623368816,
+    "decode_tps": 1.19610111457829,
+    "wall_seconds": 0.8260138437429408
+  },
+  "reason": "Higher median Prefill and Decode and shorter wall time under same8input prompts, fixed target source,32Kcontext,bf16KV; different engine implementations/PLE residency/MTP disclosed",
+  "two_node_case": "gx10-spark-vllm-common",
+  "two_node_status": "not started",
+  "tensorfold": {
+    "case": "spark-single-tensorfold-common",
+    "repetitions": 5,
+    "metrics": {
+      "prefill_tps": {
+        "median": 2593.9215334363325,
+        "min": 2584.3885953333333,
+        "max": 2613.648451347138
+      },
+      "decode_tps": {
+        "median": 47.70157949881105,
+        "min": 42.02796557948818,
+        "max": 49.29423454451917
+      },
+      "client_ttft_seconds": {
+        "median": 6.3479395331814885,
+        "min": 6.302997783059254,
+        "max": 6.373583677923307
+      },
+      "wall_seconds": {
+        "median": 49.24817570205778,
+        "min": 47.83179746591486,
+        "max": 55.05741924792528
+      }
+    }
+  },
+  "vllm": {
+    "case": "spark-single-vllm-common-retry",
+    "repetitions": 5,
+    "metrics": {
+      "prefill_tps": {
+        "median": 3434.8881761554917,
+        "min": 3423.738508253691,
+        "max": 3436.2841347674553
+      },
+      "decode_tps": {
+        "median": 57.05591240567281,
+        "min": 53.57840011801915,
+        "max": 59.779184139945116
+      },
+      "client_ttft_seconds": {
+        "median": 4.809587310999632,
+        "min": 4.806140508968383,
+        "max": 4.823642547009513
+      },
+      "wall_seconds": {
+        "median": 40.67967490898445,
+        "min": 39.06091470294632,
+        "max": 43.016483444022015
+      }
+    }
+  },
+  "source_model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
+  "context": 32768,
+  "KV": "bf16",
+  "ple_quantization": "FP8 in both; GPUresident TensorFold versus NVMe reader vLLM",
+  "MTP_difference": "TensorFold maximum15 versus vLLM dynamic3to7 with drafttop10; chosen vLLM configuration unchanged in pair"
+}

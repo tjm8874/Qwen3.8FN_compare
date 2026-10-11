@@ -84,5 +84,37 @@
     "validation_status": "all8 full trials native counts, request settings, output hashes and completed SSE validated",
     "calibration": "16-output request excluded from statistics",
     "historical_case": "macstudio-m5ultra is previous26.9.7-dev/8bit and its raw speed and DSH remain unchanged"
+  },
+  "spark-single-tensorfold-common": {
+    "engine_commit": "db281878ddb836fd0df510d8771ecb7e0fe47d26",
+    "recipe_commit": "364f21a1a46a366fa39c4da0d53b7b1f38624610",
+    "source": "https://github.com/ashhart/TensorFold/blob/db281878ddb836fd0df510d8771ecb7e0fe47d26/zig/src/server/chat.zig#L495",
+    "prefill_tps": "usage.prompt_tokens / tensorfold.prefill_seconds",
+    "decode_tps": "tensorfold.tokens_per_second",
+    "decode_numerator": "generated_tokens - 1",
+    "decode_denominator": "engine elapsed seconds from prefilled_ns to finished_ns",
+    "clock_scope_note": "tensorfold.seconds, tensorfold.prefill_seconds, and time_to_first_token use different clock scopes; do not reconstruct decode duration by subtracting these API values",
+    "cache_reuse": "usage.prompt_tokens_details.cached_tokens must be zero",
+    "mtp_acceptance": "speculative.accepted / speculative.drafted",
+    "warmups": 3,
+    "measured_trials": 5,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "preliminary_attempt": "A parser failure after the first completed warmup is retained separately in diagnostics and excluded from official measurements.",
+    "context": 32768,
+    "image_digest": "sha256:e188128ddabdc67ac02c05781f5c0c6b348db5f050cac297861d82b7f086e18c",
+    "mtp_max_depth": 15
+  },
+  "spark-single-vllm-common-retry": {
+    "engine_version": "custom vLLM0.30.0 / common v5.2 image",
+    "prefill_tps": "16384 / delta(vllm:request_prefill_time_seconds_sum)",
+    "decode_tps": "2047 / delta(vllm:request_decode_time_seconds_sum)",
+    "decode_numerator": "generated tokens minus first token (2047)",
+    "cache_reuse": "Require explicit before/after native computed-KV count1,sum16384,prompt_total16384,cached_total0 and local/external prefix hits0. Usage cached_tokens is absent in this build; never default a missing field to zero.",
+    "protocol": "16384input2048output,thinkingOFF,temp0seed16,32K,bf16KV,serial1,3warmup5trials",
+    "target_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
+    "MTP": "own checkpoint head, draft10 experts,target5,dynamic3to7",
+    "PLE": "original FP8 NVMe reader,replicated per rank,no NVFP4 conversion",
+    "validation": "all8single trials complete and verified; TP2 pending"
   }
 }
