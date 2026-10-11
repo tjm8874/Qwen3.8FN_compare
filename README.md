@@ -27,6 +27,16 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 
 ![実機比較の途中経過](images/comparison-progress.png)
 
+## 所有者の意見
+
+2026年10月11日時点の所有者の見解です。
+
+- RTX Pro 4500 32GBは、GPU性能としてはRTX 5070 Ti〜RTX 5080程度で、5060 Tiの倍速いわけではない。Strataが2倍のエキスパートをGPU上に置けるという点が大きい。
+- AMD Strix HaloのコスパをStrataが完全に上回っている。RTX 5080 24GBが出たら、Strataの最適GPUになりそうです。
+- M5 Max ＜ DGX 1台 ＜ DGX 2台 ＜ M5 Ultra。コスパ的にもM5 Ultra 256GBが現時点での最適ではないか。
+
+上記の順序は所有者の総合評価です。Prefill・Decode・タスク秒数の実測順位は、それぞれ比較表で確認できます。RTX 5080 24GBについては、将来製品への期待として記載しています。
+
 ## 比較する8構成
 
 | 構成 | エンジン・モデル | 参考価格 USD | 状態 |
