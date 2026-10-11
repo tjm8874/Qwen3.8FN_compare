@@ -93,12 +93,10 @@
   {
     "id": "gx10-spark",
     "hardware": "ASUS GX10 + DGX Spark / 128GB x 2",
-    "engine": "custom vLLM 0.30.0 / recipe v5.2 (not yet measured)",
+    "engine": "pending: single-Spark TensorFold versus vLLM selection, then same build on2nodes",
     "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
     "price_usd": 14100,
-    "state": "capacity resolved; model and engine staging pending; DSH deferred",
-    "recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
-    "recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502",
+    "state": "shared model verified; engine selection pending single-Spark comparison",
     "price_basis": "owner reference budget: GX10 6950 + DGX Spark 6950 + connection cable 200",
     "price_components_usd": {
       "gx10": 6950,
@@ -106,6 +104,9 @@
       "connection_cable": 200
     },
     "model_revision": "1464274120d36a4d8fcaa934552334a7d83ce0fd",
-    "image_digest": "sha256:697d4364853312f3b50354020eb99cb12585228c9d16d1288261edb9631fa93b"
+    "candidate_image_digest": "sha256:697d4364853312f3b50354020eb99cb12585228c9d16d1288261edb9631fa93b",
+    "candidate_recipe": "https://github.com/myllmbox/qwen38-flash-next-cluster-recipe",
+    "candidate_recipe_commit": "d2721ecbd16f4a10b968b2755fc374da3c539502",
+    "scaling_policy": "same adopted engine build, model revision, runtime quantization,KV,MTP,context,sampling and serial16K/2048 protocol on1and2nodes"
   }
 ]

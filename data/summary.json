@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-10-11T05:12:48.033953+00:00",
+  "snapshot_utc": "2026-10-11T05:23:36.920405+00:00",
   "state": "partial",
   "rows": [
     {
@@ -208,7 +208,7 @@
     {
       "target": "gx10-spark",
       "hardware": "ASUS GX10 + DGX Spark / 128GB x 2",
-      "engine": "custom vLLM 0.30.0 / recipe v5.2 (not yet measured)",
+      "engine": "pending: single-Spark TensorFold versus vLLM selection, then same build on2nodes",
       "model": "azampatti/Qwen3.8-Flash-Next-125B-A5B-INT4-AutoRound / top-5",
       "speed_case": "gx10-spark",
       "evaluation_case": "gx10-spark",

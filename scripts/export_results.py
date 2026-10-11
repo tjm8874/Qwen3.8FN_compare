@@ -19,7 +19,7 @@ LABELS = {
     "spark-single": ("DGX Spark 1台", "TensorFold / INT4 top-5", "128GB / 4TB"),
     "ms-s1max": ("MS-S1 Max", "Halogen / W4B + overlay", "128GB / 2TB"),
     "macstudio-m5ultra": ("Mac Studio M5 Ultra", "MLX-Serve / iQ-MLX 4.7bpw", "256GB / 2TB / 自動ファン"),
-    "gx10-spark": ("GX10 + DGX Spark", "vLLM / INT4 top-5（準備中）", "128GB × 2 / ケーブル込み"),
+    "gx10-spark": ("GX10 + DGX Spark", "単体比較後にエンジン採用", "128GB × 2 / ケーブル込み"),
 }
 
 
