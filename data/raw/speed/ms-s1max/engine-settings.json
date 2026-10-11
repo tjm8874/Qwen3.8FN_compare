@@ -1,0 +1,41 @@
+{
+  "engine": "Halogen Flash Server",
+  "engine_version": "0.17.5",
+  "image_digest": "sha256:df161433d825e901d91811fe28561bc3ef830a552bbb59c1aaf58f8fd4e9bc1d",
+  "model_revision": "506567c641cfb737e0b01c1deff10813154c5529",
+  "checkpoint": "qwen38-flash-next-w4b.hgn",
+  "quality_overlay": "qwen38-flash-next-w4b.overlay.hgn",
+  "kernel": "7.0.0-38-generic",
+  "bios_uma": "Auto",
+  "system_ram": "124GiB",
+  "gtt_settings": [
+    "ttm.pages_limit=31457280",
+    "amdgpu.gttsize=122880"
+  ],
+  "tuned_profile": "accelerator-performance",
+  "memlock": "unlimited",
+  "iommu": "unchanged",
+  "context": 131072,
+  "kv_pool_positions": 131072,
+  "parallel_slots": 1,
+  "max_prefill_tokens": 32768,
+  "prompt_cache": false,
+  "vision": false,
+  "mtp": "default depth2/up to3 plus prompt lookup",
+  "native_timing_definition": {
+    "image": "ghcr.io/peonist-ai/halogen-flash-server:0.17.5",
+    "image_digest": "sha256:df161433d825e901d91811fe28561bc3ef830a552bbb59c1aaf58f8fd4e9bc1d",
+    "implementation_evidence": "Packaged /halogen/tools/serve_api.py: timings(), usage(), chat_wire() and messages_count_tokens(); inspected from pinned image without model startup",
+    "prefill_tps": "timings.prompt_per_second = (n_prompt - n_cached) / (prefill_ms /1000), rounded to3 decimals by the API",
+    "decode_tps": "timings.predicted_per_second = n_gen / (decode_ms /1000), rounded to3 decimals by the API",
+    "clock_scope_note": "Use the engine-reported prefill/decode timers, without reconstructing from client wall duration. Engine binary timer internals are not independently audited.",
+    "cache_reuse": "timings.cache_n and usage/native prompt length must confirm zero reuse; launch with HALOGEN_PROMPT_CACHE=0",
+    "draft_acceptance": "timings.draft_n_accepted / timings.draft_n combines model-head and prompt-lookup proposals when present",
+    "input_calibration": "/v1/messages/count_tokens with disabled thinking and one user message; verify actual /v1/chat/completions usage is exactly16384",
+    "warmups": 3,
+    "measured_trials": 5,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "validation_status": "Live calibration and all3warmups+5measured trials completed; each confirmed16384 input,2048 output,cache_n0,thinkingoff,length stop"
+  }
+}

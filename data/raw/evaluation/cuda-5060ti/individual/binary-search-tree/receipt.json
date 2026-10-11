@@ -1,0 +1,10 @@
+{
+  "exercise": "binary-search-tree",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 106.88012587500009,
+  "benchmark_duration_ms": 105771,
+  "result_present": true
+}

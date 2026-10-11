@@ -13,11 +13,11 @@ import tarfile
 
 LABELS = {
     "cuda-dual": ("PC : PRO 4500 + 5060 Ti", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
-    "cuda-pro4500": ("PC : PRO 4500", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
+    "cuda-pro4500": ("PC : PRO 4500 32GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
     "cuda-5060ti": ("PC : 5060 Ti 16GB", "Strata / IQ3_XXS", "DDR4 64GB / i5-14400"),
-    "macbook-m5max": ("MacBook Pro M5 Max", "MTPLX / Optimized Speed", "128GB / 2TB / 再起動後に測定"),
+    "macbook-m5max": ("MacBook Pro M5 Max", "MTPLX / Optimized Speed 4/8bit", "128GB / 2TB / 標準ファン"),
     "spark-single": ("DGX Spark 1台", "TensorFold / INT4 top-5", "128GB / 4TB"),
-    "ms-s1max": ("MS-S1 Max", "Halogen / 接続後に確認", "128GB / 2TB / 接続待ち"),
+    "ms-s1max": ("MS-S1 Max", "Halogen / W4B + overlay", "128GB / 2TB"),
     "macstudio-m5ultra": ("Mac Studio M5 Ultra", "MLX-Serve / Uncensored 8bit", "256GB / 2TB"),
     "gx10-spark": ("GX10 + DGX Spark", "vLLM / hybrid 4/8bit", "128GB × 2 / ケーブル込み"),
 }
@@ -167,7 +167,10 @@ def main():
             continue
         dest = public / source.relative_to(root)
         dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source, dest)
+        if source.suffix == ".py":
+            dest.write_text(sanitize(source.read_text()))
+        else:
+            shutil.copyfile(source, dest)
     print(json.dumps({"speed_complete": sum(r["speed_state"] == "complete" for r in rows),
                       "dsh_complete": sum(r["dsh_state"] == "complete" for r in rows),
                       "publication_files": sum(p.is_file() for p in public.rglob("*"))}))

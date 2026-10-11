@@ -1,0 +1,10 @@
+{
+  "exercise": "pascals-triangle",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 107.66748004200008,
+  "benchmark_duration_ms": 106541,
+  "result_present": true
+}

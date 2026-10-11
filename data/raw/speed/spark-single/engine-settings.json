@@ -1,0 +1,13 @@
+{
+  "IMAGE": "ghcr.io/miaai-lab/qwen3.8-flash-next-single-dgx-spark-tensorfold:zig-db28187-4144696f21e3",
+  "PARALLEL": "1",
+  "VISION": "0",
+  "CONTEXT": "131072",
+  "MAX_TOKENS": "16384",
+  "timing_definition": {
+    "prefill": "prompt_tokens / tensorfold.prefill_seconds",
+    "decode": "native tensorfold.tokens_per_second = (generated_tokens - 1) / internal elapsed seconds from prefilled_ns to finished_ns; prefill_seconds and total seconds have separate clock scopes",
+    "cached_tokens": "usage.prompt_tokens_details.cached_tokens",
+    "mtp_acceptance": "speculative.accepted / speculative.drafted"
+  }
+}

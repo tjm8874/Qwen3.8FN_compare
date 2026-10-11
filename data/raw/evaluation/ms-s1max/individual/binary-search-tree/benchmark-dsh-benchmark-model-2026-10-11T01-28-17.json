@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-11T01:28:17.255Z",
+    "agent": "dsh",
+    "model": "benchmark-model",
+    "provider": "local",
+    "version": "0.1.5-rc.3",
+    "totalExercises": 1,
+    "benchmarkVersion": "1.1.0"
+  },
+  "summary": {
+    "successRate": 100,
+    "totalDuration": 105259,
+    "avgDuration": 105259,
+    "successCount": 1,
+    "totalCount": 1,
+    "agentSuccessCount": 1,
+    "testSuccessCount": 1,
+    "testFailedCount": 0
+  },
+  "results": [
+    {
+      "exercise": "binary-search-tree",
+      "agentSuccess": true,
+      "testSuccess": true,
+      "overallSuccess": true,
+      "agentDuration": 101367,
+      "testDuration": 3856,
+      "totalDuration": 105259
+    }
+  ]
+}

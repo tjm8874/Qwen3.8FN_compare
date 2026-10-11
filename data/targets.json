@@ -35,12 +35,14 @@
   {
     "id": "macbook-m5max",
     "hardware": "MacBook Pro M5 Max / 128GB / 2TB",
-    "engine": "MTPLX",
-    "model": "Optimized Speed (candidate, final revision pending)",
+    "engine": "MTPLX2.12.2",
+    "model": "Youssofal/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed 4/8bit",
     "recipe": "https://github.com/youssofal/MTPLX",
     "price_usd": 6699,
-    "state": "awaiting user reboot",
-    "price_basis": "owner supplied actual retail price, 2026-10-10"
+    "state": "speed complete;DSH25 running",
+    "price_basis": "owner supplied actual retail price, 2026-10-10",
+    "model_revision": "34ae535f2c817737a9c73c364fd6f20629f9a8f7",
+    "fan_policy": "Apple automatic"
   },
   {
     "id": "spark-single",
@@ -58,12 +60,17 @@
   {
     "id": "ms-s1max",
     "hardware": "MINISFORUM MS-S1 Max / 128GB / 2TB",
-    "engine": "Halogen Flash Server",
-    "model": "pending exact model verification",
+    "engine": "Halogen Flash Server0.17.5",
+    "model": "peonist-ai/halogen-qwen3.8-flash-next W4B + quality overlay",
     "recipe": "https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo",
     "price_usd": 3879,
-    "state": "awaiting connection",
-    "price_basis": "owner supplied reference system price, 2026-10-10"
+    "state": "speed and DSH25 complete;24/25 passed",
+    "price_basis": "owner supplied reference system price, 2026-10-10",
+    "model_revision": "506567c641cfb737e0b01c1deff10813154c5529",
+    "engine_digest": "sha256:df161433d825e901d91811fe28561bc3ef830a552bbb59c1aaf58f8fd4e9bc1d",
+    "kernel": "7.0.0-38-generic",
+    "bios_uma": "Auto",
+    "iommu": "unchanged"
   },
   {
     "id": "macstudio-m5ultra",

@@ -2,6 +2,7 @@
 """Record DSH requests and enforce one shared evaluation sampling policy."""
 import argparse
 from datetime import datetime, timezone
+import http.client
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from pathlib import Path
@@ -65,19 +66,38 @@ def main():
                 self.end_headers()
                 self.wfile.write(raw)
                 return
+            except (urllib.error.URLError, TimeoutError, OSError) as error:
+                detail = {"error": {"type": "upstream_transport_error", "message": str(error)},
+                          "at": datetime.now(timezone.utc).isoformat()}
+                (directory / "error.json").write_text(json.dumps(detail, indent=2))
+                self.close_connection = True
+                return self.reply(503, detail)
             with upstream, (directory / "response.raw").open("wb") as log:
                 self.send_response(upstream.status)
                 self.send_header("Content-Type", upstream.headers.get("Content-Type", "application/json"))
                 self.send_header("Connection", "close")
                 self.end_headers()
                 first = None
+                tail = b""
                 try:
                     # read1 flushes each available stream chunk without waiting for a full buffer.
-                    while chunk := upstream.read1(65536):
+                    while True:
+                        try:
+                            chunk = upstream.read1(65536)
+                        except (OSError, http.client.IncompleteRead) as error:
+                            (directory / "error.json").write_text(json.dumps({"error": {
+                                "type": "upstream_stream_error", "message": str(error)}}))
+                            break
+                        if not chunk:
+                            if body.get("stream") and b"data: [DONE]" not in tail:
+                                (directory / "error.json").write_text(json.dumps({"error": {
+                                    "type": "upstream_stream_incomplete", "message": "Stream ended without DONE"}}))
+                            break
                         if first is None:
                             first = time.perf_counter() - started
                         log.write(chunk)
                         log.flush()
+                        tail = (tail + chunk)[-4096:]
                         self.wfile.write(chunk)
                         self.wfile.flush()
                 finally:

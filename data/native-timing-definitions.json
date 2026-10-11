@@ -1,0 +1,52 @@
+{
+  "spark-single": {
+    "engine_commit": "db281878ddb836fd0df510d8771ecb7e0fe47d26",
+    "recipe_commit": "364f21a1a46a366fa39c4da0d53b7b1f38624610",
+    "source": "https://github.com/ashhart/TensorFold/blob/db281878ddb836fd0df510d8771ecb7e0fe47d26/zig/src/server/chat.zig#L495",
+    "prefill_tps": "usage.prompt_tokens / tensorfold.prefill_seconds",
+    "decode_tps": "tensorfold.tokens_per_second",
+    "decode_numerator": "generated_tokens - 1",
+    "decode_denominator": "engine elapsed seconds from prefilled_ns to finished_ns",
+    "clock_scope_note": "tensorfold.seconds, tensorfold.prefill_seconds, and time_to_first_token use different clock scopes; do not reconstruct decode duration by subtracting these API values",
+    "cache_reuse": "usage.prompt_tokens_details.cached_tokens must be zero",
+    "mtp_acceptance": "speculative.accepted / speculative.drafted",
+    "warmups": 3,
+    "measured_trials": 5,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "preliminary_attempt": "A parser failure after the first completed warmup is retained separately in diagnostics and excluded from official measurements."
+  },
+  "ms-s1max": {
+    "image": "ghcr.io/peonist-ai/halogen-flash-server:0.17.5",
+    "image_digest": "sha256:df161433d825e901d91811fe28561bc3ef830a552bbb59c1aaf58f8fd4e9bc1d",
+    "implementation_evidence": "Packaged /halogen/tools/serve_api.py: timings(), usage(), chat_wire() and messages_count_tokens(); inspected from pinned image without model startup",
+    "prefill_tps": "timings.prompt_per_second = (n_prompt - n_cached) / (prefill_ms /1000), rounded to3 decimals by the API",
+    "decode_tps": "timings.predicted_per_second = n_gen / (decode_ms /1000), rounded to3 decimals by the API",
+    "clock_scope_note": "Use the engine-reported prefill/decode timers, without reconstructing from client wall duration. Engine binary timer internals are not independently audited.",
+    "cache_reuse": "timings.cache_n and usage/native prompt length must confirm zero reuse; launch with HALOGEN_PROMPT_CACHE=0",
+    "draft_acceptance": "timings.draft_n_accepted / timings.draft_n combines model-head and prompt-lookup proposals when present",
+    "input_calibration": "/v1/messages/count_tokens with disabled thinking and one user message; verify actual /v1/chat/completions usage is exactly16384",
+    "warmups": 3,
+    "measured_trials": 5,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "validation_status": "Live calibration and all3warmups+5measured trials completed; each confirmed16384 input,2048 output,cache_n0,thinkingoff,length stop"
+  },
+  "macbook-m5max": {
+    "engine_version": "MTPLX2.12.2",
+    "implementation_evidence": "Installed mtplx/server/openai.py _build_timings(), lines32591-32625; native SSE timings confirmed in all8 trials",
+    "prefill_tps": "timings.prompt_per_second = prompt_n / prompt_eval_time_s, rounded3 decimals",
+    "decode_tps": "timings.predicted_per_second = completion_tokens / (stats.elapsed_s - prompt_eval_time_s - cache_restore_time_s), rounded3 decimals",
+    "decode_numerator": "all generated tokens",
+    "clock_scope_note": "Native compatibility timings differ slightly from mtplx_stats.decode_tok_s because their elapsed scopes differ. Preserve both, report timings consistently. Do not reconstruct from client wall duration.",
+    "cache_reuse": "usage.prompt_tokens_details.cached_tokens=0 and stats cache_source none confirmed",
+    "input_calibration": "One unscored16-output request measured12 chat wrapper tokens; actual usage of each full trial exactly16384",
+    "warmups": 3,
+    "measured_trials": 5,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "validation_status": "live8 full-length trials and SSE completion validated",
+    "fan_policy": "Apple automatic",
+    "speed_drift_observed": "measured trials decreased from1157.622 to843.835prefill,54.227to43.693decode; cause not established by available telemetry"
+  }
+}

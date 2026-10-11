@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-10T20:44:02.635Z",
+    "agent": "dsh",
+    "model": "benchmark-model",
+    "provider": "local",
+    "version": "0.1.5-rc.3",
+    "totalExercises": 1,
+    "benchmarkVersion": "1.1.0"
+  },
+  "summary": {
+    "successRate": 100,
+    "totalDuration": 41933,
+    "avgDuration": 41933,
+    "successCount": 1,
+    "totalCount": 1,
+    "agentSuccessCount": 1,
+    "testSuccessCount": 1,
+    "testFailedCount": 0
+  },
+  "results": [
+    {
+      "exercise": "bank-account",
+      "agentSuccess": true,
+      "testSuccess": true,
+      "overallSuccess": true,
+      "agentDuration": 38066,
+      "testDuration": 3838,
+      "totalDuration": 41933
+    }
+  ]
+}

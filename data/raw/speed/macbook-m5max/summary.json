@@ -1,0 +1,26 @@
+{
+  "case": "macbook-m5max",
+  "repetitions": 5,
+  "metrics": {
+    "prefill_tps": {
+      "median": 920.763,
+      "min": 843.835,
+      "max": 1157.622
+    },
+    "decode_tps": {
+      "median": 44.275,
+      "min": 43.693,
+      "max": 54.227
+    },
+    "client_ttft_seconds": {
+      "median": 17.85627429200008,
+      "min": 14.207735583999977,
+      "max": 19.477618917000086
+    },
+    "wall_seconds": {
+      "median": 64.49672733300008,
+      "min": 51.95587587499995,
+      "max": 66.40386050000006
+    }
+  }
+}

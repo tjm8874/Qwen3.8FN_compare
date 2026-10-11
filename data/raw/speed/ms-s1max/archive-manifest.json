@@ -1,0 +1,312 @@
+{
+  "files": {
+    "engine-settings.json": {
+      "original_sha256": "0413ad72e00710fe4efdc702eb9e8d849ba5f6e3c4f3f8e91dd604755f789c5a",
+      "public_sha256": "0413ad72e00710fe4efdc702eb9e8d849ba5f6e3c4f3f8e91dd604755f789c5a",
+      "redacted": false
+    },
+    "engine.log": {
+      "original_sha256": "2dce50139fbe58ebb6f18d718eccd56e9fc54633d0ab5f6f0e3e8507186f5d86",
+      "public_sha256": "74a47edae93cf12ff80b38627b098c1b2b430eae06acf5fc2d1cf564a3a4ed8e",
+      "redacted": true
+    },
+    "health-before.json": {
+      "original_sha256": "8e2b63c64c1055edad0a88fee761566fdbe8b6c8f41b9d3063cf3bd6c2aaba60",
+      "public_sha256": "8e2b63c64c1055edad0a88fee761566fdbe8b6c8f41b9d3063cf3bd6c2aaba60",
+      "redacted": false
+    },
+    "summary.json": {
+      "original_sha256": "4bd9f4098fddcd8a5c0420c7d68f74bf0fac9e247db89a4ef74de0c755da7179",
+      "public_sha256": "4bd9f4098fddcd8a5c0420c7d68f74bf0fac9e247db89a4ef74de0c755da7179",
+      "redacted": false
+    },
+    "trial-01/calibration.json": {
+      "original_sha256": "721b09f2d4bed72c85e32bdd8f63fc079b757c7e903ee6cf69cd60943dedc1b0",
+      "public_sha256": "721b09f2d4bed72c85e32bdd8f63fc079b757c7e903ee6cf69cd60943dedc1b0",
+      "redacted": false
+    },
+    "trial-01/measurement.json": {
+      "original_sha256": "1dd131e7a83df92e1c0d86899edc1d1be6f90a9efc04596ae664f93dbd9de84e",
+      "public_sha256": "1dd131e7a83df92e1c0d86899edc1d1be6f90a9efc04596ae664f93dbd9de84e",
+      "redacted": false
+    },
+    "trial-01/output.txt": {
+      "original_sha256": "6966f99704ee28bbf8212c8cddb7165b265e0cedfea7b08dbd09f7495f7168b3",
+      "public_sha256": "6966f99704ee28bbf8212c8cddb7165b265e0cedfea7b08dbd09f7495f7168b3",
+      "redacted": false
+    },
+    "trial-01/request.json": {
+      "original_sha256": "a25e0600042bd31f4c23073957cd00b6d328cd306194a696f3df404e0f851128",
+      "public_sha256": "a25e0600042bd31f4c23073957cd00b6d328cd306194a696f3df404e0f851128",
+      "redacted": false
+    },
+    "trial-01/response-summary.json": {
+      "original_sha256": "c976df72c779f512865e9a87123b73c348139004db34bead48420221b3dda91b",
+      "public_sha256": "c976df72c779f512865e9a87123b73c348139004db34bead48420221b3dda91b",
+      "redacted": false
+    },
+    "trial-01/stream.sse": {
+      "original_sha256": "d415af839439df2f0b663c2ef1ceb47086dc92fac80dfcfc6f248a4ffc9bdee1",
+      "public_sha256": "d415af839439df2f0b663c2ef1ceb47086dc92fac80dfcfc6f248a4ffc9bdee1",
+      "redacted": false
+    },
+    "trial-01/telemetry.jsonl": {
+      "original_sha256": "6e8ee5a81c45cd65966cd92cf987c463eb9b72d9691b36b061bce1c0f5608b21",
+      "public_sha256": "6e8ee5a81c45cd65966cd92cf987c463eb9b72d9691b36b061bce1c0f5608b21",
+      "redacted": false
+    },
+    "trial-02/calibration.json": {
+      "original_sha256": "076992fc975c270a6615ffa5c87923d13b35c79f0f4707bebe0475b4a4d6490f",
+      "public_sha256": "076992fc975c270a6615ffa5c87923d13b35c79f0f4707bebe0475b4a4d6490f",
+      "redacted": false
+    },
+    "trial-02/measurement.json": {
+      "original_sha256": "3c89ca9242d78bb29192f3bcebac6aa02910b899a38cc659d7e72f61ce8d6827",
+      "public_sha256": "3c89ca9242d78bb29192f3bcebac6aa02910b899a38cc659d7e72f61ce8d6827",
+      "redacted": false
+    },
+    "trial-02/output.txt": {
+      "original_sha256": "66768db9bf0aee16ad3d815bbcbca59ea9972d805bcba6d14d3255023ffa290e",
+      "public_sha256": "66768db9bf0aee16ad3d815bbcbca59ea9972d805bcba6d14d3255023ffa290e",
+      "redacted": false
+    },
+    "trial-02/request.json": {
+      "original_sha256": "8d8b7ada7e3b82877b413cfdbd5eb5ce3cab0ea6441ed35712fa4be362aada5c",
+      "public_sha256": "8d8b7ada7e3b82877b413cfdbd5eb5ce3cab0ea6441ed35712fa4be362aada5c",
+      "redacted": false
+    },
+    "trial-02/response-summary.json": {
+      "original_sha256": "f304c8d527b9b187a0de78abac9d16ac7df039d7f937bfcdb58f079af61470bd",
+      "public_sha256": "f304c8d527b9b187a0de78abac9d16ac7df039d7f937bfcdb58f079af61470bd",
+      "redacted": false
+    },
+    "trial-02/stream.sse": {
+      "original_sha256": "4591cb762704b4fa9152e01d2c066d24e15f79735a56ffa49ff709533b1f33ba",
+      "public_sha256": "4591cb762704b4fa9152e01d2c066d24e15f79735a56ffa49ff709533b1f33ba",
+      "redacted": false
+    },
+    "trial-02/telemetry.jsonl": {
+      "original_sha256": "e796f0b229860effc89bb32722e6da740547167db6b689c795af660eb46e716f",
+      "public_sha256": "e796f0b229860effc89bb32722e6da740547167db6b689c795af660eb46e716f",
+      "redacted": false
+    },
+    "trial-03/calibration.json": {
+      "original_sha256": "387d3a62d58225f859fed07d227acb35e2e7f4cc89451a3ba84188e03eba8349",
+      "public_sha256": "387d3a62d58225f859fed07d227acb35e2e7f4cc89451a3ba84188e03eba8349",
+      "redacted": false
+    },
+    "trial-03/measurement.json": {
+      "original_sha256": "ac6f9c969a0fdaafcbe588095a142ac7ecdd64178d7e8ca93e93458a110a49e9",
+      "public_sha256": "ac6f9c969a0fdaafcbe588095a142ac7ecdd64178d7e8ca93e93458a110a49e9",
+      "redacted": false
+    },
+    "trial-03/output.txt": {
+      "original_sha256": "cc2fc8c6a231b26e18e537845d0f62cbd5edfd1a41278b303d1369ffd5e7562a",
+      "public_sha256": "cc2fc8c6a231b26e18e537845d0f62cbd5edfd1a41278b303d1369ffd5e7562a",
+      "redacted": false
+    },
+    "trial-03/request.json": {
+      "original_sha256": "79f63999cef98719fbf3bde158fe05bd46e2df6c7154afbb14809d3bdad699c0",
+      "public_sha256": "79f63999cef98719fbf3bde158fe05bd46e2df6c7154afbb14809d3bdad699c0",
+      "redacted": false
+    },
+    "trial-03/response-summary.json": {
+      "original_sha256": "a0f3430a521966a12882aa4aa603c9c872076d8d40f5bc00e780b48f96ae25d1",
+      "public_sha256": "a0f3430a521966a12882aa4aa603c9c872076d8d40f5bc00e780b48f96ae25d1",
+      "redacted": false
+    },
+    "trial-03/stream.sse": {
+      "original_sha256": "1ea7f1e747f1f25081ce4f4d1228705a4594f78f54e19224290a43b66bb2101a",
+      "public_sha256": "1ea7f1e747f1f25081ce4f4d1228705a4594f78f54e19224290a43b66bb2101a",
+      "redacted": false
+    },
+    "trial-03/telemetry.jsonl": {
+      "original_sha256": "6307285068804622b60a2ae67d31a9ebcc45491d35d274041261384373010986",
+      "public_sha256": "6307285068804622b60a2ae67d31a9ebcc45491d35d274041261384373010986",
+      "redacted": false
+    },
+    "trial-04/calibration.json": {
+      "original_sha256": "55c7d2c5cda3fb8c461bae09464b15f7f8b8f7e7640dec90dd78f1684c2ae4e1",
+      "public_sha256": "55c7d2c5cda3fb8c461bae09464b15f7f8b8f7e7640dec90dd78f1684c2ae4e1",
+      "redacted": false
+    },
+    "trial-04/measurement.json": {
+      "original_sha256": "c3cf6c97c208c2250083e1cdf15ebdfa0f104da816e56269c61ac71e9121d901",
+      "public_sha256": "c3cf6c97c208c2250083e1cdf15ebdfa0f104da816e56269c61ac71e9121d901",
+      "redacted": false
+    },
+    "trial-04/output.txt": {
+      "original_sha256": "b2b5450ec4a06be3568dee1ced8bac8c31f55864eb9048752e207e9afc4697f3",
+      "public_sha256": "b2b5450ec4a06be3568dee1ced8bac8c31f55864eb9048752e207e9afc4697f3",
+      "redacted": false
+    },
+    "trial-04/request.json": {
+      "original_sha256": "16048c70ef4f559df2c30fdb9578e64bd10da118c67952c2a2b7c35c41eda221",
+      "public_sha256": "16048c70ef4f559df2c30fdb9578e64bd10da118c67952c2a2b7c35c41eda221",
+      "redacted": false
+    },
+    "trial-04/response-summary.json": {
+      "original_sha256": "90190ca4d0d5012ae095bed88f07e3e7becf932d4d989ccddc53762fa955c287",
+      "public_sha256": "90190ca4d0d5012ae095bed88f07e3e7becf932d4d989ccddc53762fa955c287",
+      "redacted": false
+    },
+    "trial-04/stream.sse": {
+      "original_sha256": "235d0533beb3a2b6f581adaec4b75e756c3b6c0a60d5ec108a90ff01c9d4ec76",
+      "public_sha256": "235d0533beb3a2b6f581adaec4b75e756c3b6c0a60d5ec108a90ff01c9d4ec76",
+      "redacted": false
+    },
+    "trial-04/telemetry.jsonl": {
+      "original_sha256": "1f39b6d8bb5043c09c59b9f70a921d9b9e3151488090faf17b77ba7d4dddf1af",
+      "public_sha256": "1f39b6d8bb5043c09c59b9f70a921d9b9e3151488090faf17b77ba7d4dddf1af",
+      "redacted": false
+    },
+    "trial-05/calibration.json": {
+      "original_sha256": "ede2e6b1c65ca50e95f906a5f386c03930fed1293a43f73ee7f85be55322efa0",
+      "public_sha256": "ede2e6b1c65ca50e95f906a5f386c03930fed1293a43f73ee7f85be55322efa0",
+      "redacted": false
+    },
+    "trial-05/measurement.json": {
+      "original_sha256": "3e40e03598f6e8bfd36dcbc525c40aa7341195b991cc0b1f110c3a7848ed34d3",
+      "public_sha256": "3e40e03598f6e8bfd36dcbc525c40aa7341195b991cc0b1f110c3a7848ed34d3",
+      "redacted": false
+    },
+    "trial-05/output.txt": {
+      "original_sha256": "c7b018365dedee3f37c6e2d059fb0dac3af12af9d04f8d1a531dda06176da9e8",
+      "public_sha256": "c7b018365dedee3f37c6e2d059fb0dac3af12af9d04f8d1a531dda06176da9e8",
+      "redacted": false
+    },
+    "trial-05/request.json": {
+      "original_sha256": "f35a903d2bd058bff2970bb4dee07b3978f95d00edf77d8f445f8425062044f0",
+      "public_sha256": "f35a903d2bd058bff2970bb4dee07b3978f95d00edf77d8f445f8425062044f0",
+      "redacted": false
+    },
+    "trial-05/response-summary.json": {
+      "original_sha256": "cd77c7f594af68e431db393c0ed9cc1b113098400658c8f0a7560c16778b34aa",
+      "public_sha256": "cd77c7f594af68e431db393c0ed9cc1b113098400658c8f0a7560c16778b34aa",
+      "redacted": false
+    },
+    "trial-05/stream.sse": {
+      "original_sha256": "22b65531707afc17a56cd5357362da96bf8205e5e37e9ee8ba72a8c89961e771",
+      "public_sha256": "22b65531707afc17a56cd5357362da96bf8205e5e37e9ee8ba72a8c89961e771",
+      "redacted": false
+    },
+    "trial-05/telemetry.jsonl": {
+      "original_sha256": "0d6ac01e2c4e797d39fb745a2ad2c4909ae5cae2e40c1923f2b96f57d20e02e8",
+      "public_sha256": "0d6ac01e2c4e797d39fb745a2ad2c4909ae5cae2e40c1923f2b96f57d20e02e8",
+      "redacted": false
+    },
+    "warmup-01/calibration.json": {
+      "original_sha256": "c43178f1b17e88b9b0beedfa12232dcb2f0c10505297381c1f7d8a1563ebc054",
+      "public_sha256": "c43178f1b17e88b9b0beedfa12232dcb2f0c10505297381c1f7d8a1563ebc054",
+      "redacted": false
+    },
+    "warmup-01/measurement.json": {
+      "original_sha256": "9ec08c210128335e847f75867d5f6f058795d62a4daa36f22e59dff4c0b1f2d4",
+      "public_sha256": "9ec08c210128335e847f75867d5f6f058795d62a4daa36f22e59dff4c0b1f2d4",
+      "redacted": false
+    },
+    "warmup-01/output.txt": {
+      "original_sha256": "120157b2f4df5c3a91eb2376adf048ddd303816bd9cc27183a520940800b5eaa",
+      "public_sha256": "120157b2f4df5c3a91eb2376adf048ddd303816bd9cc27183a520940800b5eaa",
+      "redacted": false
+    },
+    "warmup-01/request.json": {
+      "original_sha256": "7ff321ba4379a445b1d9a10c2449a56b6b2bc7f8df4cf6d9de5f73ac6fdce76c",
+      "public_sha256": "7ff321ba4379a445b1d9a10c2449a56b6b2bc7f8df4cf6d9de5f73ac6fdce76c",
+      "redacted": false
+    },
+    "warmup-01/response-summary.json": {
+      "original_sha256": "2c62cf45b587f58ac031b0ad31cbab1d82f22cf62bdfea6d16a9e0ac307b5afe",
+      "public_sha256": "2c62cf45b587f58ac031b0ad31cbab1d82f22cf62bdfea6d16a9e0ac307b5afe",
+      "redacted": false
+    },
+    "warmup-01/stream.sse": {
+      "original_sha256": "1fcb36cbf7659bd76fa01d080389f7bd4ef88f33d61d3f97bd8e58855f8817b9",
+      "public_sha256": "1fcb36cbf7659bd76fa01d080389f7bd4ef88f33d61d3f97bd8e58855f8817b9",
+      "redacted": false
+    },
+    "warmup-01/telemetry.jsonl": {
+      "original_sha256": "a8fa685551d2bb306439057c7300021b27c2eb970d21f2334bf4f62cc1cacf61",
+      "public_sha256": "a8fa685551d2bb306439057c7300021b27c2eb970d21f2334bf4f62cc1cacf61",
+      "redacted": false
+    },
+    "warmup-02/calibration.json": {
+      "original_sha256": "721b09f2d4bed72c85e32bdd8f63fc079b757c7e903ee6cf69cd60943dedc1b0",
+      "public_sha256": "721b09f2d4bed72c85e32bdd8f63fc079b757c7e903ee6cf69cd60943dedc1b0",
+      "redacted": false
+    },
+    "warmup-02/measurement.json": {
+      "original_sha256": "48e90f38e13f92db98db7097f796985fa6ffb167416e534167964f0cc0c22491",
+      "public_sha256": "48e90f38e13f92db98db7097f796985fa6ffb167416e534167964f0cc0c22491",
+      "redacted": false
+    },
+    "warmup-02/output.txt": {
+      "original_sha256": "b05267c0bef002990b7cf7a07ebe0d09a008c0f31b128e7bfa94caaa1b5bf404",
+      "public_sha256": "b05267c0bef002990b7cf7a07ebe0d09a008c0f31b128e7bfa94caaa1b5bf404",
+      "redacted": false
+    },
+    "warmup-02/request.json": {
+      "original_sha256": "14f12d485d06123c28e31820df51d9eb789347563ae7881e02f0052a0a8c6c4a",
+      "public_sha256": "14f12d485d06123c28e31820df51d9eb789347563ae7881e02f0052a0a8c6c4a",
+      "redacted": false
+    },
+    "warmup-02/response-summary.json": {
+      "original_sha256": "8e3eecd8e3b39805812fd46ffeb5830d247baf646646238b2aec263a438993bc",
+      "public_sha256": "8e3eecd8e3b39805812fd46ffeb5830d247baf646646238b2aec263a438993bc",
+      "redacted": false
+    },
+    "warmup-02/stream.sse": {
+      "original_sha256": "a2e0836ee9bfe88746a564d06d9f01b03c16246340512aad10f8fd52056f50be",
+      "public_sha256": "a2e0836ee9bfe88746a564d06d9f01b03c16246340512aad10f8fd52056f50be",
+      "redacted": false
+    },
+    "warmup-02/telemetry.jsonl": {
+      "original_sha256": "3c184a9481712a4eadd3c90b54a96a49646beb61814beef68c8e5b37708f112e",
+      "public_sha256": "3c184a9481712a4eadd3c90b54a96a49646beb61814beef68c8e5b37708f112e",
+      "redacted": false
+    },
+    "warmup-03/calibration.json": {
+      "original_sha256": "c43178f1b17e88b9b0beedfa12232dcb2f0c10505297381c1f7d8a1563ebc054",
+      "public_sha256": "c43178f1b17e88b9b0beedfa12232dcb2f0c10505297381c1f7d8a1563ebc054",
+      "redacted": false
+    },
+    "warmup-03/measurement.json": {
+      "original_sha256": "a55b9e408c0750dc014bb182d679706c7a604db07fe61b93c30137f6e7ce4fc5",
+      "public_sha256": "a55b9e408c0750dc014bb182d679706c7a604db07fe61b93c30137f6e7ce4fc5",
+      "redacted": false
+    },
+    "warmup-03/output.txt": {
+      "original_sha256": "29cbf5e5229cefcc6797f652244a036b9ccaa330d3a1fcc4151bfaf7e145974a",
+      "public_sha256": "29cbf5e5229cefcc6797f652244a036b9ccaa330d3a1fcc4151bfaf7e145974a",
+      "redacted": false
+    },
+    "warmup-03/request.json": {
+      "original_sha256": "391ff6f04d50f8c52f7f0804a9a73fecd99998c1739c5133ea57672dc4e26899",
+      "public_sha256": "391ff6f04d50f8c52f7f0804a9a73fecd99998c1739c5133ea57672dc4e26899",
+      "redacted": false
+    },
+    "warmup-03/response-summary.json": {
+      "original_sha256": "266cc36508ec750e20369537078f90aedd9cc6eab3644185d9f8f9ac8506afd0",
+      "public_sha256": "266cc36508ec750e20369537078f90aedd9cc6eab3644185d9f8f9ac8506afd0",
+      "redacted": false
+    },
+    "warmup-03/stream.sse": {
+      "original_sha256": "e8e11ca84b6f9afca48e983cfb22441a083802828f1679ad2808179b66b4cd70",
+      "public_sha256": "e8e11ca84b6f9afca48e983cfb22441a083802828f1679ad2808179b66b4cd70",
+      "redacted": false
+    },
+    "warmup-03/telemetry.jsonl": {
+      "original_sha256": "fc00998cf7ec705bee2b1a0c602f8ae4f79001e79ff94058194cbeaa3783da96",
+      "public_sha256": "fc00998cf7ec705bee2b1a0c602f8ae4f79001e79ff94058194cbeaa3783da96",
+      "redacted": false
+    }
+  },
+  "archive_sha256": "4386220ea6be65b3286724ea4176838f44164021220ea6ed3f3a0fb959ade890",
+  "redaction_rules": [
+    "API/authorization/password fields",
+    "private IPs",
+    "personal home directory prefix",
+    "GPU UUID"
+  ],
+  "contents": "all warmups, measured trials, native streams, request payloads, output and available telemetry"
+}

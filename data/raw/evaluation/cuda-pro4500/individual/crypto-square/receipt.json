@@ -1,0 +1,10 @@
+{
+  "exercise": "crypto-square",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 42.70584804199996,
+  "benchmark_duration_ms": 41600,
+  "result_present": true
+}
