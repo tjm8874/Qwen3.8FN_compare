@@ -4,12 +4,6 @@
   "tax_and_shipping": "excluded; listings can change; not a lowest-price survey",
   "user_reference_systems": [
     {
-      "target": "macstudio-m5ultra",
-      "configuration": "Mac Studio M5 Ultra / 256GB / 2TB",
-      "price": 9999,
-      "source": "owner supplied, corrected 2026-10-10"
-    },
-    {
       "target": "cuda-dual",
       "price": 6500,
       "components": {
@@ -25,12 +19,6 @@
     {
       "target": "cuda-5060ti",
       "price": 1800
-    },
-    {
-      "target": "macbook-m5max",
-      "price": 6699,
-      "source": "owner supplied actual retail price, 2026-10-10",
-      "configuration": "MacBook Pro M5 Max / 128GB / 2TB"
     },
     {
       "target": "ms-s1max",
@@ -86,5 +74,19 @@
     }
   ],
   "unverified": [],
-  "price_basis_note": "Owner supplied system prices are used for the comparison; independent retail listings are supplementary references. GX10 is budgeted at the same unit price as DGX Spark at the owner’s instruction."
+  "price_basis_note": "MacBook and Mac Studio use Apple official prices, as clarified by the owner on 2026-10-11. Other owner supplied system prices are comparison budgets; independent retail listings are supplementary references. GX10 is budgeted at the same unit price as DGX Spark at the owner’s instruction.",
+  "apple_official_systems": [
+    {
+      "target": "macstudio-m5ultra",
+      "configuration": "Mac Studio M5 Ultra / 256GB / 2TB",
+      "price": 9999,
+      "source": "Apple official price; source classification corrected by owner, 2026-10-11"
+    },
+    {
+      "target": "macbook-m5max",
+      "price": 6699,
+      "source": "Apple official price; source classification corrected by owner, 2026-10-11",
+      "configuration": "MacBook Pro M5 Max / 128GB / 2TB"
+    }
+  ]
 }

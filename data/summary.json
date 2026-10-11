@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-10-11T16:16:00.855974+00:00",
+  "snapshot_utc": "2026-10-11T16:20:17.539173+00:00",
   "state": "partial",
   "rows": [
     {
@@ -154,7 +154,7 @@
       "speed_case": "macbook-m5max-mlxserve",
       "evaluation_case": "macbook-m5max-mlxserve",
       "price_usd": 6699,
-      "price_basis": "owner supplied actual retail price, 2026-10-10",
+      "price_basis": "Apple official price; source classification corrected by owner, 2026-10-11",
       "speed_state": "complete",
       "speed_evidence": "raw_logs_validated",
       "speed_samples": 5,
@@ -226,7 +226,7 @@
       "speed_case": "macstudio-m5ultra-mlxserve-iq47",
       "evaluation_case": "macstudio-m5ultra-mlxserve-iq47",
       "price_usd": 9999,
-      "price_basis": "user supplied reference system price; corrected 2026-10-10",
+      "price_basis": "Apple official price; source classification corrected by owner, 2026-10-11",
       "speed_state": "complete",
       "speed_evidence": "raw_logs_validated",
       "speed_samples": 5,

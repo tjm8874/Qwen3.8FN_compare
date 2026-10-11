@@ -248,7 +248,7 @@ def render(root, rows):
     for y, text in [(1472, "速度：同じ16K/2Kで3回ウォームアップ後、5回測定。入力再利用0を確認。"),
                     (1514, "タスク秒数：ts-bench 25問の平均（失敗を含む） / Lower is better / thinking ON。"),
                     (1556, successes),
-                    (1598, "MacBook $6,699は申告実売。Mac Studio $9,999は参考価格。DGX $6,950は在庫なし。"),
+                    (1598, "MacBook $6,699、Mac Studio $9,999はApple公式価格。DGX $6,950は在庫なし。"),
                     (1640, "2台構成：GX10 $6,950 + DGX $6,950 + 接続ケーブル $200 = $14,100。"),
                     (1682, "条件・CSV・生ログ：github.com/tjm8874/Qwen3.8FN_compare")]:
         draw.text((65, y), text, font=font(23), fill="#40586b")

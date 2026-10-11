@@ -23,7 +23,7 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 | GX10 + DGX Spark | 4,355.8 | 80.3 | 未測定 | 未確定 | $14,100 |
 <!-- RESULTS_END -->
 
-速度は5回の中央値です。最小値・最大値、TTFT、全試行の数値は[CSV](data/summary.csv)に収録しています。価格は所有者の参考価格と販売店の表示価格を区別し、DGX Sparkの公式表示価格は在庫なしの参考値です。[価格の出典・構成・確認日](data/prices.json)をご確認ください。
+速度は5回の中央値です。最小値・最大値、TTFT、全試行の数値は[CSV](data/summary.csv)に収録しています。価格はApple公式価格、所有者の参考予算、販売店の表示価格を区別し、DGX Sparkの公式表示価格は在庫なしの参考値です。[価格の出典・構成・確認日](data/prices.json)をご確認ください。
 
 ![実機比較の途中経過](images/comparison-progress.png)
 
@@ -35,14 +35,14 @@ Mac Studio M5 UltraはMLX-Serve 26.10.1・iQ-MLX 4.7bpwでPrefill中央値4,635.
 | PC：PRO 4500のみ | Strata 0.1.42／IQ3_XXS | $5,700* | 速度測定・DSH25完了 |
 | PC：PRO 4500＋5060 Ti | Strata 0.1.42／IQ3_XXS | $6,500* | 速度測定・DSH25完了 |
 | MS-S1 Max 128GB・2TB | [Halogen指定レシピ](https://github.com/claudejaune/Qwen3.8-Halogen-Flash-Strix-Halo)／0.17.5・W4B＋品質オーバーレイ | $3,879* | 速度測定・DSH25完了 |
-| MacBook Pro M5 Max 128GB・2TB | [MLX-Serve 26.10.1](https://github.com/ddalcu/mlx-serve)／[iQ-MLX 4.7bpw](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-iQ-MLX-4.7bpw)・ファン最大 | $6,699* | 速度・TS-bench25問完了（25/25） |
+| MacBook Pro M5 Max 128GB・2TB | [MLX-Serve 26.10.1](https://github.com/ddalcu/mlx-serve)／[iQ-MLX 4.7bpw](https://huggingface.co/ddalcu/Qwen3.8-Flash-Next-MLX-Serve-iQ-MLX-4.7bpw)・ファン最大 | $6,699 | 速度・TS-bench25問完了（25/25） |
 | DGX Spark 1台 | [vLLM 0.30.0共通ビルド](https://github.com/myllmbox/qwen38-flash-next-cluster-recipe)／INT4 top-5・FP8表 | $6,950† | 単体比較で採用・速度完了・新エンジンのTS-bench実行中 |
-| Mac Studio M5 Ultra 256GB・2TB | MLX-Serve 26.10.1／iQ-MLX 4.7bpw・自動ファン | $9,999* | 速度測定・TS-bench25問完了（25/25） |
+| Mac Studio M5 Ultra 256GB・2TB | MLX-Serve 26.10.1／iQ-MLX 4.7bpw・自動ファン | $9,999 | 速度測定・TS-bench25問完了（25/25） |
 | GX10＋DGX Spark | 単体と同じvLLM 0.30.0／INT4 top-5・FP8表 | $14,100* | TP2速度完了・単体の評価と復旧後にTS-bench実行 |
 
 \* 所有者が示した参考価格。PC本体はCore i5-14400・DDR4 64GB・Z790Aマザーボードを含めて$1,000、PRO 4500は$4,700、5060 Ti 16GBは$800で計算しています。販売店の確認価格は、確認日・SSDなどの構成・税送料の扱いとともに別途記録します。別Windows PCの実売価格は未提示のため、1行目の$1,800は従来と同じ参考予算です。価格だけで能力を順位づけせず、タスク秒数と成功数も記録します。
 
-MacBook Pro M5 Max 128GB・2TBの$6,699は所有者が示した実売価格、MS-S1 Max 128GB・2TBは$3,879です。GX10＋DGX Sparkは、所有者の指定に合わせて1台あたり$6,950とし、接続ケーブル$200を加えた**$14,100**（$6,950 × 2 ＋ $200）で比較します。GX10単体について、販売店で確認した価格とは区別します。
+MacBook Pro M5 Max 128GB・2TBの$6,699、Mac Studio M5 Ultra 256GB・2TBの$9,999はApple公式価格です。MS-S1 Max 128GB・2TBは$3,879です。GX10＋DGX Sparkは、所有者の指定に合わせて1台あたり$6,950とし、接続ケーブル$200を加えた**$14,100**（$6,950 × 2 ＋ $200）で比較します。GX10単体について、販売店で確認した価格とは区別します。
 
 † [NVIDIA US公式ページ](https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/)の2026年10月10日の表示価格。128GB・4TB構成は在庫なしであり、この価格で今すぐ購入できることを示しません。
 
