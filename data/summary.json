@@ -1,6 +1,6 @@
 {
-  "snapshot_utc": "2026-10-11T17:13:25.470202+00:00",
-  "state": "partial",
+  "snapshot_utc": "2026-10-11T18:40:19.862315+00:00",
+  "state": "complete",
   "rows": [
     {
       "target": "cuda-5060ti",
@@ -275,12 +275,12 @@
       "speed_samples": 5,
       "input_tokens": 16384,
       "output_tokens": 2048,
-      "dsh_state": "pending",
-      "dsh_passed": "",
-      "dsh_total": "",
-      "task_seconds_mean": "",
-      "task_seconds_median": "",
-      "task_duration_metric": "",
+      "dsh_state": "complete",
+      "dsh_passed": 22,
+      "dsh_total": 25,
+      "task_seconds_mean": 95.16116,
+      "task_seconds_median": 70.337,
+      "task_duration_metric": "ts-bench totalDuration median: all25 tasks including model failures; mean also retained; lower is better",
       "prefill_tps_median": 4355.8366630457385,
       "prefill_tps_min": 4332.909080004331,
       "prefill_tps_max": 4361.918411786543,

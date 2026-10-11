@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-11T18:05:20.748Z",
+    "agent": "dsh",
+    "model": "benchmark-model",
+    "provider": "local",
+    "version": "0.1.5-rc.3",
+    "totalExercises": 1,
+    "benchmarkVersion": "1.1.0"
+  },
+  "summary": {
+    "successRate": 0,
+    "totalDuration": 34449,
+    "avgDuration": 34449,
+    "successCount": 0,
+    "totalCount": 1,
+    "agentSuccessCount": 1,
+    "testSuccessCount": 0,
+    "testFailedCount": 1
+  },
+  "results": [
+    {
+      "exercise": "pascals-triangle",
+      "agentSuccess": true,
+      "testSuccess": false,
+      "overallSuccess": false,
+      "testError": "STDOUT: ➤ ➤ ➤ ➤ ➤ YN0002: │ @exercism/typescript-pascals-triangle@workspace:. doesn't provide @babel/core (p6c295), requested by babel-jest.\n➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.\n➤ YN0086: │ Some peer dependencies are incorrectly met by dependencies; run yarn explain peer-requirements for details.\n➤ ➤ ➤ ➤ ➤ ➤ YN0008: │ core-js@npm:3.38.1 must be rebuilt because its dependency tree changed\n➤ YN0008: │ core-js@npm:3.44.0 must be rebuilt because its dependency tree changed\n➤ ➤ [tests] tsc: ✅, tstyche: ❌, jest: ✅, \n[tests] tsc (compile)\npascals-triangle.ts(37,5): error TS2322: Type 'number[]' is not assignable to type 'number[][]'.\n  Type 'number' is not assignable to type 'number[]'.\n\nSTDERR: ",
+      "agentDuration": 31906,
+      "testDuration": 2510,
+      "totalDuration": 34449
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "exercise": "anagram",
+  "overallSuccess": true,
+  "process_returncode": 0,
+  "outer_timeout": false,
+  "result_file_count": 1,
+  "runner_wall_seconds": 67.46535062500001,
+  "benchmark_duration_ms": 66360,
+  "result_present": true
+}

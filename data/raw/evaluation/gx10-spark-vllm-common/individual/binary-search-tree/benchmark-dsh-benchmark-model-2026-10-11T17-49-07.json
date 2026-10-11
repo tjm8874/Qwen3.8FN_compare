@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-11T17:49:07.890Z",
+    "agent": "dsh",
+    "model": "benchmark-model",
+    "provider": "local",
+    "version": "0.1.5-rc.3",
+    "totalExercises": 1,
+    "benchmarkVersion": "1.1.0"
+  },
+  "summary": {
+    "successRate": 0,
+    "totalDuration": 64335,
+    "avgDuration": 64335,
+    "successCount": 0,
+    "totalCount": 1,
+    "agentSuccessCount": 1,
+    "testSuccessCount": 0,
+    "testFailedCount": 1
+  },
+  "results": [
+    {
+      "exercise": "binary-search-tree",
+      "agentSuccess": true,
+      "testSuccess": false,
+      "overallSuccess": false,
+      "testError": "STDOUT: ➤ ➤ ➤ ➤ ➤ YN0002: │ @exercism/typescript-binary-search-tree@workspace:. doesn't provide @babel/core (pa5dc1), requested by babel-jest.\n➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.\n➤ YN0086: │ Some peer dependencies are incorrectly met by dependencies; run yarn explain peer-requirements for details.\n➤ ➤ ➤ ➤ ➤ ➤ YN0008: │ core-js@npm:3.38.1 must be rebuilt because its dependency tree changed\n➤ YN0008: │ core-js@npm:3.44.0 must be rebuilt because its dependency tree changed\n➤ ➤ [tests] tsc: ✅, tstyche: ❌, jest: ✅, \n[tests] tsc (compile)\nbinary-search-tree.ts(22,33): error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.\nbinary-search-tree.ts(36,54): error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.\n\nSTDERR: ",
+      "agentDuration": 61726,
+      "testDuration": 2577,
+      "totalDuration": 64335
+    }
+  ]
+}
